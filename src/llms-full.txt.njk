@@ -1,0 +1,54 @@
+---
+permalink: /llms-full.txt
+eleventyExcludeFromCollections: true
+---
+# {{ meta.site_name }}
+
+> {{ meta.site_description }}
+
+---
+
+## Pages
+
+{%- for page in collections.pages %}
+{%- if not page.data.llms_exclude and not page.data.eleventyExcludeFromCollections %}
+
+### {{ page.data.title }}
+
+URL: {{ meta.site_url }}{{ page.url }}
+
+{{ page.templateContent | striptags | collapseWhitespace }}
+
+---
+{%- endif %}
+{%- endfor %}
+
+## Blog Posts
+
+{%- for post in collections.blog %}
+{%- if not post.data.llms_exclude %}
+
+### {{ post.data.title }}
+
+URL: {{ meta.site_url }}{{ post.url }}
+Date: {{ post.date | readableDate }}
+Author: {{ post.data.author }}
+
+{{ post.templateContent | striptags | collapseWhitespace }}
+
+---
+{%- endif %}
+{%- endfor %}
+
+## Authors
+
+{%- for author in collections.authors %}
+
+### {{ author.data.name }}
+
+URL: {{ meta.site_url }}{{ author.url }}
+
+{{ author.data.bio }}
+
+---
+{%- endfor %}

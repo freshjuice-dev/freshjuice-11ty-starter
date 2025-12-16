@@ -1,0 +1,252 @@
+@layer components {
+  /* Form group container */
+  .form-group {
+    @apply mb-4;
+
+    & > label:first-child {
+      @apply block text-sm font-medium text-stone-700 mb-2;
+    }
+  }
+
+  /* Base input styles (exclude Pagefind search) */
+  input[type="text"]:not(.pagefind-ui__search-input),
+  input[type="email"],
+  input[type="password"],
+  input[type="url"],
+  input[type="tel"],
+  input[type="search"]:not(.pagefind-ui__search-input),
+  input[type="number"],
+  input[type="date"],
+  input[type="time"],
+  input[type="datetime-local"],
+  input[type="month"],
+  input[type="week"],
+  textarea,
+  select {
+    @apply w-full px-4 py-3 rounded-lg border border-stone-300 bg-white text-stone-900;
+    @apply transition-colors duration-200;
+    @apply placeholder:text-stone-400;
+
+    &:focus {
+      @apply outline-none ring-2 ring-orange-500 border-orange-500;
+    }
+
+    &:disabled {
+      @apply bg-stone-100 text-stone-500 cursor-not-allowed;
+    }
+
+    &:read-only {
+      @apply bg-stone-50 text-stone-600;
+    }
+  }
+
+  /* Textarea specific */
+  textarea {
+    @apply resize-y min-h-[120px];
+  }
+
+  /* Select specific */
+  select {
+    @apply appearance-none bg-no-repeat bg-right pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+    background-size: 1.25rem;
+
+    &[multiple] {
+      @apply bg-none pr-4;
+    }
+  }
+
+  /* File input */
+  input[type="file"] {
+    @apply w-full text-stone-700 text-sm;
+    @apply file:mr-4 file:py-2 file:px-4;
+    @apply file:rounded-lg file:border-0;
+    @apply file:text-sm file:font-medium;
+    @apply file:bg-orange-50 file:text-orange-700;
+    @apply file:cursor-pointer file:transition-colors;
+    @apply hover:file:bg-orange-100;
+  }
+
+  /* Color input */
+  input[type="color"] {
+    @apply w-16 h-10 p-1 rounded-lg border border-stone-300 cursor-pointer;
+    @apply bg-white;
+
+    &::-webkit-color-swatch-wrapper {
+      @apply p-0;
+    }
+
+    &::-webkit-color-swatch {
+      @apply rounded border-0;
+    }
+  }
+
+  /* Range input */
+  input[type="range"] {
+    @apply w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer;
+
+    &::-webkit-slider-thumb {
+      @apply appearance-none w-5 h-5 bg-orange-600 rounded-full cursor-pointer;
+      @apply hover:bg-orange-700 transition-colors;
+    }
+
+    &::-moz-range-thumb {
+      @apply w-5 h-5 bg-orange-600 rounded-full cursor-pointer border-0;
+      @apply hover:bg-orange-700 transition-colors;
+    }
+
+    &:focus {
+      @apply outline-none;
+
+      &::-webkit-slider-thumb {
+        @apply ring-2 ring-orange-500 ring-offset-2;
+      }
+    }
+  }
+
+  /* Checkbox and radio wrapper */
+  .form-check {
+    @apply flex items-center gap-3 cursor-pointer;
+
+    & > input {
+      @apply sr-only;
+    }
+
+    & > span {
+      @apply text-stone-700;
+    }
+
+    & > input + span::before {
+      @apply inline-block w-5 h-5 mr-2 align-middle;
+      @apply border-2 border-stone-300 bg-white;
+      @apply transition-all duration-200;
+      content: "";
+    }
+
+    & > input:checked + span::before {
+      @apply border-orange-600 bg-orange-600;
+    }
+
+    & > input:focus + span::before {
+      @apply ring-2 ring-orange-500 ring-offset-2;
+    }
+
+    & > input:disabled + span {
+      @apply text-stone-400 cursor-not-allowed;
+    }
+
+    & > input:disabled + span::before {
+      @apply bg-stone-100 border-stone-200;
+    }
+
+    /* Checkbox square */
+    & > input[type="checkbox"] + span::before {
+      @apply rounded;
+    }
+
+    & > input[type="checkbox"]:checked + span::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='white'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    }
+
+    /* Radio circle */
+    & > input[type="radio"] + span::before {
+      @apply rounded-full;
+    }
+
+    & > input[type="radio"]:checked + span::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='5' fill='white'/%3E%3C/svg%3E");
+    }
+  }
+
+  /* Fieldset and legend */
+  fieldset {
+    @apply border border-stone-200 rounded-lg p-6 mb-6;
+  }
+
+  legend {
+    @apply px-2 text-lg font-semibold text-stone-900;
+  }
+
+  /* Progress bar */
+  progress {
+    @apply h-3 rounded-full overflow-hidden appearance-none;
+
+    &::-webkit-progress-bar {
+      @apply bg-stone-200 rounded-full;
+    }
+
+    &::-webkit-progress-value {
+      @apply bg-orange-600 rounded-full;
+    }
+
+    &::-moz-progress-bar {
+      @apply bg-orange-600 rounded-full;
+    }
+  }
+
+  /* Meter */
+  meter {
+    @apply h-3 rounded-full overflow-hidden appearance-none;
+
+    &::-webkit-meter-bar {
+      @apply bg-stone-200 rounded-full;
+    }
+
+    &::-webkit-meter-optimum-value {
+      @apply bg-green-500 rounded-full;
+    }
+
+    &::-webkit-meter-suboptimum-value {
+      @apply bg-yellow-500 rounded-full;
+    }
+
+    &::-webkit-meter-even-less-good-value {
+      @apply bg-red-500 rounded-full;
+    }
+  }
+
+  /* Output */
+  output {
+    @apply inline-block px-3 py-1 bg-stone-100 rounded text-stone-700 font-medium;
+  }
+
+  /* Help text */
+  .form-help {
+    @apply text-sm text-stone-500 mt-1;
+  }
+
+  /* Error state */
+  .form-error {
+    & input,
+    & textarea,
+    & select {
+      @apply border-red-500;
+
+      &:focus {
+        @apply ring-red-500 border-red-500;
+      }
+    }
+
+    & .form-help {
+      @apply text-red-500;
+    }
+  }
+
+  /* Success state */
+  .form-success {
+    & input,
+    & textarea,
+    & select {
+      @apply border-green-500;
+
+      &:focus {
+        @apply ring-green-500 border-green-500;
+      }
+    }
+
+    & .form-help {
+      @apply text-green-500;
+    }
+  }
+}

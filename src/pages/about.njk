@@ -1,0 +1,47 @@
+---
+layout: layouts/base.njk
+title: "About"
+description: "Learn more about our company and what we do."
+permalink: /about/
+---
+{% from "_components/index.njk" import button %}
+
+<section class="py-16 lg:py-24">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-6">About Us</h1>
+      <p class="text-xl text-stone-600 mb-12">
+        We are passionate about building beautiful, fast, and accessible websites that help businesses grow.
+      </p>
+
+      <div class="prose prose-lg max-w-none">
+        <h2>Our Mission</h2>
+        <p>
+          Our mission is to make web development accessible to everyone. We believe that every business deserves a beautiful, functional website that helps them connect with their audience and achieve their goals.
+        </p>
+
+        <h2>What We Do</h2>
+        <p>
+          We specialize in building modern websites using the latest technologies. Our tech stack includes Eleventy for static site generation, TailwindCSS for styling, and CloudCannon for content management. This combination allows us to create websites that are:
+        </p>
+
+        <ul>
+          <li>Blazing fast with optimal Core Web Vitals scores</li>
+          <li>Easy to maintain and update</li>
+          <li>Secure and accessible by default</li>
+          <li>Cost-effective to host and scale</li>
+        </ul>
+
+        <h2>Our Values</h2>
+        <p>
+          We believe in quality over quantity, simplicity over complexity, and user experience over flashy features. Every project we take on is built with care and attention to detail.
+        </p>
+      </div>
+
+      <div class="mt-12 flex flex-wrap gap-4">
+        {{ button({ text: "Contact Us", url: "/contact/", variant: "primary" }) }}
+        {{ button({ text: "View Our Blog", url: "/blog/", variant: "outline" }) }}
+      </div>
+    </div>
+  </div>
+</section>

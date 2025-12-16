@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ meta.locale or 'en' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% include "partials/seo.njk" %}
+  <link rel="stylesheet" href="/assets/css/main.css?v={{ build.hash.short }}">
+</head>
+<body class="min-h-screen flex flex-col bg-stone-50 text-stone-900 antialiased">
+  {% include "partials/header.njk" %}
+
+  <main class="flex-1">
+    {{ content | safe }}
+  </main>
+
+  {% include "partials/footer.njk" %}
+
+  <script defer src="/assets/js/main.js?v={{ build.hash.short }}"></script>
+  {% if pagefind %}
+  <script src="/pagefind/pagefind-ui.js?v={{ build.hash.short }}" onload="new PagefindUI({ element: '#pagefind', showSubResults: true, showImages: false });"></script>
+  {% endif %}
+</body>
+</html>

@@ -1,0 +1,12 @@
+_schema: landing
+_enabled_editors:
+  - visual
+  - data
+
+title:
+description:
+layout: layouts/landing.njk
+permalink:
+blocks: []
+noindex: false
+llms_exclude: false

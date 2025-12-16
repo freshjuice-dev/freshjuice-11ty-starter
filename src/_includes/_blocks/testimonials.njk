@@ -1,0 +1,94 @@
+{#
+  Testimonials Block
+  @param {string} section_title - Section heading
+  @param {array} testimonials - Testimonial items (quote, author, company, avatar)
+  @param {string} layout - Display layout: grid, slider
+#}
+{% macro testimonials(props) %}
+{%- set layout = props.layout or 'grid' -%}
+
+<section class="py-16 lg:py-24 bg-stone-50">
+  <div class="container mx-auto px-4">
+    {% if props.section_title %}
+    <div class="text-center mb-12 lg:mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-stone-900">
+        {{ props.section_title }}
+      </h2>
+    </div>
+    {% endif %}
+
+    {% if props.testimonials and props.testimonials.length %}
+      {% if layout === 'slider' %}
+      <div class="max-w-4xl mx-auto" x-data="{ active: 0, testimonials: {{ props.testimonials | length }} }">
+        <div class="relative">
+          {% for testimonial in props.testimonials %}
+          <div
+            x-show="active === {{ loop.index0 }}"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 transform translate-x-4"
+            x-transition:enter-end="opacity-100 transform translate-x-0"
+            class="bg-white rounded-2xl shadow-sm p-8 lg:p-12"
+          >
+            <div class="text-orange-500 mb-6">
+              {% phosphor "quotes", "fill", { size: 40 } %}
+            </div>
+            <blockquote class="text-xl lg:text-2xl text-stone-700 mb-8">
+              "{{ testimonial.quote }}"
+            </blockquote>
+            <div class="flex items-center gap-4">
+              {% if testimonial.avatar %}
+              <img src="{{ testimonial.avatar }}" alt="{{ testimonial.author }}" class="w-12 h-12 rounded-full object-cover">
+              {% endif %}
+              <div>
+                <div class="font-semibold text-stone-900">{{ testimonial.author }}</div>
+                {% if testimonial.company %}
+                <div class="text-stone-500 text-sm">{{ testimonial.company }}</div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        {% if props.testimonials.length > 1 %}
+        <div class="flex justify-center gap-2 mt-8">
+          {% for testimonial in props.testimonials %}
+          <button
+            @click="active = {{ loop.index0 }}"
+            :class="active === {{ loop.index0 }} ? 'bg-orange-700' : 'bg-stone-300'"
+            class="w-3 h-3 rounded-full transition-colors"
+            aria-label="Go to testimonial {{ loop.index }}"
+          ></button>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      {% else %}
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {% for testimonial in props.testimonials %}
+        <div class="bg-white rounded-2xl shadow-sm p-8">
+          <div class="text-orange-500 mb-4">
+            {% phosphor "quotes", "fill", { size: 32 } %}
+          </div>
+          <blockquote class="text-stone-700 mb-6">
+            "{{ testimonial.quote }}"
+          </blockquote>
+          <div class="flex items-center gap-4">
+            {% if testimonial.avatar %}
+            <img src="{{ testimonial.avatar }}" alt="{{ testimonial.author }}" class="w-10 h-10 rounded-full object-cover">
+            {% endif %}
+            <div>
+              <div class="font-semibold text-stone-900 text-sm">{{ testimonial.author }}</div>
+              {% if testimonial.company %}
+              <div class="text-stone-500 text-xs">{{ testimonial.company }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+{% endmacro %}

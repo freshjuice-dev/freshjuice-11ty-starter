@@ -1,0 +1,98 @@
+---
+layout: layouts/base.njk
+title: "Contact"
+description: "Get in touch with us. We would love to hear from you."
+permalink: /contact/
+---
+{% from "_components/index.njk" import button %}
+
+<section class="py-16 lg:py-24">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-4">Contact Us</h1>
+        <p class="text-xl text-stone-600 max-w-2xl mx-auto">
+          Have a question or want to work together? We would love to hear from you.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        {# Contact Form #}
+        <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-8">
+          <h2 class="text-2xl font-bold text-stone-900 mb-6">Send us a message</h2>
+          <form action="#" method="POST" class="space-y-6">
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Your name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="you@example.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" required placeholder="How can we help?">
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required placeholder="Your message..."></textarea>
+            </div>
+
+            {{ button({ text: "Send Message", type: "submit", variant: "primary", size: "lg" }) }}
+          </form>
+        </div>
+
+        {# Contact Info #}
+        <div class="lg:pl-8">
+          <h2 class="text-2xl font-bold text-stone-900 mb-6">Get in touch</h2>
+          <p class="text-stone-600 mb-8">
+            We are here to help and answer any questions you might have. We look forward to hearing from you.
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center text-orange-700">
+                {% phosphor "envelope", "regular", { size: 24 } %}
+              </div>
+              <div>
+                <h3 class="font-semibold text-stone-900">Email</h3>
+                <a href="mailto:hello@example.com" class="text-stone-600 hover:text-orange-700 transition-colors">
+                  hello@example.com
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center text-orange-700">
+                {% phosphor "phone", "regular", { size: 24 } %}
+              </div>
+              <div>
+                <h3 class="font-semibold text-stone-900">Phone</h3>
+                <a href="tel:+1234567890" class="text-stone-600 hover:text-orange-700 transition-colors">
+                  +1 (234) 567-890
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center text-orange-700">
+                {% phosphor "map-pin", "regular", { size: 24 } %}
+              </div>
+              <div>
+                <h3 class="font-semibold text-stone-900">Location</h3>
+                <p class="text-stone-600">
+                  123 Main Street<br>
+                  City, State 12345
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

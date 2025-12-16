@@ -1,0 +1,5 @@
+{
+  "layout": "layouts/author.njk",
+  "tags": ["authors"],
+  "permalink": "/authors/{{ page.fileSlug }}/"
+}

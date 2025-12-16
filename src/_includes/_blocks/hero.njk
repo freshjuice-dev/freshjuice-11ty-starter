@@ -1,0 +1,63 @@
+{#
+  Hero Block
+  @param {string} heading - Main heading
+  @param {string} subheading - Subheading text
+  @param {string} background_image - Background image URL
+  @param {array} cta_buttons - Call to action buttons
+  @param {string} alignment - Text alignment: left, center, right
+#}
+{% macro hero(props) %}
+{% from "_components/index.njk" import button %}
+
+{%- set alignment = props.alignment or 'center' -%}
+{%- set alignClass = {
+  'left': 'text-left items-start',
+  'center': 'text-center items-center',
+  'right': 'text-right items-end'
+} -%}
+
+<section class="relative min-h-[70vh] flex items-center py-20 lg:py-32 overflow-hidden">
+  {% if props.background_image %}
+  <div class="absolute inset-0 z-0">
+    <img
+      src="{{ props.background_image }}"
+      alt=""
+      class="w-full h-full object-cover"
+      loading="eager"
+    >
+    <div class="absolute inset-0 bg-stone-900/60"></div>
+  </div>
+  {% else %}
+  <div class="absolute inset-0 bg-gradient-to-br from-orange-600 to-orange-800 z-0"></div>
+  {% endif %}
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-4xl {% if alignment === 'center' %}mx-auto{% elif alignment === 'right' %}ml-auto{% endif %} flex flex-col {{ alignClass[alignment] }}">
+      {% if props.heading %}
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        {{ props.heading }}
+      </h1>
+      {% endif %}
+
+      {% if props.subheading %}
+      <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl">
+        {{ props.subheading }}
+      </p>
+      {% endif %}
+
+      {% if props.cta_buttons and props.cta_buttons.length %}
+      <div class="flex flex-wrap gap-4 {% if alignment === 'center' %}justify-center{% elif alignment === 'right' %}justify-end{% endif %}">
+        {% for btn in props.cta_buttons %}
+          {{ button({
+            text: btn.text,
+            url: btn.url,
+            variant: loop.first and 'secondary' or 'white',
+            size: 'lg'
+          }) }}
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endmacro %}

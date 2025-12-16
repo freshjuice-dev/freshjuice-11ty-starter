@@ -1,0 +1,185 @@
+{# ==========================================================================
+   Components Library
+   All reusable Nunjucks macros in one file
+   ========================================================================== #}
+
+{# --------------------------------------------------------------------------
+   Button Component
+   @param {string} text - Button text
+   @param {string} url - Link URL (renders as <a> if provided)
+   @param {string} variant - Button style: primary, secondary, outline, ghost, white, danger
+   @param {string} size - Button size: xs, sm, md, lg
+   @param {string} className - Additional CSS classes
+   @param {boolean} external - Open in new tab
+   @param {string} type - Button type for form buttons
+   @param {boolean} disabled - Disabled state
+   @param {boolean} full - Full width button
+   @param {string} icon_left - Phosphor icon name for left side
+   @param {string} icon_right - Phosphor icon name for right side
+   @param {string} icon_weight - Icon weight: thin, light, regular, bold, fill, duotone (default: duotone)
+   -------------------------------------------------------------------------- #}
+{% macro button(props) %}
+  {%- set variant = props.variant or 'primary' -%}
+  {%- set size = props.size or 'md' -%}
+  {%- set iconWeight = props.icon_weight or 'duotone' -%}
+  {%- set iconSize = { 'xs': 14, 'sm': 16, 'md': 20, 'lg': 24 } -%}
+  {%- set classes = ['btn', 'btn--' + variant] -%}
+  {%- if size != 'md' %}{% set classes = classes.concat(['btn--' + size]) %}{% endif -%}
+  {%- if props.disabled %}{% set classes = classes.concat(['btn--disabled']) %}{% endif -%}
+  {%- if props.full %}{% set classes = classes.concat(['btn--full']) %}{% endif -%}
+
+  {% if props.url %}
+    <a href="{{ props.url }}" class="{{ classes | join(' ') }} {{ props.className }}"{% if props.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+      {%- if props.icon_left %}{% phosphor props.icon_left, iconWeight, { size: iconSize[size] } %}{% endif -%}
+      <span>{{ props.text }}</span>
+      {%- if props.icon_right %}{% phosphor props.icon_right, iconWeight, { size: iconSize[size] } %}{% endif -%}
+    </a>
+  {% else %}
+    <button type="{{ props.type or 'button' }}" class="{{ classes | join(' ') }} {{ props.className }}"{% if props.disabled %} disabled{% endif %}>
+      {%- if props.icon_left %}{% phosphor props.icon_left, iconWeight, { size: iconSize[size] } %}{% endif -%}
+      <span>{{ props.text }}</span>
+      {%- if props.icon_right %}{% phosphor props.icon_right, iconWeight, { size: iconSize[size] } %}{% endif -%}
+    </button>
+  {% endif %}
+{% endmacro %}
+
+{# --------------------------------------------------------------------------
+   Badge Component
+   @param {string} text - Badge text
+   @param {string} variant - Badge style: default, primary, success, warning, error
+   @param {string} size - Badge size: sm, md
+   @param {string} url - Optional link URL
+   @param {string} className - Additional CSS classes
+   -------------------------------------------------------------------------- #}
+{% macro badge(props) %}
+  {%- set variant = props.variant or 'default' -%}
+  {%- set size = props.size or 'sm' -%}
+  {%- set baseClasses = 'inline-flex items-center font-medium rounded-full' -%}
+
+  {% if props.url %}
+    <a href="{{ props.url }}" class="{{ baseClasses }} {% if variant == 'primary' %}bg-amber-100 text-amber-800{% elif variant == 'success' %}bg-lime-100 text-lime-800{% elif variant == 'warning' %}bg-amber-100 text-amber-800{% elif variant == 'error' %}bg-red-100 text-red-800{% else %}bg-stone-100 text-stone-700{% endif %} {% if size == 'md' %}px-3 py-1 text-sm{% else %}px-2.5 py-0.5 text-xs{% endif %} {{ props.className }} hover:opacity-80 transition-opacity">
+      {{ props.text }}
+    </a>
+  {% else %}
+    <span class="{{ baseClasses }} {% if variant == 'primary' %}bg-amber-100 text-amber-800{% elif variant == 'success' %}bg-lime-100 text-lime-800{% elif variant == 'warning' %}bg-amber-100 text-amber-800{% elif variant == 'error' %}bg-red-100 text-red-800{% else %}bg-stone-100 text-stone-700{% endif %} {% if size == 'md' %}px-3 py-1 text-sm{% else %}px-2.5 py-0.5 text-xs{% endif %} {{ props.className }}">
+      {{ props.text }}
+    </span>
+  {% endif %}
+{% endmacro %}
+
+{# --------------------------------------------------------------------------
+   Icon Component (Deprecated - use {% phosphor %} directly)
+   @param {string} name - Icon name
+   @param {string} size - Icon size (default: 24)
+   @param {string} weight - Icon weight: thin, light, regular, bold, fill, duotone
+   -------------------------------------------------------------------------- #}
+{% macro icon(props) %}
+  {%- set size = props.size or 24 -%}
+  {%- set weight = props.weight or 'regular' -%}
+  {% phosphor props.name, weight, { size: size } %}
+{% endmacro %}
+
+{# --------------------------------------------------------------------------
+   Card Component
+   @param {string} title - Card title
+   @param {string} description - Card description
+   @param {string} image - Image URL
+   @param {string} image_alt - Image alt text
+   @param {string} url - Link URL
+   @param {string} date - Date for blog cards
+   @param {string} author - Author name
+   @param {string} className - Additional CSS classes
+   -------------------------------------------------------------------------- #}
+{% macro card(props) %}
+<article class="group relative flex flex-col bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 {{ props.className }}">
+  {% if props.image %}
+  <div class="aspect-video overflow-hidden">
+    <img src="{{ props.image }}" alt="{{ props.image_alt or props.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+  </div>
+  {% endif %}
+  <div class="flex flex-col flex-1 p-6">
+    {% if props.date or props.author %}
+    <div class="flex items-center gap-3 text-sm text-stone-500 mb-3">
+      {% if props.date %}<time datetime="{{ props.date | dateToISOString }}">{{ props.date | shortDate }}</time>{% endif %}
+      {% if props.date and props.author %}<span>&middot;</span>{% endif %}
+      {% if props.author %}<span>{{ props.author }}</span>{% endif %}
+    </div>
+    {% endif %}
+    <h3 class="text-lg font-semibold text-stone-900 mb-2 group-hover:text-orange-700 transition-colors">
+      {% if props.url %}<a href="{{ props.url }}"><span class="absolute inset-0"></span>{{ props.title }}</a>{% else %}{{ props.title }}{% endif %}
+    </h3>
+    {% if props.description %}<p class="text-stone-600 line-clamp-3">{{ props.description }}</p>{% endif %}
+    {% if props.url %}
+    <span class="inline-flex items-center gap-1 mt-auto pt-4 text-orange-700 font-medium group-hover:gap-2 transition-all">
+      Read more
+      {% phosphor "arrow-right", "bold", { size: 16 } %}
+    </span>
+    {% endif %}
+  </div>
+</article>
+{% endmacro %}
+
+{# --------------------------------------------------------------------------
+   Author Card Component
+   @param {string} name - Author name
+   @param {string} bio - Author biography
+   @param {string} avatar - Avatar image URL
+   @param {string} url - Author profile URL
+   @param {object} social - Social links
+   @param {string} className - Additional CSS classes
+   -------------------------------------------------------------------------- #}
+{% macro authorCard(props) %}
+<div class="flex items-start gap-4 p-6 bg-stone-50 rounded-xl {{ props.className }}">
+  {% if props.avatar %}
+  <div class="flex-shrink-0">
+    {% if props.url %}<a href="{{ props.url }}">{% endif %}
+      <img src="{{ props.avatar }}" alt="{{ props.name }}" class="w-16 h-16 rounded-full object-cover" loading="lazy">
+    {% if props.url %}</a>{% endif %}
+  </div>
+  {% endif %}
+  <div class="flex-1 min-w-0">
+    {% if props.url %}<a href="{{ props.url }}" class="block">{% endif %}
+      <h4 class="text-lg font-semibold text-stone-900 hover:text-orange-700 transition-colors">{{ props.name }}</h4>
+    {% if props.url %}</a>{% endif %}
+    {% if props.bio %}<p class="mt-1 text-stone-600 text-sm line-clamp-2">{{ props.bio }}</p>{% endif %}
+    {% if props.social %}
+    <div class="flex gap-3 mt-3">
+      {% if props.social.twitter %}
+      <a href="{{ props.social.twitter }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-stone-600 transition-colors" aria-label="Twitter">
+        {% phosphor "x-logo", "bold", { size: 20 } %}
+      </a>
+      {% endif %}
+      {% if props.social.linkedin %}
+      <a href="{{ props.social.linkedin }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-stone-600 transition-colors" aria-label="LinkedIn">
+        {% phosphor "linkedin-logo", "bold", { size: 20 } %}
+      </a>
+      {% endif %}
+      {% if props.social.github %}
+      <a href="{{ props.social.github }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-stone-600 transition-colors" aria-label="GitHub">
+        {% phosphor "github-logo", "bold", { size: 20 } %}
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endmacro %}
+
+{# --------------------------------------------------------------------------
+   Image Component
+   @param {string} src - Image source path
+   @param {string} alt - Alt text
+   @param {string} sizes - Sizes attribute for responsive images
+   @param {string} className - Additional CSS classes
+   @param {boolean} lazy - Enable lazy loading (default: true)
+   @param {string} caption - Optional image caption
+   -------------------------------------------------------------------------- #}
+{% macro image(props) %}
+  {% set lazy = props.lazy if props.lazy is defined else true %}
+  <figure class="{{ props.className }}">
+    <img src="{{ props.src }}" alt="{{ props.alt }}" class="w-full" {% if lazy %}loading="lazy"{% endif %}>
+    {% if props.caption %}
+    <figcaption class="text-center text-stone-500 text-sm mt-2">{{ props.caption }}</figcaption>
+    {% endif %}
+  </figure>
+{% endmacro %}

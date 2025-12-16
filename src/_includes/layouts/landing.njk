@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+---
+{% from "_blocks/hero.njk" import hero %}
+{% from "_blocks/features.njk" import features %}
+{% from "_blocks/cta.njk" import cta %}
+{% from "_blocks/testimonials.njk" import testimonials %}
+{% from "_blocks/content.njk" import contentBlock %}
+
+{% for block in blocks %}
+  {% if block._id === 'hero' %}
+    {{ hero(block) }}
+  {% elif block._id === 'features' %}
+    {{ features(block) }}
+  {% elif block._id === 'cta' %}
+    {{ cta(block) }}
+  {% elif block._id === 'testimonials' %}
+    {{ testimonials(block) }}
+  {% elif block._id === 'content' %}
+    {{ contentBlock(block) }}
+  {% endif %}
+{% endfor %}
+
+{{ content | safe }}

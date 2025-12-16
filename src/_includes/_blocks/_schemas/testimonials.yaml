@@ -1,0 +1,37 @@
+_id: testimonials
+label: Testimonials
+icon: format_quote
+fields:
+  - type: text
+    name: section_title
+    label: Section Title
+
+  - type: select
+    name: layout
+    label: Layout
+    options:
+      - value: grid
+        label: Grid
+      - value: slider
+        label: Slider
+    default: grid
+
+  - type: array
+    name: testimonials
+    label: Testimonials
+    fields:
+      - type: textarea
+        name: quote
+        label: Quote
+
+      - type: text
+        name: author
+        label: Author Name
+
+      - type: text
+        name: company
+        label: Company
+
+      - type: image
+        name: avatar
+        label: Avatar

@@ -1,0 +1,52 @@
+---
+layout: layouts/landing.njk
+title: "Welcome"
+description: "A modern 11ty starter theme with CloudCannon CMS integration, TailwindCSS, and Alpine.js"
+blocks:
+  - _id: hero
+    heading: "Build Beautiful Websites Faster"
+    subheading: "A modern 11ty starter theme with CloudCannon CMS integration, TailwindCSS, and Alpine.js. Start building your next project today."
+    alignment: center
+    cta_buttons:
+      - text: "Get Started"
+        url: "/contact/"
+      - text: "View Blog"
+        url: "/blog/"
+  - _id: features
+    section_title: "Why Choose This Starter?"
+    section_description: "Everything you need to build modern, fast, and accessible websites."
+    columns: 3
+    features:
+      - icon: rocket
+        title: "Lightning Fast"
+        description: "Built on Eleventy for blazing fast build times and optimal performance scores."
+      - icon: lightning
+        title: "Modern Stack"
+        description: "TailwindCSS v4, Alpine.js, and ESBuild for a modern development experience."
+      - icon: shield
+        title: "Secure by Default"
+        description: "Security headers, content policies, and best practices built in."
+  - _id: testimonials
+    section_title: "What People Say"
+    layout: grid
+    testimonials:
+      - quote: "This starter saved me hours of setup time. Everything just works out of the box."
+        author: "Jane Developer"
+        company: "Tech Corp"
+      - quote: "The CloudCannon integration is seamless. My clients can easily edit content."
+        author: "John Designer"
+        company: "Design Studio"
+      - quote: "Clean code, great documentation, and excellent performance. Highly recommended."
+        author: "Sarah Engineer"
+        company: "Startup Inc"
+  - _id: cta
+    heading: "Ready to Get Started?"
+    text: "Start building your next project with this modern 11ty starter theme."
+    background_color: primary
+    buttons:
+      - text: "Contact Us"
+        url: "/contact/"
+      - text: "Learn More"
+        url: "/about/"
+permalink: /
+---

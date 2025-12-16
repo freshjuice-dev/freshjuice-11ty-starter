@@ -1,0 +1,45 @@
+_id: features
+label: Features
+icon: grid_view
+fields:
+  - type: text
+    name: section_title
+    label: Section Title
+
+  - type: textarea
+    name: section_description
+    label: Section Description
+
+  - type: select
+    name: columns
+    label: Columns
+    options:
+      - value: 2
+        label: 2 Columns
+      - value: 3
+        label: 3 Columns
+      - value: 4
+        label: 4 Columns
+    default: 3
+
+  - type: array
+    name: features
+    label: Features
+    fields:
+      - type: select
+        name: icon
+        label: Icon
+        options:
+          - rocket
+          - lightning
+          - shield
+          - check
+          - star
+
+      - type: text
+        name: title
+        label: Title
+
+      - type: textarea
+        name: description
+        label: Description

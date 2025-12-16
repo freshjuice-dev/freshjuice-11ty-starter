@@ -1,0 +1,114 @@
+---
+layout: layouts/base.njk
+title: "Blog"
+description: "Read our latest articles and insights."
+pagination:
+  data: collections.blog
+  size: 3
+  alias: posts
+permalink: /blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}
+---
+{% from "_components/index.njk" import card %}
+
+<section class="py-16 lg:py-24">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-4">Blog</h1>
+      <p class="text-xl text-stone-600 max-w-2xl mx-auto">
+        Insights, tutorials, and updates from our team.
+      </p>
+    </div>
+
+    {% if posts | length %}
+    <div class="max-w-5xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {% for post in posts %}
+        {%- set authorData = collections.authors | getAuthor(post.data.author) -%}
+        {{ card({
+          title: post.data.title,
+          description: post.data.description,
+          image: post.data.image,
+          image_alt: post.data.image_alt,
+          url: post.url,
+          date: post.date,
+          author: authorData.data.name if authorData else post.data.author
+        }) }}
+      {% endfor %}
+    </div>
+
+    {# Pagination Navigation #}
+    {% if pagination.pages | length > 1 %}
+    <nav class="mt-12 flex items-center justify-center gap-2" aria-label="Blog pagination">
+      {# Previous Button #}
+      {% if pagination.href.previous %}
+      <a href="{{ pagination.href.previous }}" class="pager pager--link">
+        {% phosphor "caret-left", "bold", { size: 18 } %}
+        <span class="sr-only">Previous</span>
+      </a>
+      {% else %}
+      <span class="pager pager--disabled">
+        {% phosphor "caret-left", "bold", { size: 18 } %}
+        <span class="sr-only">Previous</span>
+      </span>
+      {% endif %}
+
+      {# Page Numbers with Ellipsis #}
+      {% set totalPages = pagination.pages | length %}
+      {% set currentPage = pagination.pageNumber + 1 %}
+
+      {# Ellipsis should only show when hiding 2+ pages #}
+      {% set showLeftEllipsis = currentPage > 4 %}
+      {% set showRightEllipsis = (totalPages - currentPage) > 3 %}
+
+      {# Track last shown page for ellipsis logic #}
+      {% set lastShown = { value: 0 } %}
+
+      {% for pageEntry in pagination.pages %}
+        {% set pageNum = loop.index %}
+        {% set pageUrl = pagination.hrefs[loop.index0] %}
+
+        {# Determine if this page should be shown #}
+        {% set isFirst = (pageNum == 1) %}
+        {% set isLast = (pageNum == totalPages) %}
+        {% set nearCurrent = (pageNum >= currentPage - 1) and (pageNum <= currentPage + 1) %}
+        {% set inLeftEdge = (pageNum <= 3) and (not showLeftEllipsis) %}
+        {% set inRightEdge = (pageNum >= totalPages - 2) and (not showRightEllipsis) %}
+        {% set shouldShow = isFirst or isLast or nearCurrent or inLeftEdge or inRightEdge %}
+
+        {% if shouldShow %}
+          {# Show ellipsis if gap > 1 #}
+          {% if lastShown.value > 0 and (pageNum - lastShown.value) > 1 %}
+          <span class="pager pager--ellipsis">...</span>
+          {% endif %}
+
+          {% if pageNum == currentPage %}
+          <span class="pager pager--current">{{ pageNum }}</span>
+          {% else %}
+          <a href="{{ pageUrl }}" class="pager pager--link">{{ pageNum }}</a>
+          {% endif %}
+
+          {% set lastShown = { value: pageNum } %}
+        {% endif %}
+      {% endfor %}
+
+      {# Next Button #}
+      {% if pagination.href.next %}
+      <a href="{{ pagination.href.next }}" class="pager pager--link">
+        <span class="sr-only">Next</span>
+        {% phosphor "caret-right", "bold", { size: 18 } %}
+      </a>
+      {% else %}
+      <span class="pager pager--disabled">
+        <span class="sr-only">Next</span>
+        {% phosphor "caret-right", "bold", { size: 18 } %}
+      </span>
+      {% endif %}
+    </nav>
+    {% endif %}
+
+    {% else %}
+    <div class="text-center py-12">
+      <p class="text-stone-600">No posts yet. Check back soon!</p>
+    </div>
+    {% endif %}
+  </div>
+</section>

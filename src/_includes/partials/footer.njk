@@ -1,0 +1,68 @@
+<footer class="bg-stone-900 text-stone-300">
+  <div class="container mx-auto px-4 py-12 lg:py-16">
+    <div class="grid lg:grid-cols-4 gap-12">
+      {# Brand Column #}
+      <div class="">
+        <a href="/" class="inline-flex flex-col gap-2 text-xl font-bold text-white hover:text-primary-400 transition-colors">
+          <img src="/assets/images/logo-icon.svg" alt="" class="h-8 w-auto">
+          <span>{{ meta.site_name }}</span>
+        </a>
+        <p class="mt-4 text-stone-400 text-sm">
+          A modern <a href="https://www.11ty.dev/" target="_blank" rel="noopener noreferrer" class="text-stone-300 hover:text-white transition-colors underline">11ty</a> starter theme with <a href="https://cloudcannon.com/" target="_blank" rel="noopener noreferrer" class="text-stone-300 hover:text-white transition-colors underline">CloudCannon</a> CMS integration, <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="text-stone-300 hover:text-white transition-colors underline">TailwindCSS</a>, and <a href="https://alpinejs.dev/" target="_blank" rel="noopener noreferrer" class="text-stone-300 hover:text-white transition-colors underline">Alpine.js</a>.
+        </p>
+        {% if meta.social %}
+        <div class="flex gap-4 mt-6">
+          {% if meta.social.twitter %}
+          <a href="{{ meta.social.twitter }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors" aria-label="Twitter">
+            {% phosphor "x-logo", "bold", { size: 20 } %}
+          </a>
+          {% endif %}
+          {% if meta.social.linkedin %}
+          <a href="{{ meta.social.linkedin }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors" aria-label="LinkedIn">
+            {% phosphor "linkedin-logo", "bold", { size: 20 } %}
+          </a>
+          {% endif %}
+          {% if meta.social.github %}
+          <a href="{{ meta.social.github }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors" aria-label="GitHub">
+            {% phosphor "github-logo", "bold", { size: 20 } %}
+          </a>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
+      {# Footer Link Columns #}
+      {% for column in footer.columns %}
+      <div>
+        <h3 class="text-white text-sm font-semibold uppercase tracking-wider mb-4">{{ column.title }}</h3>
+        <ul class="space-y-3">
+          {% for link in column.links %}
+          <li>
+            <a href="{{ link.url }}" class="text-stone-400 hover:text-white transition-colors text-sm">
+              {{ link.label }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-stone-800 text-stone-400 text-sm">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="md:flex-1">&copy; {% year %} {{ footer.copyright }}</p>
+        <p class="md:flex-1 md:text-center">Designed by <a href="https://alex.zappa.dev/" target="_blank" rel="noopener noreferrer" class="text-stone-300 hover:text-white transition-colors underline">Alex Zappa</a> at <a href="https://freshjuice.dev/" target="_blank" rel="noopener noreferrer" class="text-stone-300 hover:text-white transition-colors underline">FreshJuice</a></p>
+        <p class="md:flex-1 md:text-right flex items-center justify-center md:justify-end gap-3">
+          <a href="https://github.com/freshjuice-dev/freshjuice-11ty-starter" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-stone-300 hover:text-white transition-colors">
+            {% phosphor "github-logo", "bold", { size: 16 } %}
+            <span>GitHub</span>
+          </a>
+          <span class="hidden md:inline">&middot;</span>
+          <a href="/sitemap.xml" class="text-stone-300 hover:text-white transition-colors">Sitemap</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

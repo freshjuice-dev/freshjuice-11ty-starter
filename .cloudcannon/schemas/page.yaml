@@ -1,0 +1,12 @@
+_schema: default
+_enabled_editors:
+  - visual
+  - content
+  - data
+
+title:
+description:
+layout: layouts/base.njk
+permalink:
+noindex: false
+llms_exclude: false

@@ -1,1 +1,430 @@
-# freshjuice-11ty-starter
+# FreshJuice 11ty Starter
+
+> **Work in Progress** - This starter is under active development. Feel free to use it as-is, but expect breaking changes until v1.0 release.
+
+A modern, fast, and accessible starter theme for building static websites with [Eleventy](https://www.11ty.dev/), [TailwindCSS](https://tailwindcss.com/), and [CloudCannon CMS](https://cloudcannon.com/).
+
+## Features
+
+- **Eleventy v3** - Fast static site generation with ES modules
+- **TailwindCSS v4** - Utility-first CSS with custom component classes
+- **Alpine.js** - Lightweight JavaScript for interactivity
+- **Pagefind** - Static search with zero configuration
+- **Shiki** - Beautiful syntax highlighting for code blocks
+- **eleventy-img** - Automatic image optimization (AVIF, WebP, JPEG)
+- **Phosphor Icons** - 6,000+ icons with multiple weights
+- **CloudCannon CMS** - Visual editing and page builder blocks
+- **Accessibility** - WCAG 2.1 AA compliant with automated testing
+- **SEO Ready** - Sitemap, RSS feed, meta tags, Open Graph
+- **LLM Ready** - llms.txt and llms-full.txt for AI assistants
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 22 or higher (see `.nvmrc`)
+- npm
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/AbolDev/freshjuice-11ty-starter.git
+cd freshjuice-11ty-starter
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Open http://localhost:8080 to view your site.
+
+### Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server with hot reload |
+| `npm run build` | Build for production |
+| `npm run clean` | Remove `_site` and `.cache` folders |
+| `npm run lint` | Run ESLint (requires optional deps) |
+| `npm run format` | Format code with Prettier (requires optional deps) |
+| `npm run test` | Run accessibility tests (requires optional deps) |
+| `npm run favicon` | Generate favicons from logo (requires optional deps) |
+
+## Optional Dependencies
+
+Some features require additional packages listed in `optionalDependencies`. These should install automatically with `npm install`, but if they're missing:
+
+### Clean Reinstall (Recommended)
+
+```bash
+# Remove node_modules and lock file, then reinstall
+rm -rf node_modules package-lock.json
+npm install
+```
+
+### Install Individual Features
+
+If you only need specific features:
+
+```bash
+# Code linting
+npm install eslint
+
+# Code formatting
+npm install prettier
+
+# Favicon generation
+npm install favicons
+
+# Accessibility testing (all three required)
+npm install puppeteer @axe-core/puppeteer serve-handler
+```
+
+### What Each Does
+
+| Package | Purpose | Script |
+|---------|---------|--------|
+| `eslint` | JavaScript linting | `npm run lint` |
+| `prettier` | Code formatting | `npm run format` |
+| `favicons` | Generate all favicon sizes | `npm run favicon` |
+| `puppeteer` | Browser automation for tests | `npm run test` |
+| `@axe-core/puppeteer` | Accessibility testing engine | `npm run test` |
+| `serve-handler` | Local server for tests | `npm run test` |
+
+> **Note:** In production builds (Netlify, Vercel, Cloudflare), optional dependencies are skipped using `--omit=optional` to speed up builds.
+
+## Project Structure
+
+```
+freshjuice-11ty-starter/
+├── src/
+│   ├── _data/                 # Global data files
+│   │   ├── build.js           # Build info (git hash, timestamp)
+│   │   ├── meta.yaml          # Site metadata
+│   │   ├── navigation.yaml    # Navigation menus
+│   │   └── footer.yaml        # Footer configuration
+│   ├── _includes/
+│   │   ├── layouts/           # Page layouts
+│   │   │   ├── base.njk       # Base HTML layout
+│   │   │   ├── post.njk       # Blog post layout
+│   │   │   ├── author.njk     # Author page layout
+│   │   │   ├── legal.njk      # Legal pages (privacy, terms)
+│   │   │   ├── landing.njk    # Landing page with blocks
+│   │   │   └── error.njk      # Error pages (404, 500)
+│   │   ├── partials/          # Reusable partials
+│   │   │   ├── header.njk
+│   │   │   ├── footer.njk
+│   │   │   ├── seo.njk
+│   │   │   └── favicon-meta.njk
+│   │   ├── _components/       # Nunjucks component macros
+│   │   │   └── index.njk
+│   │   └── _blocks/           # CloudCannon page blocks
+│   │       ├── hero.njk
+│   │       ├── features.njk
+│   │       ├── cta.njk
+│   │       ├── testimonials.njk
+│   │       ├── content.njk
+│   │       └── _schemas/      # Block schemas for CMS
+│   ├── assets/
+│   │   ├── css/
+│   │   │   ├── main.css       # Entry point
+│   │   │   ├── _base.css      # CSS variables, reset
+│   │   │   ├── _typography.css # Prose styles
+│   │   │   ├── _buttons.css   # Button components
+│   │   │   ├── _forms.css     # Form elements
+│   │   │   ├── _utilities.css # Custom utilities
+│   │   │   ├── _pagefind.css  # Search UI styles
+│   │   │   └── _youtube.css   # YouTube embed styles
+│   │   ├── js/
+│   │   │   └── main.js        # Alpine.js + custom scripts
+│   │   ├── images/
+│   │   └── fonts/
+│   ├── authors/               # Author profiles (Markdown)
+│   ├── blog/                  # Blog posts (Markdown)
+│   ├── pages/                 # Site pages
+│   ├── static/                # Static files (copied as-is)
+│   ├── robots.txt.njk
+│   ├── sitemap.xml.njk
+│   ├── sitemap.xsl.njk        # Visual sitemap stylesheet
+│   ├── feed.xml.njk           # RSS feed
+│   ├── llms.txt.njk           # LLM site index
+│   └── llms-full.txt.njk      # Full content for LLMs
+├── config/                    # Eleventy configuration
+│   ├── collections.js
+│   ├── filters.js
+│   ├── shortcodes.js
+│   ├── transforms.js
+│   └── plugins.js
+├── scripts/
+│   └── generate-favicons.mjs  # Favicon generator
+├── tests/
+│   └── a11y.test.mjs          # Accessibility tests
+├── .cloudcannon/
+│   └── schemas/               # CloudCannon schemas
+├── eleventy.config.js
+├── postcss.config.js
+├── netlify.toml               # Netlify configuration
+├── vercel.json                # Vercel configuration
+├── wrangler.toml              # Cloudflare Pages configuration
+└── cloudcannon.config.yaml    # CloudCannon configuration
+```
+
+## Components
+
+Import and use Nunjucks macros in your templates:
+
+```nunjucks
+{% from "_components/index.njk" import button, card, badge, authorCard %}
+
+{# Buttons #}
+{{ button({ text: "Get Started", url: "/contact/", variant: "primary" }) }}
+{{ button({ text: "Learn More", variant: "secondary" }) }}
+{{ button({ text: "Cancel", variant: "outline" }) }}
+{{ button({ text: "Menu", variant: "ghost" }) }}
+
+{# Cards #}
+{{ card({
+  title: "Post Title",
+  description: "Description text",
+  image: "/assets/images/photo.jpg",
+  url: "/blog/post/",
+  date: page.date,
+  author: "john-doe"
+}) }}
+
+{# Badges #}
+{{ badge({ text: "New", variant: "primary" }) }}
+{{ badge({ text: "Featured", variant: "secondary" }) }}
+```
+
+### Button Variants
+
+| Class | Description |
+|-------|-------------|
+| `.btn` | Primary orange button |
+| `.btn--secondary` | Light background |
+| `.btn--outline` | Transparent with border |
+| `.btn--ghost` | No background or border |
+| `.btn--white` | White (for dark backgrounds) |
+| `.btn--danger` | Black/dark variant |
+
+Sizes: `.btn--xs`, `.btn--sm`, `.btn--md`, `.btn--lg`, `.btn--full`
+
+## Shortcodes
+
+### Responsive Images
+
+```nunjucks
+{% image "src/assets/images/photo.jpg", "Alt text", "100vw" %}
+```
+
+Generates optimized AVIF, WebP, and JPEG with srcset.
+
+### YouTube Embeds
+
+```nunjucks
+{% youTube "dQw4w9WgXcQ", "Video Title" %}
+{% youTube "https://youtube.com/watch?v=dQw4w9WgXcQ", "Video Title" %}
+```
+
+Uses lite-youtube-embed for fast, privacy-friendly embeds.
+
+### Phosphor Icons
+
+```nunjucks
+{% phosphor "house", "bold", { size: 24 } %}
+{% phosphor "arrow-right", "regular", { size: 16 } %}
+{% phosphor "github-logo", "fill", { size: 32 } %}
+```
+
+Weights: `thin`, `light`, `regular`, `bold`, `fill`, `duotone`
+
+Browse icons at [phosphoricons.com](https://phosphoricons.com/)
+
+## Page Blocks
+
+Build landing pages with CloudCannon blocks:
+
+```yaml
+---
+layout: layouts/landing.njk
+blocks:
+  - _id: hero
+    heading: "Welcome"
+    subheading: "Build something amazing"
+    buttons:
+      - text: "Get Started"
+        url: "/contact/"
+        variant: "primary"
+  - _id: features
+    section_title: "Features"
+    columns: 3
+    features:
+      - icon: "rocket"
+        title: "Fast"
+        description: "Lightning fast builds"
+---
+```
+
+### Available Blocks
+
+- **hero** - Hero section with heading, subheading, background image, CTA buttons
+- **features** - Feature grid with icons (2, 3, or 4 columns)
+- **cta** - Call-to-action section
+- **testimonials** - Customer testimonials (grid or slider)
+- **content** - Rich text content block
+
+## Configuration
+
+### Site Metadata
+
+Edit `src/_data/meta.yaml`:
+
+```yaml
+site_name: "Your Site Name"
+site_description: "Your site description for SEO"
+site_url: "https://yoursite.com"
+default_image: "/assets/images/og-default.jpg"
+locale: "en"
+theme_color: "#ea580c"
+social:
+  twitter: "https://twitter.com/yourhandle"
+  github: "https://github.com/yourorg"
+```
+
+### Navigation
+
+Edit `src/_data/navigation.yaml`:
+
+```yaml
+main:
+  - label: "Home"
+    url: "/"
+  - label: "About"
+    url: "/about/"
+  - label: "Blog"
+    url: "/blog/"
+  - label: "Contact"
+    url: "/contact/"
+```
+
+### Footer
+
+Edit `src/_data/footer.yaml` to configure footer columns, links, and copyright text.
+
+## Favicon Generation
+
+1. Place your logo as `src/assets/images/logo-icon.svg` (or `.png`)
+2. Install the optional dependency: `npm install favicons`
+3. Run: `npm run favicon`
+
+This generates all favicon sizes and outputs meta tags to `src/_includes/partials/favicon-meta.njk`.
+
+## Accessibility Testing
+
+Run automated WCAG 2.1 AA tests on your built site:
+
+```bash
+# Install optional dependencies
+npm install puppeteer @axe-core/puppeteer serve-handler
+
+# Build the site first
+npm run build
+
+# Run tests
+npm run test
+```
+
+Report is saved to `_reports/a11y-report.md`.
+
+## Search
+
+Pagefind provides instant static search. It runs automatically after build (`npm run build`) and indexes all pages.
+
+The search UI is at `/search/` and can be triggered from the header.
+
+## CloudCannon Setup
+
+1. Connect your repository to CloudCannon
+2. CloudCannon will automatically detect `cloudcannon.config.yaml`
+3. Start editing content visually
+
+The configuration includes:
+- Collections (pages, blog, authors)
+- Data files (meta, navigation, footer)
+- Page blocks and structures
+- Input types and editors
+
+## Deployment
+
+### Netlify
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start)
+
+Configuration is in `netlify.toml`.
+
+### Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+
+Configuration is in `vercel.json`.
+
+### Cloudflare Pages
+
+Configuration is in `wrangler.toml`.
+
+All platforms use Node 22 and run `npm run build`.
+
+## Generated Files
+
+The starter automatically generates:
+
+| File | Description |
+|------|-------------|
+| `/sitemap.xml` | XML sitemap for search engines |
+| `/sitemap.xsl` | Visual sitemap stylesheet |
+| `/robots.txt` | Robots directives |
+| `/feed.xml` | RSS feed for blog posts |
+| `/llms.txt` | LLM-friendly site index |
+| `/llms-full.txt` | Full content export for LLMs |
+| `/_headers` | Security headers (Netlify) |
+| `/_redirects` | Redirect rules (Netlify) |
+
+## Front Matter Options
+
+```yaml
+---
+title: "Page Title"
+description: "Page description for SEO"
+image: "/assets/images/og-image.jpg"
+noindex: true              # Exclude from sitemap
+llms_exclude: true         # Exclude from llms.txt
+eleventyExcludeFromCollections: true  # Hide from collections
+---
+```
+
+## Image Credits
+
+Demo images are royalty-free from [Pexels](https://www.pexels.com/):
+
+| Image | Photographer | Link |
+|-------|--------------|------|
+| Author: Jane Smith | Daniel Xavier | [View](https://www.pexels.com/photo/portrait-photo-of-woman-718978/) |
+| Author: John Doe | Andrea Piacquadio | [View](https://www.pexels.com/photo/photo-of-a-man-listening-music-on-his-phone-846741/) |
+| Banana | Juan Salamanca | [View](https://www.pexels.com/photo/riped-banana-61127/) |
+| Strawberries | Susanne Jutzeler | [View](https://www.pexels.com/photo/bowl-of-strawberry-fruits-2820144/) |
+| Orange | Pixabay | [View](https://www.pexels.com/photo/orange-fruite-51958/) |
+| Raspberries | Pixabay | [View](https://www.pexels.com/photo/red-raspberry-52536/) |
+| Pineapples | Pineapple Supply Co. | [View](https://www.pexels.com/photo/two-pineapple-fruit-on-sad-near-body-of-water-27269/) |
+| Cherries | Wendy Aros-Routman | [View](https://www.pexels.com/photo/red-cherries-on-stainless-steel-bowl-1178610/) |
+
+## License
+
+MIT License - use this starter for any project.
+
+## Credits
+
+Built by [Alex Zappa](https://alex.zappa.dev) at [FreshJuice](https://freshjuice.dev)

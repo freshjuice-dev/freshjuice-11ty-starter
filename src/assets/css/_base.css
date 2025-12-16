@@ -1,0 +1,29 @@
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-feature-settings: "kern" 1, "liga" 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Better text wrapping for headings */
+    h1, h2, h3, h4, h5, h6 {
+        text-wrap: pretty;
+    }
+
+    /* Focus styles for accessibility */
+    :focus-visible {
+        outline-width: 2px;
+        outline-offset: 2px;
+        outline-color: #f97316; /* orange-500 */
+    }
+
+    /* Selection styles */
+    ::selection {
+        background-color: #ffedd5; /* orange-100 */
+        color: #7c2d12; /* orange-900 */
+    }
+}

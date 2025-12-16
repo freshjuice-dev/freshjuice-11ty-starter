@@ -1,0 +1,42 @@
+---
+layout: layouts/error.njk
+title: "Server Error"
+description: "Something went wrong on our end. Please try again later."
+error_code: 500
+permalink: /500.html
+eleventyExcludeFromCollections: true
+noindex: true
+---
+<div class="grid lg:grid-cols-3 gap-8 lg:gap-12 items-center max-w-5xl mx-auto">
+  <div class="text-center lg:text-left prose">
+    <h1 class="text-5xl font-bold">
+      Oops!
+      <span class="block text-2xl mt-2 text-stone-600">Something went wrong</span>
+    </h1>
+    <p class="mt-6">
+      We're never gonna give you up,<br/>
+      never gonna let you down...
+    </p>
+    <p class="mt-4">
+      But our server just did. Sorry!<br/>
+      Head back to the <a href="/">homepage</a> or try again.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start">
+      <button onclick="location.reload()" class="btn btn--secondary">
+        {% phosphor "arrow-counter-clockwise", "bold", { size: 20 } %}
+        Try again
+      </button>
+    </div>
+  </div>
+
+  <div class="lg:col-span-2">
+    {% youTube "dQw4w9WgXcQ", "Rick Astley - Never Gonna Give You Up" %}
+  </div>
+
+  <p class="text-sm prose text-center lg:col-span-3">
+    Think this is a mistake?
+    <a href="https://github.com/{{ build.issues.owner }}/{{ build.issues.repo }}/issues/new?labels=bug&title=500+Error+Report" target="_blank" rel="noopener noreferrer">
+      Report an issue
+    </a>
+  </p>
+</div>

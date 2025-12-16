@@ -1,0 +1,247 @@
+# CloudCannon configuration
+# See: https://cloudcannon.com/documentation/articles/setting-up-a-cloudcannon-configuration-file/
+
+# Build configuration
+source: src
+output: _site
+
+collections_config:
+  pages:
+    path: src/pages
+    output: true
+    icon: wysiwyg
+    name: Pages
+    description: Site pages
+    _enabled_editors:
+      - visual
+      - content
+      - data
+    add_options:
+      - name: Add New Page
+        schema: default
+    schemas:
+      default:
+        path: .cloudcannon/schemas/page.yaml
+        name: Standard Page
+      landing:
+        path: .cloudcannon/schemas/landing.yaml
+        name: Landing Page
+
+  blog:
+    path: src/blog
+    output: true
+    icon: post_add
+    name: Blog
+    description: Blog posts
+    _enabled_editors:
+      - content
+      - data
+    add_options:
+      - name: Add New Post
+        schema: default
+    schemas:
+      default:
+        path: .cloudcannon/schemas/post.yaml
+
+  authors:
+    path: src/authors
+    output: true
+    icon: people
+    name: Authors
+    description: Blog authors
+    _enabled_editors:
+      - data
+    add_options:
+      - name: Add New Author
+        schema: default
+    schemas:
+      default:
+        path: .cloudcannon/schemas/author.yaml
+
+data_config:
+  meta:
+    path: src/_data/meta.yaml
+    name: Site Settings
+    description: Global site metadata and settings
+
+  navigation:
+    path: src/_data/navigation.yaml
+    name: Navigation
+    description: Site navigation menus
+
+  footer:
+    path: src/_data/footer.yaml
+    name: Footer
+    description: Footer content and links
+
+_structures:
+  blocks:
+    style: modal
+    values:
+      - label: Hero
+        icon: view_carousel
+        value:
+          _id: hero
+          heading:
+          subheading:
+          background_image:
+          alignment: center
+          cta_buttons: []
+        _inputs:
+          heading:
+            type: text
+          subheading:
+            type: textarea
+          background_image:
+            type: image
+          alignment:
+            type: select
+            options:
+              values:
+                - left
+                - center
+                - right
+
+      - label: Features
+        icon: grid_view
+        value:
+          _id: features
+          section_title:
+          section_description:
+          columns: 3
+          features: []
+        _inputs:
+          columns:
+            type: select
+            options:
+              values:
+                - 2
+                - 3
+                - 4
+
+      - label: Call to Action
+        icon: campaign
+        value:
+          _id: cta
+          heading:
+          text:
+          background_color: primary
+          buttons: []
+        _inputs:
+          background_color:
+            type: select
+            options:
+              values:
+                - primary
+                - dark
+                - light
+
+      - label: Testimonials
+        icon: format_quote
+        value:
+          _id: testimonials
+          section_title:
+          layout: grid
+          testimonials: []
+        _inputs:
+          layout:
+            type: select
+            options:
+              values:
+                - grid
+                - slider
+
+      - label: Content
+        icon: article
+        value:
+          _id: content
+          content:
+          sidebar: false
+          sidebar_content:
+        _inputs:
+          content:
+            type: markdown
+          sidebar:
+            type: switch
+          sidebar_content:
+            type: markdown
+
+_inputs:
+  title:
+    type: text
+    label: Title
+
+  description:
+    type: textarea
+    label: Description
+
+  image:
+    type: image
+    label: Image
+
+  date:
+    type: datetime
+    label: Date
+
+  author:
+    type: select
+    label: Author
+    options:
+      values: data.authors
+
+  tags:
+    type: multiselect
+    label: Tags
+    options:
+      allow_create: true
+
+  blocks:
+    type: array
+    label: Page Blocks
+    options:
+      structures: _structures.blocks
+
+  content:
+    type: markdown
+    label: Content
+    options:
+      bold: true
+      italic: true
+      link: true
+      heading: true
+      bulletedlist: true
+      numberedlist: true
+      code: true
+      blockquote: true
+      horizontalrule: true
+      image: true
+      table: true
+
+  noindex:
+    type: switch
+    label: Exclude from Search Engines
+    comment: Hide this page from search engines
+
+  llms_exclude:
+    type: switch
+    label: Exclude from LLMs
+    comment: Hide this page from LLM text files
+
+_editables:
+  content:
+    bold: true
+    italic: true
+    link: true
+    blockquote: true
+    bulletedlist: true
+    numberedlist: true
+    code: true
+    horizontalrule: true
+    image: true
+    table: true
+
+paths:
+  uploads: src/assets/images
+  dam_uploads: src/assets/images
+
+timezone: Etc/UTC

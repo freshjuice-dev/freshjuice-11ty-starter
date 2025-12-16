@@ -1,0 +1,40 @@
+_id: hero
+label: Hero
+icon: view_carousel
+fields:
+  - type: text
+    name: heading
+    label: Heading
+    description: Main hero heading
+
+  - type: textarea
+    name: subheading
+    label: Subheading
+    description: Supporting text below the heading
+
+  - type: image
+    name: background_image
+    label: Background Image
+    description: Optional background image
+
+  - type: select
+    name: alignment
+    label: Text Alignment
+    options:
+      - left
+      - center
+      - right
+    default: center
+
+  - type: array
+    name: cta_buttons
+    label: CTA Buttons
+    description: Call-to-action buttons
+    fields:
+      - type: text
+        name: text
+        label: Button Text
+
+      - type: text
+        name: url
+        label: Button URL

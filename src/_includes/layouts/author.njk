@@ -1,0 +1,64 @@
+---
+layout: layouts/base.njk
+---
+{% from "_components/index.njk" import card %}
+
+<section class="py-16 lg:py-24">
+  <div class="container mx-auto px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col md:flex-row gap-8 items-start mb-12">
+        <div class="w-32 h-32 rounded-full overflow-hidden shrink-0">
+          <img
+            src="{{ avatar }}"
+            alt="{{ name }}"
+            class="w-full h-full object-cover"
+            eleventy:widths="128,256"
+          >
+        </div>
+        <div>
+          <h1 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">{{ name }}</h1>
+          <p class="text-xl text-stone-600">{{ bio }}</p>
+          {% if social %}
+          <div class="flex gap-4 mt-6">
+            {% if social.twitter %}
+            <a href="{{ social.twitter }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-stone-600 transition-colors" aria-label="Twitter">
+              {% phosphor "x-logo", "bold", { size: 24 } %}
+            </a>
+            {% endif %}
+            {% if social.linkedin %}
+            <a href="{{ social.linkedin }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-stone-600 transition-colors" aria-label="LinkedIn">
+              {% phosphor "linkedin-logo", "bold", { size: 24 } %}
+            </a>
+            {% endif %}
+            {% if social.github %}
+            <a href="{{ social.github }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-stone-600 transition-colors" aria-label="GitHub">
+              {% phosphor "github-logo", "bold", { size: 24 } %}
+            </a>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-bold text-stone-900 mb-8">Posts by {{ name }}</h2>
+
+      {% set authorPosts = collections.blog | getPostsByAuthor(slug) %}
+      {% if authorPosts | length %}
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {% for post in authorPosts %}
+          {{ card({
+            title: post.data.title,
+            description: post.data.description,
+            image: post.data.image,
+            image_alt: post.data.image_alt,
+            url: post.url,
+            date: post.date
+          }) }}
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="text-stone-600">No posts yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>

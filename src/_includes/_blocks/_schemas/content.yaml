@@ -1,0 +1,19 @@
+_id: content
+label: Content
+icon: article
+fields:
+  - type: markdown
+    name: content
+    label: Content
+    description: Rich text content
+
+  - type: switch
+    name: sidebar
+    label: Show Sidebar
+    default: false
+
+  - type: markdown
+    name: sidebar_content
+    label: Sidebar Content
+    description: Content for the sidebar
+    hidden: "!sidebar"

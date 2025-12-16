@@ -1,0 +1,35 @@
+_id: cta
+label: Call to Action
+icon: campaign
+fields:
+  - type: text
+    name: heading
+    label: Heading
+
+  - type: textarea
+    name: text
+    label: Description
+
+  - type: select
+    name: background_color
+    label: Background Color
+    options:
+      - value: primary
+        label: Primary (Green)
+      - value: dark
+        label: Dark
+      - value: light
+        label: Light
+    default: primary
+
+  - type: array
+    name: buttons
+    label: Buttons
+    fields:
+      - type: text
+        name: text
+        label: Button Text
+
+      - type: text
+        name: url
+        label: Button URL

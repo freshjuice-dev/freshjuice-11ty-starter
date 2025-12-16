@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+---
+<div class="flex-1 flex items-center justify-center py-12 md:py-20">
+  <div class="container mx-auto px-4">
+    {% if content | trim %}
+      {{ content | safe }}
+    {% else %}
+    <div class="text-center">
+      <h1 class="text-6xl md:text-8xl font-bold text-primary-600 mb-4">{{ error_code or '404' }}</h1>
+      <h2 class="text-2xl md:text-3xl font-semibold mb-4">{{ title }}</h2>
+      <p class="text-stone-600 mb-8 max-w-md mx-auto">{{ description or 'Something went wrong.' }}</p>
+      <a href="/" class="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors">
+        Go Home
+        {% phosphor "arrow-right", "bold", { size: 20 } %}
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</div>
