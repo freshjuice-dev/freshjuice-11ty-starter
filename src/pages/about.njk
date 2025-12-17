@@ -38,6 +38,26 @@ permalink: /about/
         </p>
       </div>
 
+      <h2 class="text-3xl font-bold text-stone-900 mt-16 mb-8">Watch & Learn</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div
+          x-data="{ shown: false }"
+          x-intersect.once="shown = true"
+          x-bind:class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+          class="transition-all duration-700 ease-out"
+        >
+          {% youTube "6neMZHKHmw8", "Introduction Video" %}
+        </div>
+        <div
+          x-data="{ shown: false }"
+          x-intersect.once="shown = true"
+          x-bind:class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+          class="transition-all duration-700 ease-out delay-150"
+        >
+          {% youTube "2vIsuHAF5aE", "Tutorial Video" %}
+        </div>
+      </div>
+
       <div class="mt-12 flex flex-wrap gap-4">
         {{ button({ text: "Contact Us", url: "/contact/", variant: "primary" }) }}
         {{ button({ text: "View Our Blog", url: "/blog/", variant: "outline" }) }}
