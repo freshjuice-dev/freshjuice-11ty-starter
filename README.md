@@ -368,7 +368,7 @@ Configuration is in `vercel.json`.
 
 Configuration is in `wrangler.toml`.
 
-All platforms use Node 22 and run `npm run build`.
+All platforms use Node 24 and run `npm run build`.
 
 ## Generated Files
 
