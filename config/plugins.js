@@ -1,6 +1,7 @@
 import { createHighlighter } from 'shiki';
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import pluginPhosphorIcons from 'eleventy-plugin-phosphoricons';
+import pluginSpeculationRules from 'eleventy-plugin-speculation-rules';
 import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
@@ -100,4 +101,7 @@ export default function(eleventyConfig) {
   // Add bundle plugin for CSS/JS
   eleventyConfig.addBundle('css');
   eleventyConfig.addBundle('js');
+
+  // Speculation Rules for prefetching/prerendering
+  eleventyConfig.addPlugin(pluginSpeculationRules);
 }

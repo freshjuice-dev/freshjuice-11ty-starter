@@ -1,5 +1,7 @@
 # FreshJuice 11ty Starter
 
+<img src="src/assets/images/og-placeholder.png" alt="FreshJuice 11ty Starter" width="450">
+
 > **Work in Progress** - This starter is under active development. Feel free to use it as-is, but expect breaking changes until v1.0 release.
 
 **[Live Demo](https://snappy-lemon.cloudvent.net)**
