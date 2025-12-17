@@ -280,108 +280,95 @@ _inputs:
     label: Exclude from LLMs
     comment: Hide this page from LLM text files
 
-  # General settings inputs
-  metadata:
-    label: Metadata
-    comment: Site metadata and SEO settings
-
-  metadata.site_name:
+  # General settings inputs - Metadata
+  site_name:
     type: text
     label: Site Name
 
-  metadata.site_description:
+  site_description:
     type: textarea
     label: Site Description
 
-  metadata.site_url:
+  site_url:
     type: url
     label: Site URL
     comment: "Full URL including https://"
 
-  metadata.default_image:
+  default_image:
     type: image
     label: Default OG Image
     comment: Used when page has no image
 
-  metadata.locale:
+  locale:
     type: text
     label: Locale
     comment: "e.g., en, de, fr"
 
-  metadata.language:
+  language:
     type: text
     label: Language
     comment: "e.g., en-US, de-DE"
 
-  metadata.social:
-    label: Social Links
-
-  metadata.social.twitter:
+  social_twitter:
     type: url
     label: Twitter/X URL
 
-  metadata.social.linkedin:
+  social_linkedin:
     type: url
     label: LinkedIn URL
 
-  metadata.social.github:
+  social_github:
     type: url
     label: GitHub URL
 
-  tracking:
-    label: Tracking
-    comment: Analytics and tracking IDs
-
-  tracking.google_analytics_id:
+  # General settings inputs - Tracking
+  google_analytics_id:
     type: text
     label: Google Analytics 4
     comment: "e.g., G-XXXXXXXXXX"
 
-  tracking.google_tag_manager_id:
+  google_tag_manager_id:
     type: text
     label: Google Tag Manager
     comment: "e.g., GTM-XXXXXXX"
 
-  tracking.facebook_pixel_id:
+  facebook_pixel_id:
     type: text
     label: Facebook Pixel
     comment: "e.g., 1234567890"
 
-  tracking.microsoft_clarity_id:
+  microsoft_clarity_id:
     type: text
     label: Microsoft Clarity
     comment: "e.g., abcdefghij"
 
-  tracking.bing_uet_id:
+  bing_uet_id:
     type: text
     label: Bing UET
     comment: "e.g., 12345678"
 
-  tracking.hubspot_id:
+  hubspot_id:
     type: text
     label: HubSpot
     comment: "e.g., 12345678"
 
-  cookies:
-    label: Cookie Consent
-    comment: GDPR cookie consent settings
-
-  cookies.onetrust_id:
+  # General settings inputs - Cookie Consent
+  onetrust_id:
     type: text
     label: OneTrust ID
     comment: "e.g., 01234567-89ab-cdef-0123-456789abcdef"
 
-  cookies.onetrust_auto_block:
+  onetrust_auto_block:
     type: switch
     label: OneTrust Auto-Block
     comment: Automatically block cookies until consent
 
-  cookies.cookiebot_id:
+  cookiebot_id:
     type: text
     label: CookieBot ID
     comment: "e.g., 01234567-89ab-cdef-0123-456789abcdef"
 
-  cookies.cookiebot_mode:
+  cookiebot_mode:
     type: select
     label: CookieBot Mode
     options:
