@@ -4,7 +4,6 @@
 
 [build.environment]
   NODE_VERSION = "24"
-  NPM_FLAGS = "--omit=optional"
 
 [[headers]]
   for = "/*"

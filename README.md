@@ -48,42 +48,20 @@ Open http://localhost:8080 to view your site.
 | `npm run dev` | Start development server with hot reload |
 | `npm run build` | Build for production |
 | `npm run clean` | Remove `_site` and `.cache` folders |
-| `npm run lint` | Run ESLint (requires optional deps) |
-| `npm run format` | Format code with Prettier (requires optional deps) |
-| `npm run test` | Run accessibility tests (requires optional deps) |
-| `npm run favicon` | Generate favicons from logo (requires optional deps) |
+| `npm run lint` | Run ESLint (run `setup:local` first) |
+| `npm run format` | Format code with Prettier (run `setup:local` first) |
+| `npm run test` | Run accessibility tests (run `setup:local` first) |
+| `npm run favicon` | Generate favicons from logo (run `setup:local` first) |
 
-## Optional Dependencies
+## Local Development Tools
 
-Some features require additional packages listed in `optionalDependencies`. These should install automatically with `npm install`, but if they're missing:
-
-### Clean Reinstall (Recommended)
+Some features (linting, testing, favicon generation) require additional packages. Install them once for local development:
 
 ```bash
-# Remove node_modules and lock file, then reinstall
-rm -rf node_modules package-lock.json
-npm install
+npm run setup:local
 ```
 
-### Install Individual Features
-
-If you only need specific features:
-
-```bash
-# Code linting
-npm install eslint
-
-# Code formatting
-npm install prettier
-
-# Favicon generation
-npm install favicons
-
-# Accessibility testing (all three required)
-npm install puppeteer @axe-core/puppeteer serve-handler
-```
-
-### What Each Does
+This installs:
 
 | Package | Purpose | Script |
 |---------|---------|--------|
@@ -93,8 +71,9 @@ npm install puppeteer @axe-core/puppeteer serve-handler
 | `puppeteer` | Browser automation for tests | `npm run test` |
 | `@axe-core/puppeteer` | Accessibility testing engine | `npm run test` |
 | `serve-handler` | Local server for tests | `npm run test` |
+| `rimraf` | Cross-platform rm -rf | `npm run clean` |
 
-> **Note:** In production builds (Netlify, Vercel, Cloudflare), optional dependencies are skipped using `--omit=optional` to speed up builds.
+> **Note:** These packages are not installed on build servers (Netlify, Vercel, Cloudflare) to keep builds fast.
 
 ## Project Structure
 
