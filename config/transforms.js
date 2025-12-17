@@ -1,10 +1,48 @@
 import { minify as minifyHTML } from 'html-minifier-terser';
+import { parseHTML } from 'linkedom';
 
 /**
  * Eleventy transforms configuration
  * @param {import('@11ty/eleventy').UserConfig} eleventyConfig
  */
 export default function(eleventyConfig) {
+  // Wrap tables in <table-saw> for responsive tables
+  eleventyConfig.addTransform('table-saw', function(content, outputPath) {
+    if (!outputPath || !outputPath.endsWith('.html')) {
+      return content;
+    }
+
+    // Quick check if there are any tables to process
+    if (!content.includes('<table')) {
+      return content;
+    }
+
+    const { document } = parseHTML(content);
+    const tables = document.querySelectorAll('table:not(table-saw table)');
+
+    if (tables.length === 0) {
+      return content;
+    }
+
+    tables.forEach(table => {
+      // Skip if already wrapped
+      if (table.parentElement?.tagName?.toLowerCase() === 'table-saw') {
+        return;
+      }
+
+      // Skip if table has data-table-saw="none" attribute
+      if (table.getAttribute('data-table-saw') === 'none') {
+        return;
+      }
+
+      const tableSaw = document.createElement('table-saw');
+      table.parentNode.insertBefore(tableSaw, table);
+      tableSaw.appendChild(table);
+    });
+
+    return document.toString();
+  });
+
   // Make code blocks keyboard accessible
   eleventyConfig.addTransform('a11y-pre', function(content, outputPath) {
     if (outputPath && outputPath.endsWith('.html')) {

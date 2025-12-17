@@ -7,6 +7,7 @@ import Alpine from 'alpinejs';
 import collapse from '@alpinejs/collapse';
 import intersect from '@alpinejs/intersect';
 import 'lite-youtube-embed';
+import '@zachleat/table-saw';
 
 // Register Alpine plugins
 Alpine.plugin(collapse);
