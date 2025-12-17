@@ -3,10 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {% include "partials/cookies.njk" %}
+  {% include "partials/tracking.njk" %}
   {% include "partials/seo.njk" %}
+
   <link rel="stylesheet" href="/assets/css/main.css?v={{ build.timestamp.raw }}">
+
+  {# Custom Head Scripts #}
+  {% if scripts.head_scripts %}
+  {{ scripts.head_scripts | safe }}
+  {% endif %}
 </head>
 <body class="min-h-screen flex flex-col bg-stone-50 text-stone-900 antialiased">
+  {# Custom After Body Scripts #}
+  {% if scripts.after_body_scripts %}
+  {{ scripts.after_body_scripts | safe }}
+  {% endif %}
+
   {% include "partials/header.njk" %}
 
   <main class="flex-1">
@@ -18,6 +32,11 @@
   <script defer src="/assets/js/main.js?v={{ build.timestamp.raw }}"></script>
   {% if pagefind %}
   <script src="/pagefind/pagefind-ui.js?v={{ build.timestamp.raw }}" onload="new PagefindUI({ element: '#pagefind', showSubResults: true, showImages: false });"></script>
+  {% endif %}
+
+  {# Custom Footer Scripts #}
+  {% if scripts.footer_scripts %}
+  {{ scripts.footer_scripts | safe }}
   {% endif %}
 </body>
 </html>

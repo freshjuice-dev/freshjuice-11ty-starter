@@ -1,6 +1,8 @@
 main:
   - label: "Home"
     url: "/"
+  - label: "Pricing"
+    url: "/pricing/"
   - label: "About"
     url: "/about/"
   - label: "Blog"

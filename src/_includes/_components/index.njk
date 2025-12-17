@@ -183,3 +183,31 @@
     {% endif %}
   </figure>
 {% endmacro %}
+
+{# --------------------------------------------------------------------------
+   Accordion Component
+   @param {array} items - Array of { question, answer } objects
+   @param {string} className - Additional CSS classes for wrapper
+   -------------------------------------------------------------------------- #}
+{% macro accordion(props) %}
+<div class="space-y-4 {{ props.className }}" x-data="{ openItem: null }">
+  {% for item in props.items %}
+  <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
+    <button
+      @click="openItem = openItem === {{ loop.index }} ? null : {{ loop.index }}"
+      class="flex items-center justify-between w-full px-6 py-4 text-left font-semibold text-stone-900 hover:bg-stone-50 transition-colors"
+    >
+      <span>{{ item.question }}</span>
+      <span :class="openItem === {{ loop.index }} ? 'rotate-180' : ''" class="transition-transform duration-200">
+        {% phosphor "caret-down", "bold", { size: 20 } %}
+      </span>
+    </button>
+    <div x-show="openItem === {{ loop.index }}" x-collapse class="text-stone-600">
+      <div class="px-6 pt-2 pb-4">
+        {{ item.answer }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endmacro %}

@@ -7,6 +7,7 @@
         font-feature-settings: "kern" 1, "liga" 1;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        text-wrap: pretty;
     }
 
     /* Better text wrapping for headings */
@@ -25,5 +26,11 @@
     ::selection {
         background-color: #ffedd5; /* orange-100 */
         color: #7c2d12; /* orange-900 */
+    }
+
+    /* Buttons should have pointer cursor unless disabled */
+    button:not(:disabled),
+    [role="button"]:not([aria-disabled="true"]) {
+        cursor: pointer;
     }
 }
