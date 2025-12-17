@@ -7,7 +7,7 @@ output: _site
 
 collections_config:
   pages:
-    path: src/pages
+    path: pages
     output: true
     icon: wysiwyg
     name: Pages
@@ -28,7 +28,7 @@ collections_config:
         name: Landing Page
 
   blog:
-    path: src/blog
+    path: blog
     output: true
     icon: post_add
     name: Blog
@@ -44,7 +44,7 @@ collections_config:
         path: .cloudcannon/schemas/post.yaml
 
   authors:
-    path: src/authors
+    path: authors
     output: true
     icon: people
     name: Authors
@@ -60,19 +60,28 @@ collections_config:
 
 data_config:
   meta:
-    path: src/_data/meta.yaml
+    path: _data/meta.yaml
     name: Site Settings
     description: Global site metadata and settings
 
   navigation:
-    path: src/_data/navigation.yaml
+    path: _data/navigation.yaml
     name: Navigation
     description: Site navigation menus
 
   footer:
-    path: src/_data/footer.yaml
+    path: _data/footer.yaml
     name: Footer
     description: Footer content and links
+
+collection_groups:
+  - heading: Content
+    collections:
+      - pages
+      - blog
+  - heading: People
+    collections:
+      - authors
 
 _structures:
   blocks:
