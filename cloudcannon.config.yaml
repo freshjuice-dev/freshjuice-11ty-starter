@@ -58,12 +58,73 @@ collections_config:
       default:
         path: .cloudcannon/schemas/author.yaml
 
-  data:
+  metadata:
     path: _data
+    glob: meta.yaml
     output: false
-    icon: settings
-    name: Site Settings
-    description: Global site settings and configuration
+    icon: language
+    name: Metadata
+    description: Site metadata and SEO settings
+    _enabled_editors:
+      - data
+    disable_add: true
+    disable_add_folder: true
+
+  tracking:
+    path: _data
+    glob: tracking.yaml
+    output: false
+    icon: analytics
+    name: Tracking
+    description: Analytics and tracking IDs (GA4, GTM, etc.)
+    _enabled_editors:
+      - data
+    disable_add: true
+    disable_add_folder: true
+
+  scripts:
+    path: _data
+    glob: scripts.yaml
+    output: false
+    icon: code
+    name: Custom Scripts
+    description: Inject custom scripts into head, body, or footer
+    _enabled_editors:
+      - data
+    disable_add: true
+    disable_add_folder: true
+
+  cookies:
+    path: _data
+    glob: cookies.yaml
+    output: false
+    icon: cookie
+    name: Cookie Consent
+    description: Cookie consent settings (OneTrust, CookieBot)
+    _enabled_editors:
+      - data
+    disable_add: true
+    disable_add_folder: true
+
+  navigation:
+    path: _data
+    glob: navigation.yaml
+    output: false
+    icon: menu
+    name: Main Navigation
+    description: Site navigation menus
+    _enabled_editors:
+      - data
+    disable_add: true
+    disable_add_folder: true
+
+  footer_settings:
+    path: _data
+    glob: footer.yaml
+    output: false
+    icon: view_agenda
+    name: Footer
+    description: Footer content and links
     _enabled_editors:
       - data
     disable_add: true
@@ -81,9 +142,16 @@ collection_groups:
   - heading: People
     collections:
       - authors
-  - heading: Settings
+  - heading: Website Settings
     collections:
-      - data
+      - metadata
+      - tracking
+      - scripts
+      - cookies
+  - heading: Navigation
+    collections:
+      - navigation
+      - footer_settings
 
 _structures:
   blocks:

@@ -1,0 +1,11 @@
+# Custom Scripts Injection
+# Add custom scripts to different parts of the page
+
+# Scripts added to <head> section
+head_scripts: |
+
+# Scripts added right after opening <body> tag
+after_body_scripts: |
+
+# Scripts added before closing </body> tag
+footer_scripts: |

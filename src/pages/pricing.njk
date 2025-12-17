@@ -1,0 +1,354 @@
+---
+layout: layouts/base.njk
+title: "Pricing"
+description: "Simple, transparent pricing for teams of all sizes. Choose the plan that fits your needs."
+permalink: /pricing/
+faq:
+  - question: "Can I switch plans anytime?"
+    answer: "Yes, you can upgrade or downgrade your plan at any time. When upgrading, you'll be charged the prorated difference. When downgrading, the remaining credit will be applied to your next billing cycle."
+  - question: "What payment methods do you accept?"
+    answer: "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and for annual enterprise plans, we also support wire transfers and invoicing."
+  - question: "Is there a free trial?"
+    answer: "Yes! All plans come with a 14-day free trial. No credit card required to start. You'll only be charged after the trial period ends and you choose to continue."
+  - question: "What happens if I exceed my storage limit?"
+    answer: "We'll notify you when you're approaching your storage limit. If you exceed it, you can either upgrade to a higher plan or purchase additional storage. We won't delete any of your data without notice."
+  - question: "Do you offer refunds?"
+    answer: "Yes, we offer a 30-day money-back guarantee for all new subscriptions. If you're not satisfied with our service, contact our support team within 30 days for a full refund."
+  - question: "How does enterprise pricing work?"
+    answer: "Enterprise pricing is customized based on your organization's specific needs, including the number of users, required integrations, and support level. Contact our sales team for a personalized quote."
+---
+{% from "_components/index.njk" import button, accordion %}
+
+{# Pricing Hero #}
+<section class="py-16 lg:py-24 bg-gradient-to-b from-stone-100 to-stone-50">
+  <div class="container mx-auto px-4 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-4">Simple, Transparent Pricing</h1>
+    <p class="text-xl text-stone-600 max-w-2xl mx-auto mb-10">
+      Choose the perfect plan for your needs. All plans include a 14-day free trial.
+    </p>
+
+    {# Billing Toggle #}
+    <div
+      x-data="{ yearly: false }"
+      class="flex flex-col items-center"
+    >
+      <div class="inline-flex items-center gap-4 bg-white rounded-full p-1.5 shadow-sm border border-stone-200 mb-12">
+        <button
+          @click="yearly = false"
+          :class="!yearly ? 'bg-orange-600 text-white shadow-md' : 'text-stone-600 hover:text-stone-900'"
+          class="px-6 py-2 rounded-full font-medium transition-all duration-200"
+        >
+          Monthly
+        </button>
+        <button
+          @click="yearly = true"
+          :class="yearly ? 'bg-orange-600 text-white shadow-md' : 'text-stone-600 hover:text-stone-900'"
+          class="px-6 py-2 rounded-full font-medium transition-all duration-200"
+        >
+          Yearly
+          <span class="ml-1 text-xs bg-lime-100 text-lime-700 px-2 py-0.5 rounded-full">Save 20%</span>
+        </button>
+      </div>
+
+      {# Pricing Cards #}
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto w-full">
+        {# Starter Plan #}
+        <div class="relative bg-white rounded-2xl shadow-lg border border-stone-200 p-8 flex flex-col">
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-stone-900 mb-2">Starter</h3>
+            <p class="text-stone-500 text-sm">Perfect for individuals and small projects</p>
+          </div>
+          <div class="mb-6">
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-bold text-stone-900" x-text="yearly ? '$19' : '$24'">$24</span>
+              <span class="text-stone-500">/month</span>
+            </div>
+            <p class="text-sm text-stone-400 mt-1" x-show="yearly">Billed annually ($228/year)</p>
+            <p class="text-sm text-stone-400 mt-1" x-show="!yearly">Billed monthly</p>
+          </div>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>Up to 3 projects</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>5 GB storage</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>Basic analytics</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>Email support</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-400">
+              {% phosphor "x-circle", "fill", { size: 20, class: "flex-shrink-0 mt-0.5" } %}
+              <span>Custom domain</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-400">
+              {% phosphor "x-circle", "fill", { size: 20, class: "flex-shrink-0 mt-0.5" } %}
+              <span>Advanced integrations</span>
+            </li>
+          </ul>
+          {{ button({ text: "Start Free Trial", url: "/contact/", variant: "outline", full: true }) }}
+        </div>
+
+        {# Professional Plan - Featured #}
+        <div class="relative bg-white rounded-2xl shadow-xl border-2 border-orange-600 p-8 flex flex-col scale-105 z-10">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+            <span class="bg-orange-600 text-white text-sm font-semibold px-4 py-1 rounded-full whitespace-nowrap">Most Popular</span>
+          </div>
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-stone-900 mb-2">Professional</h3>
+            <p class="text-stone-500 text-sm">For growing teams and businesses</p>
+          </div>
+          <div class="mb-6">
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-bold text-stone-900" x-text="yearly ? '$49' : '$59'">$59</span>
+              <span class="text-stone-500">/month</span>
+            </div>
+            <p class="text-sm text-stone-400 mt-1" x-show="yearly">Billed annually ($588/year)</p>
+            <p class="text-sm text-stone-400 mt-1" x-show="!yearly">Billed monthly</p>
+          </div>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>Unlimited projects</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>50 GB storage</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>Advanced analytics</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>Priority support</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>Custom domain</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>API access</span>
+            </li>
+          </ul>
+          {{ button({ text: "Start Free Trial", url: "/contact/", variant: "primary", full: true }) }}
+        </div>
+
+        {# Business Plan #}
+        <div class="relative bg-white rounded-2xl shadow-lg border border-stone-200 p-8 flex flex-col">
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-stone-900 mb-2">Business</h3>
+            <p class="text-stone-500 text-sm">For large teams with advanced needs</p>
+          </div>
+          <div class="mb-6">
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-bold text-stone-900" x-text="yearly ? '$99' : '$119'">$119</span>
+              <span class="text-stone-500">/month</span>
+            </div>
+            <p class="text-sm text-stone-400 mt-1" x-show="yearly">Billed annually ($1,188/year)</p>
+            <p class="text-sm text-stone-400 mt-1" x-show="!yearly">Billed monthly</p>
+          </div>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>Everything in Professional</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>500 GB storage</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>Team management</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>SSO authentication</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>Audit logs</span>
+            </li>
+            <li class="flex items-start gap-3 text-stone-600">
+              {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
+              <span>99.9% SLA</span>
+            </li>
+          </ul>
+          {{ button({ text: "Start Free Trial", url: "/contact/", variant: "outline", full: true }) }}
+        </div>
+      </div>
+
+      <p class="text-sm text-stone-400 text-center mt-10 max-w-2xl mx-auto">
+        * All prices shown are for illustration purposes only.<br>
+        This is a demo template available <a href="https://github.com/AbolDev/freshjuice-11ty-starter" class="underline hover:text-stone-600">free on GitHub</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+{# Enterprise Section #}
+<section class="py-16 lg:py-24 bg-stone-900 text-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 bg-orange-600/20 text-orange-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
+        {% phosphor "buildings", "duotone", { size: 20 } %}
+        <span>Enterprise Solutions</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Need a Custom Solution?</h2>
+      <p class="text-xl text-stone-300 mb-8 max-w-2xl mx-auto">
+        For large organizations with specific requirements, we offer tailored enterprise solutions with dedicated support, custom integrations, and flexible deployment options.
+      </p>
+      <div class="grid sm:grid-cols-3 gap-8 mb-10 text-left">
+        <div class="flex gap-4">
+          {% phosphor "shield-check", "duotone", { size: 32, class: "text-orange-500 flex-shrink-0" } %}
+          <div>
+            <h4 class="font-semibold mb-1">Enterprise Security</h4>
+            <p class="text-stone-400 text-sm">SOC 2 compliance, custom security policies, and dedicated infrastructure</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          {% phosphor "headset", "duotone", { size: 32, class: "text-orange-500 flex-shrink-0" } %}
+          <div>
+            <h4 class="font-semibold mb-1">Dedicated Support</h4>
+            <p class="text-stone-400 text-sm">24/7 priority support with a dedicated account manager</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          {% phosphor "puzzle-piece", "duotone", { size: 32, class: "text-orange-500 flex-shrink-0" } %}
+          <div>
+            <h4 class="font-semibold mb-1">Custom Integrations</h4>
+            <p class="text-stone-400 text-sm">Tailored integrations with your existing tools and workflows</p>
+          </div>
+        </div>
+      </div>
+      {{ button({ text: "Contact Sales", url: "/contact/", variant: "white", icon_right: "arrow-right" }) }}
+    </div>
+  </div>
+</section>
+
+{# Feature Comparison Table #}
+<section class="py-16 lg:py-24">
+  <div class="container mx-auto px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-stone-900 mb-4">Compare Plans</h2>
+      <p class="text-xl text-stone-600 text-center mb-12 max-w-2xl mx-auto">
+        See what's included in each plan and choose the right one for your needs.
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead>
+            <tr class="border-b-2 border-stone-200">
+              <th class="py-4 pr-4 font-semibold text-stone-900">Features</th>
+              <th class="py-4 px-4 text-center font-semibold text-stone-900">Starter</th>
+              <th class="py-4 px-4 text-center font-semibold text-orange-600 bg-orange-50 rounded-t-lg">Professional</th>
+              <th class="py-4 px-4 text-center font-semibold text-stone-900">Business</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-100">
+            <tr>
+              <td class="py-4 pr-4 text-stone-600">Projects</td>
+              <td class="py-4 px-4 text-center text-stone-900">3</td>
+              <td class="py-4 px-4 text-center text-stone-900 bg-orange-50">Unlimited</td>
+              <td class="py-4 px-4 text-center text-stone-900">Unlimited</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-stone-600">Storage</td>
+              <td class="py-4 px-4 text-center text-stone-900">5 GB</td>
+              <td class="py-4 px-4 text-center text-stone-900 bg-orange-50">50 GB</td>
+              <td class="py-4 px-4 text-center text-stone-900">500 GB</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-stone-600">Team Members</td>
+              <td class="py-4 px-4 text-center text-stone-900">1</td>
+              <td class="py-4 px-4 text-center text-stone-900 bg-orange-50">5</td>
+              <td class="py-4 px-4 text-center text-stone-900">Unlimited</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-stone-600">Custom Domain</td>
+              <td class="py-4 px-4 text-center">{% phosphor "x", "bold", { size: 20, class: "inline text-stone-300" } %}</td>
+              <td class="py-4 px-4 text-center bg-orange-50">{% phosphor "check", "bold", { size: 20, class: "inline text-lime-600" } %}</td>
+              <td class="py-4 px-4 text-center">{% phosphor "check", "bold", { size: 20, class: "inline text-lime-600" } %}</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-stone-600">API Access</td>
+              <td class="py-4 px-4 text-center">{% phosphor "x", "bold", { size: 20, class: "inline text-stone-300" } %}</td>
+              <td class="py-4 px-4 text-center bg-orange-50">{% phosphor "check", "bold", { size: 20, class: "inline text-lime-600" } %}</td>
+              <td class="py-4 px-4 text-center">{% phosphor "check", "bold", { size: 20, class: "inline text-lime-600" } %}</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-stone-600">Analytics</td>
+              <td class="py-4 px-4 text-center text-stone-900">Basic</td>
+              <td class="py-4 px-4 text-center text-stone-900 bg-orange-50">Advanced</td>
+              <td class="py-4 px-4 text-center text-stone-900">Advanced + Custom</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-stone-600">SSO / SAML</td>
+              <td class="py-4 px-4 text-center">{% phosphor "x", "bold", { size: 20, class: "inline text-stone-300" } %}</td>
+              <td class="py-4 px-4 text-center bg-orange-50">{% phosphor "x", "bold", { size: 20, class: "inline text-stone-300" } %}</td>
+              <td class="py-4 px-4 text-center">{% phosphor "check", "bold", { size: 20, class: "inline text-lime-600" } %}</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-stone-600">Audit Logs</td>
+              <td class="py-4 px-4 text-center">{% phosphor "x", "bold", { size: 20, class: "inline text-stone-300" } %}</td>
+              <td class="py-4 px-4 text-center bg-orange-50">{% phosphor "x", "bold", { size: 20, class: "inline text-stone-300" } %}</td>
+              <td class="py-4 px-4 text-center">{% phosphor "check", "bold", { size: 20, class: "inline text-lime-600" } %}</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-stone-600">SLA</td>
+              <td class="py-4 px-4 text-center text-stone-900">99%</td>
+              <td class="py-4 px-4 text-center text-stone-900 bg-orange-50">99.5%</td>
+              <td class="py-4 px-4 text-center text-stone-900">99.9%</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-stone-600">Support</td>
+              <td class="py-4 px-4 text-center text-stone-900">Email</td>
+              <td class="py-4 px-4 text-center text-stone-900 bg-orange-50 rounded-b-lg">Priority</td>
+              <td class="py-4 px-4 text-center text-stone-900">Dedicated</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-sm text-stone-400 text-center mt-8 max-w-2xl mx-auto">
+        * All prices shown are for illustration purposes only. We do not sell any products or services.<br>
+        This template is available <a href="https://github.com/AbolDev/freshjuice-11ty-starter" class="underline hover:text-stone-600">free of charge on GitHub</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+{# FAQ Section #}
+<section class="py-16 lg:py-24 bg-stone-100">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-stone-900 mb-4">Frequently Asked Questions</h2>
+      <p class="text-xl text-stone-600 text-center mb-12">
+        Have questions? We have answers.
+      </p>
+
+      {{ accordion({ items: faq }) }}
+    </div>
+  </div>
+</section>
+
+{# Final CTA #}
+<section class="py-16 lg:py-24">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">Ready to Get Started?</h2>
+    <p class="text-xl text-stone-600 mb-8 max-w-2xl mx-auto">
+      Start your 14-day free trial today. No credit card required.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      {{ button({ text: "Start Free Trial", url: "/contact/", variant: "primary", icon_right: "rocket-launch" }) }}
+      {{ button({ text: "Contact Sales", url: "/contact/", variant: "outline", icon_right: "chat-circle" }) }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+# Analytics and Tracking Configuration
+# Add your tracking IDs here to automatically inject tracking code
+
+# Google Analytics 4
+# Example: G-XXXXXXXXXX
+google_analytics_id: ""
+
+# Google Tag Manager
+# Example: GTM-XXXXXXX
+google_tag_manager_id: ""
+
+# Facebook Pixel
+# Example: 1234567890
+facebook_pixel_id: ""
+
+# Microsoft Clarity
+# Example: abcdefghij
+microsoft_clarity_id: ""
+
+# Bing UET (Universal Event Tracking)
+# Example: 12345678
+bing_uet_id: ""
+
+# HubSpot
+# Example: 12345678
+hubspot_id: ""
