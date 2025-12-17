@@ -5,25 +5,25 @@
       <div class="">
         <a href="/" class="inline-flex flex-col gap-2 text-xl font-bold text-white hover:text-primary-400 transition-colors">
           <img src="/assets/images/logo-icon.svg" alt="" class="h-8 w-auto">
-          <span>{{ meta.site_name }}</span>
+          <span>{{ general.metadata.site_name }}</span>
         </a>
         <p class="mt-4 text-stone-400 text-sm">
           A modern <a href="https://www.11ty.dev/" target="_blank" rel="noopener noreferrer" class="text-stone-300 hover:text-white transition-colors underline">11ty</a> starter theme with <a href="https://cloudcannon.com/" target="_blank" rel="noopener noreferrer" class="text-stone-300 hover:text-white transition-colors underline">CloudCannon</a> CMS integration, <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="text-stone-300 hover:text-white transition-colors underline">TailwindCSS</a>, and <a href="https://alpinejs.dev/" target="_blank" rel="noopener noreferrer" class="text-stone-300 hover:text-white transition-colors underline">Alpine.js</a>.
         </p>
-        {% if meta.social %}
+        {% if general.metadata.social %}
         <div class="flex gap-4 mt-6">
-          {% if meta.social.twitter %}
-          <a href="{{ meta.social.twitter }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors" aria-label="Twitter">
+          {% if general.metadata.social.twitter %}
+          <a href="{{ general.metadata.social.twitter }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors" aria-label="Twitter">
             {% phosphor "x-logo", "bold", { size: 20 } %}
           </a>
           {% endif %}
-          {% if meta.social.linkedin %}
-          <a href="{{ meta.social.linkedin }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors" aria-label="LinkedIn">
+          {% if general.metadata.social.linkedin %}
+          <a href="{{ general.metadata.social.linkedin }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors" aria-label="LinkedIn">
             {% phosphor "linkedin-logo", "bold", { size: 20 } %}
           </a>
           {% endif %}
-          {% if meta.social.github %}
-          <a href="{{ meta.social.github }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors" aria-label="GitHub">
+          {% if general.metadata.social.github %}
+          <a href="{{ general.metadata.social.github }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors" aria-label="GitHub">
             {% phosphor "github-logo", "bold", { size: 20 } %}
           </a>
           {% endif %}

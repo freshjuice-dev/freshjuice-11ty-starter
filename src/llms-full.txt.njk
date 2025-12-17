@@ -2,9 +2,9 @@
 permalink: /llms-full.txt
 eleventyExcludeFromCollections: true
 ---
-# {{ meta.site_name }}
+# {{ general.metadata.site_name }}
 
-> {{ meta.site_description }}
+> {{ general.metadata.site_description }}
 
 ---
 
@@ -15,7 +15,7 @@ eleventyExcludeFromCollections: true
 
 ### {{ page.data.title }}
 
-URL: {{ meta.site_url }}{{ page.url }}
+URL: {{ general.metadata.site_url }}{{ page.url }}
 
 {{ page.templateContent | striptags | collapseWhitespace }}
 
@@ -30,7 +30,7 @@ URL: {{ meta.site_url }}{{ page.url }}
 
 ### {{ post.data.title }}
 
-URL: {{ meta.site_url }}{{ post.url }}
+URL: {{ general.metadata.site_url }}{{ post.url }}
 Date: {{ post.date | readableDate }}
 Author: {{ post.data.author }}
 
@@ -46,7 +46,7 @@ Author: {{ post.data.author }}
 
 ### {{ author.data.name }}
 
-URL: {{ meta.site_url }}{{ author.url }}
+URL: {{ general.metadata.site_url }}{{ author.url }}
 
 {{ author.data.bio }}
 

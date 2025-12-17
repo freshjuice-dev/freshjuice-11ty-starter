@@ -5,19 +5,19 @@ eleventyExcludeFromCollections: true
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ meta.site_name }}</title>
-    <description>{{ meta.site_description }}</description>
-    <link>{{ meta.site_url }}</link>
-    <atom:link href="{{ meta.site_url }}/feed.xml" rel="self" type="application/rss+xml"/>
-    <language>{{ meta.language or 'en-US' }}</language>
+    <title>{{ general.metadata.site_name }}</title>
+    <description>{{ general.metadata.site_description }}</description>
+    <link>{{ general.metadata.site_url }}</link>
+    <atom:link href="{{ general.metadata.site_url }}/feed.xml" rel="self" type="application/rss+xml"/>
+    <language>{{ general.metadata.language or 'en-US' }}</language>
     {%- set latestPost = collections.blog | first %}
     <lastBuildDate>{{ latestPost.date | dateToISOString if latestPost else '' }}</lastBuildDate>
     {%- for post in collections.blog | limit(20) %}
     <item>
       <title>{{ post.data.title }}</title>
       <description>{{ post.data.description }}</description>
-      <link>{{ meta.site_url }}{{ post.url }}</link>
-      <guid isPermaLink="true">{{ meta.site_url }}{{ post.url }}</guid>
+      <link>{{ general.metadata.site_url }}{{ post.url }}</link>
+      <guid isPermaLink="true">{{ general.metadata.site_url }}{{ post.url }}</guid>
       <pubDate>{{ post.date | dateToISOString }}</pubDate>
       {%- if post.data.author %}
       <author>{{ post.data.author }}</author>
