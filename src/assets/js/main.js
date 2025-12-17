@@ -5,18 +5,39 @@
 
 import Alpine from 'alpinejs';
 import collapse from '@alpinejs/collapse';
+import intersect from '@alpinejs/intersect';
 import 'lite-youtube-embed';
 
 // Register Alpine plugins
 Alpine.plugin(collapse);
+Alpine.plugin(intersect);
 
 // Initialize Alpine.js
 window.Alpine = Alpine;
+
+// Range input progress fill (Chrome/Safari only - Firefox has native CSS support)
+function initRangeInputs() {
+  // Skip Firefox - it has native ::-moz-range-progress support
+  if (navigator.userAgent.includes('Firefox')) return;
+
+  const updateProgress = (input) => {
+    const min = parseFloat(input.min) || 0;
+    const max = parseFloat(input.max) || 100;
+    const percent = ((parseFloat(input.value) - min) / (max - min)) * 100;
+    input.style.background = `linear-gradient(to right, #ea580c ${percent}%, #e7e5e4 ${percent}%)`;
+  };
+
+  document.querySelectorAll('input[type="range"]').forEach(input => {
+    updateProgress(input);
+    input.addEventListener('input', () => updateProgress(input));
+  });
+}
 
 // Add loaded class to body when page is ready
 document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('loaded');
   Alpine.start();
+  initRangeInputs();
 
   // FreshJuice console branding
   console.log(

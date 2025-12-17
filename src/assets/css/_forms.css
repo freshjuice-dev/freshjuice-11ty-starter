@@ -96,6 +96,11 @@
       @apply hover:bg-orange-700 transition-colors;
     }
 
+    /* Firefox progress fill */
+    &::-moz-range-progress {
+      @apply h-2 bg-orange-600 rounded-l-lg;
+    }
+
     &:focus {
       @apply outline-none;
 
