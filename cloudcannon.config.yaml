@@ -12,6 +12,8 @@ collections_config:
     icon: wysiwyg
     name: Pages
     description: Site pages
+    glob:
+      - "!**/*.json"
     _enabled_editors:
       - visual
       - content
@@ -34,6 +36,8 @@ collections_config:
     name: Legal Pages
     singular_name: Legal Page
     description: Privacy policy, terms of service, etc.
+    glob:
+      - "!**/*.json"
     _enabled_editors:
       - content
       - data
@@ -50,6 +54,8 @@ collections_config:
     icon: post_add
     name: Blog
     description: Blog posts
+    glob:
+      - "!**/*.json"
     _enabled_editors:
       - content
       - data
@@ -66,6 +72,8 @@ collections_config:
     icon: people
     name: Authors
     description: Blog authors
+    glob:
+      - "!**/*.json"
     _enabled_editors:
       - data
     add_options:
