@@ -63,8 +63,6 @@ collections_config:
     glob:
       - metadata.yaml
       - socials.yaml
-      - tracking.yaml
-      - consent.yaml
       - header.yaml
       - footer.yaml
     output: false
@@ -87,6 +85,8 @@ collections_config:
   advanced:
     path: _data
     glob:
+      - tracking.yaml
+      - consent.yaml
       - scripts_head.yaml
       - scripts_body.yaml
       - scripts_footer.yaml
