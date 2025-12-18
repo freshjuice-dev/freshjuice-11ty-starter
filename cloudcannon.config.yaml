@@ -68,6 +68,7 @@ collections_config:
     icon: settings
     name: General
     description: General site settings
+    view: cards
     _enabled_editors:
       - data
     disable_add: true
@@ -83,6 +84,7 @@ collections_config:
     icon: code
     name: Advanced
     description: Custom scripts for HEAD, BODY, and FOOTER
+    view: cards
     _enabled_editors:
       - data
     disable_add: true
