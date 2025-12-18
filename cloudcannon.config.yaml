@@ -116,6 +116,48 @@ collection_groups:
       - advanced
 
 _structures:
+  section_links:
+    values:
+      - value:
+          label:
+          url:
+        preview:
+          text: label
+          icon: link
+        _inputs:
+          label:
+            type: text
+            label: Label
+          url:
+            type: url
+            label: URL
+
+  quick_links:
+    values:
+      - value:
+          label:
+          url:
+          icon:
+          class:
+        preview:
+          text: label
+          icon: link
+        _inputs:
+          label:
+            type: text
+            label: Label
+          url:
+            type: url
+            label: URL
+          icon:
+            type: text
+            label: Icon
+            comment: "[Phosphor](https://phosphoricons.com/) icon name (e.g., github-logo, map-trifold)"
+          class:
+            type: text
+            label: CSS Class
+            comment: Custom class for triggers (e.g., cookie consent)
+
   blocks:
     style: modal
     values:
@@ -382,15 +424,43 @@ _inputs:
     comment: Primary action button in the header
 
   # Footer inputs
+  logo:
+    type: image
+    label: Logo
+    comment: Footer logo image
+
+  name:
+    type: text
+    label: Company Name
+    comment: Displayed next to the logo (leave empty to hide)
+
+  tagline:
+    type: html
+    label: Tagline
+    comment: Short description displayed in the footer
+
+  show_socials:
+    type: switch
+    label: Show Social Icons
+    comment: Display social media links in footer
+
   sections:
     type: array
-    label: Footer Sections
-    comment: Link columns displayed in the footer (Company, Resources, Legal, etc.)
+    label: Footer Menu
+    comment: Menu groups with links at the bottom of every page
+
+  links:
+    type: array
+    label: Links
+    options:
+      structures: _structures.section_links
 
   quick_links:
     type: array
     label: Quick Links
-    comment: Utility links in the footer bottom bar (GitHub, Sitemap, etc.)
+    comment: Small links in the footer bar (Sitemap, Privacy Settings, etc.)
+    options:
+      structures: _structures.quick_links
 
   copyright:
     type: text

@@ -1,5 +1,12 @@
 _icon: call_to_action
 
+# Brand Column
+logo: "/assets/images/logo-icon.svg"
+name: "Snappy Lemon"
+tagline: |
+  A modern <a href="https://www.11ty.dev/" target="_blank" rel="noopener noreferrer">11ty</a> starter theme with <a href="https://cloudcannon.com/" target="_blank" rel="noopener noreferrer">CloudCannon</a> CMS integration, <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">TailwindCSS</a>, and <a href="https://alpinejs.dev/" target="_blank" rel="noopener noreferrer">Alpine.js</a>.
+show_socials: true
+
 # Footer Sections
 sections:
   - title: "Company"
@@ -40,8 +47,11 @@ quick_links:
   - label: "GitHub"
     url: "https://github.com/freshjuice-dev/freshjuice-11ty-starter"
     icon: "github-logo"
+    class: ""
   - label: "Sitemap"
     url: "/sitemap.xml"
+    icon: ""
+    class: ""
 
 # Copyright
 copyright: "FreshJuice. All rights reserved."

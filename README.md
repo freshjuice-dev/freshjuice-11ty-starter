@@ -1,4 +1,4 @@
-# FreshJuice 11ty Starter
+# FreshJuice 11ty Starter a.k.a. Snappy Lemon
 
 <img src="src/assets/images/og-placeholder.png" alt="FreshJuice 11ty Starter" width="450">
 
@@ -18,6 +18,7 @@ A modern, fast, and accessible starter theme for building static websites with [
 - **eleventy-img** - Automatic image optimization (AVIF, WebP, JPEG)
 - **Phosphor Icons** - 6,000+ icons with multiple weights
 - **CloudCannon CMS** - Visual editing and page builder blocks
+- **Speculation Rules** - Instant page loads with prefetching
 - **Accessibility** - WCAG 2.1 AA compliant with automated testing
 - **SEO Ready** - Sitemap, RSS feed, meta tags, Open Graph
 - **LLM Ready** - llms.txt and llms-full.txt for AI assistants
