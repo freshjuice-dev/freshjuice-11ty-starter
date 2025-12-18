@@ -58,6 +58,18 @@ collections_config:
       default:
         path: .cloudcannon/schemas/author.yaml
 
+  system:
+    path: system
+    output: true
+    icon: terminal
+    name: System Pages
+    description: Error pages and search
+    _enabled_editors:
+      - content
+      - data
+    disable_add: true
+    disable_add_folder: true
+
   general:
     path: _data
     glob:
@@ -83,29 +95,20 @@ collections_config:
     disable_add_folder: true
 
   advanced:
-    path: _data
+    path: ""
     glob:
-      - tracking.yaml
-      - consent.yaml
-      - scripts_head.yaml
-      - scripts_body.yaml
-      - scripts_footer.yaml
+      - _data/tracking.yaml
+      - _data/consent.yaml
+      - _data/scripts_head.yaml
+      - _data/scripts_body.yaml
+      - _data/scripts_footer.yaml
+      - robots.txt.njk
+      - _headers.njk
+      - _redirects.njk
     output: false
     icon: settings_ethernet
     name: Advanced
     description: Advanced settings for power users
-    preview:
-      text:
-        - key: _name
-      subtext:
-        - key: _description
-      icon:
-        - key: _icon
-        - code
-    _enabled_editors:
-      - data
-    disable_add: true
-    disable_add_folder: true
 
 data_config:
   authors:
@@ -114,8 +117,9 @@ data_config:
 collection_groups:
   - heading: Content
     collections:
-      - pages
       - blog
+      - pages
+      - system
   - heading: People
     collections:
       - authors
