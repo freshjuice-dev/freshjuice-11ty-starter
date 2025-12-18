@@ -62,6 +62,7 @@ collections_config:
     path: _data
     glob:
       - metadata.yaml
+      - socials.yaml
       - tracking.yaml
       - consent.yaml
       - header.yaml
@@ -124,6 +125,44 @@ collection_groups:
       - advanced
 
 _structures:
+  social_links:
+    values:
+      - value:
+          network:
+          url:
+        preview:
+          text: network
+          icon: share
+        _inputs:
+          network:
+            type: select
+            label: Network
+            options:
+              values:
+                - x
+                - facebook
+                - instagram
+                - linkedin
+                - github
+                - youtube
+                - tiktok
+                - discord
+                - twitch
+                - pinterest
+                - dribbble
+                - behance
+                - medium
+                - reddit
+                - whatsapp
+                - telegram
+                - snapchat
+                - threads
+                - bluesky
+                - mastodon
+          url:
+            type: url
+            label: URL
+
   menu_links:
     values:
       - value:
@@ -386,17 +425,12 @@ _inputs:
     label: Language
     comment: "e.g., en-US, de-DE"
 
-  social_twitter:
-    type: url
-    label: Twitter/X URL
-
-  social_linkedin:
-    type: url
-    label: LinkedIn URL
-
-  social_github:
-    type: url
-    label: GitHub URL
+  # General settings inputs - Socials
+  profiles:
+    type: array
+    label: Profiles
+    options:
+      structures: _structures.social_links
 
   # General settings inputs - Tracking
   google_site_verification:

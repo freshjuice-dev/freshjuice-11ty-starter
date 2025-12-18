@@ -1,0 +1,11 @@
+_name: Social Links
+_description: Social media profiles
+_icon: share
+
+profiles:
+  - network: x
+    url: "https://x.com"
+  - network: linkedin
+    url: "https://linkedin.com"
+  - network: github
+    url: "https://github.com"

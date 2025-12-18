@@ -14,23 +14,13 @@
           {{ footer.tagline | safe }}
         </p>
         {% endif %}
-        {% if footer.show_socials and (metadata.social_twitter or metadata.social_linkedin or metadata.social_github) %}
+        {% if footer.show_socials and socials.profiles.length %}
         <div class="flex gap-4 mt-6">
-          {% if metadata.social_twitter %}
-          <a href="{{ metadata.social_twitter }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors" aria-label="Twitter">
-            {% phosphor "x-logo", "bold", { size: 20 } %}
+          {% for profile in socials.profiles %}
+          <a href="{{ profile.url }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors" aria-label="{{ profile.network }}">
+            {% phosphor profile.network + "-logo", "bold", { size: 20 } %}
           </a>
-          {% endif %}
-          {% if metadata.social_linkedin %}
-          <a href="{{ metadata.social_linkedin }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors" aria-label="LinkedIn">
-            {% phosphor "linkedin-logo", "bold", { size: 20 } %}
-          </a>
-          {% endif %}
-          {% if metadata.social_github %}
-          <a href="{{ metadata.social_github }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors" aria-label="GitHub">
-            {% phosphor "github-logo", "bold", { size: 20 } %}
-          </a>
-          {% endif %}
+          {% endfor %}
         </div>
         {% endif %}
       </div>
