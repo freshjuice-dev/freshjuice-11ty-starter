@@ -1,3 +1,5 @@
+_name: Body Scripts
+_description: Loaded after opening &lt;body&gt; tag
 _icon: code
 
 # Body Scripts - loaded after opening <body> tag

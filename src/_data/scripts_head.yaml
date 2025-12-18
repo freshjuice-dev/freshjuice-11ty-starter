@@ -1,3 +1,5 @@
+_name: Head Scripts
+_description: Loaded in &lt;head&gt; before page renders
 _icon: code
 
 # Head Scripts - loaded in <head> before page renders

@@ -1,3 +1,5 @@
+_name: Footer Scripts
+_description: Loaded before closing &lt;/body&gt; tag
 _icon: code
 
 # Footer Scripts - loaded before closing </body> tag

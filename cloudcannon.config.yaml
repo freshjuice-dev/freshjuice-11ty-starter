@@ -71,6 +71,10 @@ collections_config:
     name: General
     description: Site settings, header and footer
     preview:
+      text:
+        - key: _name
+      subtext:
+        - key: _description
       icon:
         - key: _icon
         - settings
@@ -90,6 +94,10 @@ collections_config:
     name: Advanced
     description: Advanced settings for power users
     preview:
+      text:
+        - key: _name
+      subtext:
+        - key: _description
       icon:
         - key: _icon
         - code
