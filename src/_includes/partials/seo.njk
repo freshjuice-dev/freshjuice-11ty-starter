@@ -1,10 +1,10 @@
 {# Primary Meta Tags #}
-<title>{{ title }}{% if title %} | {% endif %}{{ general.site_name }}</title>
-<meta name="title" content="{{ title or general.site_name }}">
-<meta name="description" content="{{ description or general.site_description }}">
+<title>{{ title }}{% if title %} | {% endif %}{{ metadata.site_name }}</title>
+<meta name="title" content="{{ title or metadata.site_name }}">
+<meta name="description" content="{{ description or metadata.site_description }}">
 
 {# Canonical URL #}
-<link rel="canonical" href="{{ general.site_url }}{{ page.url }}">
+<link rel="canonical" href="{{ metadata.site_url }}{{ page.url }}">
 
 {# Robots #}
 {% if noindex %}
@@ -15,19 +15,19 @@
 
 {# Open Graph / Facebook #}
 <meta property="og:type" content="{% if layout === 'layouts/post.njk' %}article{% else %}website{% endif %}">
-<meta property="og:url" content="{{ general.site_url }}{{ page.url }}">
-<meta property="og:title" content="{{ title or general.site_name }}">
-<meta property="og:description" content="{{ description or general.site_description }}">
-<meta property="og:image" content="{{ general.site_url }}{{ image or general.default_image }}">
-<meta property="og:site_name" content="{{ general.site_name }}">
-<meta property="og:locale" content="{{ general.locale }}">
+<meta property="og:url" content="{{ metadata.site_url }}{{ page.url }}">
+<meta property="og:title" content="{{ title or metadata.site_name }}">
+<meta property="og:description" content="{{ description or metadata.site_description }}">
+<meta property="og:image" content="{{ metadata.site_url }}{{ image or metadata.default_image }}">
+<meta property="og:site_name" content="{{ metadata.site_name }}">
+<meta property="og:locale" content="{{ metadata.locale }}">
 
 {# Twitter #}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="{{ general.site_url }}{{ page.url }}">
-<meta name="twitter:title" content="{{ title or general.site_name }}">
-<meta name="twitter:description" content="{{ description or general.site_description }}">
-<meta name="twitter:image" content="{{ general.site_url }}{{ image or general.default_image }}">
+<meta name="twitter:url" content="{{ metadata.site_url }}{{ page.url }}">
+<meta name="twitter:title" content="{{ title or metadata.site_name }}">
+<meta name="twitter:description" content="{{ description or metadata.site_description }}">
+<meta name="twitter:image" content="{{ metadata.site_url }}{{ image or metadata.default_image }}">
 
 {# Article specific meta #}
 {% if layout === 'layouts/post.njk' %}
@@ -49,7 +49,7 @@
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
 
 {# RSS Feed #}
-<link rel="alternate" type="application/rss+xml" title="{{ general.site_name }} RSS Feed" href="{{ general.site_url }}/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="{{ metadata.site_name }} RSS Feed" href="{{ metadata.site_url }}/feed.xml">
 
 {# Theme Color #}
 <meta name="theme-color" content="#22c55e">

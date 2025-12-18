@@ -1,0 +1,10 @@
+# Site Metadata
+site_name: "FreshJuice Starter"
+site_description: "A modern 11ty starter theme with CloudCannon CMS integration, TailwindCSS, and Alpine.js"
+site_url: "https://example.com"
+default_image: "/assets/images/og-placeholder.png"
+locale: "en"
+language: "en-US"
+social_twitter: "https://x.com"
+social_linkedin: "https://linkedin.com"
+social_github: "https://github.com"

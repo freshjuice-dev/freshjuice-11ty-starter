@@ -60,11 +60,15 @@ collections_config:
 
   general:
     path: _data
-    glob: general.yaml
+    glob:
+      - general.yaml
+      - metadata.yaml
+      - tracking.yaml
+      - consent.yaml
     output: false
     icon: settings
     name: General
-    description: Metadata, tracking, and cookie consent settings
+    description: General site settings
     _enabled_editors:
       - data
     disable_add: true
