@@ -62,8 +62,9 @@ collections_config:
     path: system
     output: true
     icon: terminal
-    name: System Pages
-    description: Error pages and search
+    name: System Templates
+    singular_name: System Template
+    description: Error pages, search, robots.txt, headers, and redirects
     _enabled_editors:
       - content
       - data
@@ -95,16 +96,13 @@ collections_config:
     disable_add_folder: true
 
   advanced:
-    path: ""
+    path: _data
     glob:
-      - _data/tracking.yaml
-      - _data/consent.yaml
-      - _data/scripts_head.yaml
-      - _data/scripts_body.yaml
-      - _data/scripts_footer.yaml
-      - robots.txt.njk
-      - _headers.njk
-      - _redirects.njk
+      - tracking.yaml
+      - consent.yaml
+      - scripts_head.yaml
+      - scripts_body.yaml
+      - scripts_footer.yaml
     output: false
     icon: settings_ethernet
     name: Advanced
