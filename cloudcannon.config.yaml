@@ -364,6 +364,18 @@ _structures:
             type: markdown
 
 _inputs:
+  layout:
+    type: select
+    label: Layout
+    options:
+      values:
+        - layouts/base.njk
+        - layouts/post.njk
+        - layouts/legal.njk
+        - layouts/author.njk
+        - layouts/landing.njk
+        - layouts/error.njk
+
   title:
     type: text
     label: Title
@@ -385,6 +397,7 @@ _inputs:
     label: Author
     options:
       values: data.authors
+      value_key: slug
 
   tags:
     type: multiselect
