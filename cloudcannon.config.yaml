@@ -182,6 +182,29 @@ _structures:
             label: CSS Class
             comment: Custom class for triggers (e.g., cookie consent)
 
+  cta_button:
+    values:
+      - value:
+          _icon: ads_click
+          label:
+          url:
+          icon:
+        preview:
+          icon:
+            - key: _icon
+            - ads_click
+        _inputs:
+          label:
+            type: text
+            label: Button Text
+          url:
+            type: url
+            label: URL
+          icon:
+            type: text
+            label: Icon
+            comment: "[Phosphor](https://phosphoricons.com/) icon name (e.g., rocket-launch, arrow-right)"
+
   blocks:
     style: modal
     values:
@@ -454,25 +477,7 @@ _inputs:
     label: Call to Action
     comment: Primary action button in the header
     options:
-      preview:
-        icon: ads_click
-      structures:
-        values:
-          - value:
-              label:
-              url:
-              icon:
-            _inputs:
-              label:
-                type: text
-                label: Button Text
-              url:
-                type: url
-                label: URL
-              icon:
-                type: text
-                label: Icon
-                comment: "[Phosphor](https://phosphoricons.com/) icon name (e.g., rocket-launch, arrow-right)"
+      structures: _structures.cta_button
 
   # Shared inputs
   logo:
