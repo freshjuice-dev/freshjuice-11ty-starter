@@ -27,6 +27,23 @@ collections_config:
         path: .cloudcannon/schemas/landing.yaml
         name: Landing Page
 
+  legal:
+    path: legal
+    output: true
+    icon: gavel
+    name: Legal Pages
+    singular_name: Legal Page
+    description: Privacy policy, terms of service, etc.
+    _enabled_editors:
+      - content
+      - data
+    add_options:
+      - name: Add New Legal Page
+        schema: default
+    schemas:
+      default:
+        path: .cloudcannon/schemas/legal.yaml
+
   blog:
     path: blog
     output: true
@@ -57,19 +74,6 @@ collections_config:
     schemas:
       default:
         path: .cloudcannon/schemas/author.yaml
-
-  system:
-    path: system
-    output: true
-    icon: terminal
-    name: System Templates
-    singular_name: System Template
-    description: Error pages, search, robots.txt, headers, and redirects
-    _enabled_editors:
-      - content
-      - data
-    disable_add: true
-    disable_add_folder: true
 
   general:
     path: _data
@@ -107,6 +111,18 @@ collections_config:
     icon: settings_ethernet
     name: Advanced
     description: Advanced settings for power users
+    preview:
+      text:
+        - key: _name
+      subtext:
+        - key: _description
+      icon:
+        - key: _icon
+        - code
+    _enabled_editors:
+      - data
+    disable_add: true
+    disable_add_folder: true
 
 data_config:
   authors:
@@ -117,7 +133,7 @@ collection_groups:
     collections:
       - blog
       - pages
-      - system
+      - legal
   - heading: People
     collections:
       - authors
