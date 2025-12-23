@@ -1,0 +1,74 @@
+{%- comment -%}
+  Pricing Component
+  Pricing table with multiple tiers
+{%- endcomment -%}
+
+{%- assign bg = background | default: "white" -%}
+{%- assign bg_class = "bg-white" -%}
+{%- if bg == "light" -%}
+  {%- assign bg_class = "bg-stone-50" -%}
+{%- endif -%}
+
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    {%- if section_title or section_description -%}
+    <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+      {%- if section_title -%}
+      <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+        {{ section_title }}
+      </h2>
+      {%- endif -%}
+      {%- if section_description -%}
+      <p class="text-xl text-stone-600">
+        {{ section_description }}
+      </p>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+
+    {%- if plans.size > 0 -%}
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-{{ plans.size }} max-w-6xl mx-auto">
+      {%- for plan in plans -%}
+      <div class="relative flex flex-col rounded-2xl {% if plan.featured %}bg-stone-900 text-white ring-4 ring-orange-500{% else %}bg-white border border-stone-200{% endif %} p-8">
+        {%- if plan.featured -%}
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+          <span class="bg-orange-500 text-white text-sm font-semibold px-4 py-1 rounded-full">Most Popular</span>
+        </div>
+        {%- endif -%}
+
+        <div class="mb-6">
+          <h3 class="text-xl font-bold mb-2">{{ plan.name }}</h3>
+          {%- if plan.description -%}
+          <p class="{% if plan.featured %}text-stone-300{% else %}text-stone-600{% endif %} text-sm">{{ plan.description }}</p>
+          {%- endif -%}
+        </div>
+
+        <div class="mb-6">
+          <span class="text-4xl font-bold">{{ plan.price }}</span>
+          {%- if plan.period -%}
+          <span class="{% if plan.featured %}text-stone-400{% else %}text-stone-500{% endif %}">{{ plan.period }}</span>
+          {%- endif -%}
+        </div>
+
+        {%- if plan.features.size > 0 -%}
+        <ul class="space-y-3 mb-8 flex-1">
+          {%- for feature in plan.features -%}
+          <li class="flex items-start gap-2">
+            <svg class="w-5 h-5 {% if plan.featured %}text-orange-400{% else %}text-orange-600{% endif %} flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="{% if plan.featured %}text-stone-300{% else %}text-stone-600{% endif %}">{{ feature }}</span>
+          </li>
+          {%- endfor -%}
+        </ul>
+        {%- endif -%}
+
+        <a href="{{ plan.button_url | default: '#' }}" class="btn {% if plan.featured %}btn--secondary{% else %}btn--outline{% endif %} w-full text-center">
+          {{ plan.button_text | default: "Get Started" }}
+        </a>
+      </div>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>

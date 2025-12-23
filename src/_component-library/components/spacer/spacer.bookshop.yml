@@ -1,0 +1,26 @@
+# Bookshop Component: Spacer
+# Adds vertical spacing between sections
+
+spec:
+  structures:
+    - content_blocks
+  label: Spacer
+  description: Adds vertical spacing between sections
+  icon: height
+  tags:
+    - Utility
+    - Layout
+
+blueprint:
+  size: medium
+
+_inputs:
+  size:
+    type: select
+    label: Size
+    options:
+      values:
+        - small
+        - medium
+        - large
+        - xlarge

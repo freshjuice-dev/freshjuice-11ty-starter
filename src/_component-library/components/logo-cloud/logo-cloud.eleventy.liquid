@@ -1,0 +1,59 @@
+{%- comment -%}
+  Logo Cloud Component
+  Display partner, client, or technology logos
+{%- endcomment -%}
+
+{%- assign logo_style = style | default: "default" -%}
+{%- assign bg = background | default: "white" -%}
+
+{%- comment -%} Background classes {%- endcomment -%}
+{%- case bg -%}
+  {%- when "light" -%}
+    {%- assign bg_class = "bg-stone-50" -%}
+    {%- assign text_class = "text-stone-600" -%}
+  {%- when "dark" -%}
+    {%- assign bg_class = "bg-stone-900" -%}
+    {%- assign text_class = "text-stone-400" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-white" -%}
+    {%- assign text_class = "text-stone-600" -%}
+{%- endcase -%}
+
+{%- comment -%} Logo size classes {%- endcomment -%}
+{%- case logo_style -%}
+  {%- when "compact" -%}
+    {%- assign logo_class = "h-6 md:h-8" -%}
+    {%- assign py_class = "py-8 lg:py-12" -%}
+  {%- when "large" -%}
+    {%- assign logo_class = "h-12 md:h-16" -%}
+    {%- assign py_class = "py-16 lg:py-24" -%}
+  {%- else -%}
+    {%- assign logo_class = "h-8 md:h-10" -%}
+    {%- assign py_class = "py-12 lg:py-16" -%}
+{%- endcase -%}
+
+<section class="{{ py_class }} {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    {%- if section_title -%}
+    <p class="text-center text-sm uppercase tracking-wider {{ text_class }} mb-8">
+      {{ section_title }}
+    </p>
+    {%- endif -%}
+
+    {%- if logos.size > 0 -%}
+    <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16">
+      {%- for logo in logos -%}
+        {%- if logo.url -%}
+        <a href="{{ logo.url }}" class="block grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300">
+          <img src="{{ logo.image }}" alt="{{ logo.alt }}" class="{{ logo_class }} w-auto object-contain">
+        </a>
+        {%- else -%}
+        <div class="grayscale opacity-60">
+          <img src="{{ logo.image }}" alt="{{ logo.alt }}" class="{{ logo_class }} w-auto object-contain">
+        </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>

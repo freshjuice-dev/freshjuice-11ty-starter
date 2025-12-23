@@ -1,0 +1,72 @@
+# Bookshop Component: Stats
+# Statistics/metrics display section
+
+spec:
+  structures:
+    - content_blocks
+  label: Stats
+  description: Display key statistics and metrics
+  icon: analytics
+  tags:
+    - Stats
+    - Metrics
+
+blueprint:
+  section_title:
+  section_description:
+  background: gradient
+  style: default
+  stats:
+    - value: "10K+"
+      label: Happy Customers
+    - value: "99%"
+      label: Satisfaction Rate
+    - value: "24/7"
+      label: Support Available
+    - value: "50+"
+      label: Countries Served
+
+_inputs:
+  section_title:
+    type: text
+    label: Section Title
+  section_description:
+    type: textarea
+    label: Section Description
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - gradient
+        - primary
+        - dark
+        - light
+        - white
+  style:
+    type: select
+    label: Style
+    options:
+      values:
+        - default
+        - cards
+        - minimal
+  stats:
+    type: array
+    label: Statistics
+    options:
+      structures:
+        values:
+          - value:
+              value: "100+"
+              label: Metric Label
+            label: Statistic
+            icon: analytics
+            _inputs:
+              value:
+                type: text
+                label: Value
+                comment: "e.g., 10K+, 99%, $1M"
+              label:
+                type: text
+                label: Label

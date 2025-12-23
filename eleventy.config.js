@@ -3,6 +3,7 @@ import filters from './config/filters.js';
 import shortcodes from './config/shortcodes.js';
 import transforms from './config/transforms.js';
 import plugins from './config/plugins.js';
+import pluginBookshop from '@bookshop/eleventy-bookshop';
 
 /**
  * Eleventy configuration
@@ -16,6 +17,12 @@ export default function(eleventyConfig) {
   shortcodes(eleventyConfig);
   transforms(eleventyConfig);
   plugins(eleventyConfig);
+
+  // Bookshop component library for landing pages
+  eleventyConfig.addPlugin(pluginBookshop({
+    bookshopLocations: ['src/_component-library'],
+    pathPrefix: ''
+  }));
 
   // Pass through static assets (images, fonts)
   // CSS and JS are built separately by postcss and esbuild
@@ -34,6 +41,6 @@ export default function(eleventyConfig) {
     },
     markdownTemplateEngine: 'njk',
     htmlTemplateEngine: 'njk',
-    templateFormats: ['njk', 'md', 'html']
+    templateFormats: ['njk', 'md', 'html', 'liquid']
   };
 }

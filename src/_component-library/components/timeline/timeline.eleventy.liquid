@@ -1,0 +1,63 @@
+{%- comment -%}
+  Timeline Component
+  Vertical timeline for process or history
+{%- endcomment -%}
+
+{%- assign bg = background | default: "white" -%}
+{%- assign bg_class = "bg-white" -%}
+{%- if bg == "light" -%}
+  {%- assign bg_class = "bg-stone-50" -%}
+{%- endif -%}
+
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    {%- if section_title or section_description -%}
+    <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+      {%- if section_title -%}
+      <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+        {{ section_title }}
+      </h2>
+      {%- endif -%}
+      {%- if section_description -%}
+      <p class="text-xl text-stone-600">
+        {{ section_description }}
+      </p>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+
+    {%- if items.size > 0 -%}
+    <div class="max-w-3xl mx-auto">
+      <div class="relative">
+        {%- comment -%} Vertical line {%- endcomment -%}
+        <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-orange-200 md:-translate-x-1/2"></div>
+
+        {%- for item in items -%}
+        {%- assign is_odd = forloop.index | modulo: 2 -%}
+        <div class="relative flex items-start mb-12 last:mb-0">
+          {%- comment -%} Date (left side on desktop) {%- endcomment -%}
+          <div class="hidden md:block md:w-1/2 md:pr-12 md:text-right">
+            {%- if is_odd == 1 -%}
+            <span class="text-sm font-semibold text-orange-600">{{ item.date }}</span>
+            {%- endif -%}
+          </div>
+
+          {%- comment -%} Circle marker {%- endcomment -%}
+          <div class="absolute left-4 md:left-1/2 w-4 h-4 bg-orange-500 rounded-full border-4 border-white shadow md:-translate-x-1/2 z-10"></div>
+
+          {%- comment -%} Content {%- endcomment -%}
+          <div class="ml-12 md:ml-0 md:w-1/2 {% if is_odd == 1 %}md:pl-12{% else %}md:pr-12 md:text-right md:order-first{% endif %}">
+            <span class="md:hidden text-sm font-semibold text-orange-600 block mb-1">{{ item.date }}</span>
+            {%- if is_odd == 0 -%}
+            <span class="hidden md:block text-sm font-semibold text-orange-600 mb-1">{{ item.date }}</span>
+            {%- endif -%}
+            <h3 class="text-xl font-semibold text-stone-900 mb-2">{{ item.title }}</h3>
+            <p class="text-stone-600">{{ item.description }}</p>
+          </div>
+        </div>
+        {%- endfor -%}
+      </div>
+    </div>
+    {%- endif -%}
+  </div>
+</section>

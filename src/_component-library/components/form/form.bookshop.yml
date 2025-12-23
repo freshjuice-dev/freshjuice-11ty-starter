@@ -1,0 +1,60 @@
+# Bookshop Component: Form
+# Contact or lead capture form
+
+spec:
+  structures:
+    - content_blocks
+  label: Form
+  description: Contact or lead capture form section
+  icon: mail
+  tags:
+    - Form
+    - Contact
+
+blueprint:
+  heading: Get in Touch
+  description: Fill out the form below and we'll get back to you within 24 hours.
+  form_type: contact
+  form_action:
+  background: light
+  style: default
+  success_message: Thank you! We'll be in touch soon.
+
+_inputs:
+  heading:
+    type: text
+    label: Heading
+  description:
+    type: textarea
+    label: Description
+  form_type:
+    type: select
+    label: Form Type
+    options:
+      values:
+        - contact
+        - newsletter
+        - demo
+  form_action:
+    type: text
+    label: Form Action URL
+    comment: Leave empty for default handling
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - white
+        - light
+        - dark
+  style:
+    type: select
+    label: Style
+    options:
+      values:
+        - default
+        - split
+        - boxed
+  success_message:
+    type: text
+    label: Success Message

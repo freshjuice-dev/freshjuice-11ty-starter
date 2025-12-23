@@ -1,0 +1,77 @@
+# Bookshop Component: Cards
+# Grid of content cards
+
+spec:
+  structures:
+    - content_blocks
+  label: Cards
+  description: Grid of content cards with images and links
+  icon: dashboard
+  tags:
+    - Cards
+    - Grid
+
+blueprint:
+  section_title:
+  section_description:
+  columns: 3
+  background: white
+  cards:
+    - title: Card Title
+      description: A brief description of the card content.
+      image:
+      url:
+      badge:
+
+_inputs:
+  section_title:
+    type: text
+    label: Section Title
+  section_description:
+    type: textarea
+    label: Section Description
+  columns:
+    type: select
+    label: Columns
+    options:
+      values:
+        - 2
+        - 3
+        - 4
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - white
+        - light
+  cards:
+    type: array
+    label: Cards
+    options:
+      structures:
+        values:
+          - value:
+              title: Card Title
+              description: Card description
+              image:
+              url:
+              badge:
+            label: Card
+            icon: dashboard
+            _inputs:
+              title:
+                type: text
+                label: Title
+              description:
+                type: textarea
+                label: Description
+              image:
+                type: image
+                label: Image
+              url:
+                type: url
+                label: Link URL
+              badge:
+                type: text
+                label: Badge Text

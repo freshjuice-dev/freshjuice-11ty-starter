@@ -1,0 +1,84 @@
+# Bookshop Component: Testimonials
+# Customer testimonials in grid or slider layout
+
+spec:
+  structures:
+    - content_blocks
+  label: Testimonials
+  description: Customer testimonials and social proof
+  icon: format_quote
+  tags:
+    - Testimonials
+    - Social Proof
+
+blueprint:
+  section_title: What Our Customers Say
+  layout: grid
+  background: light
+  testimonials:
+    - quote: This product transformed our business. Highly recommended!
+      author: Jane Smith
+      title: CEO
+      company: Acme Corp
+      avatar:
+    - quote: Outstanding service and results. We've seen 200% growth.
+      author: John Doe
+      title: Marketing Director
+      company: Tech Inc
+      avatar:
+    - quote: The best investment we've made for our team's productivity.
+      author: Sarah Wilson
+      title: Operations Manager
+      company: StartupXYZ
+      avatar:
+
+_inputs:
+  section_title:
+    type: text
+    label: Section Title
+  layout:
+    type: select
+    label: Layout
+    options:
+      values:
+        - grid
+        - slider
+        - single
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - white
+        - light
+        - dark
+  testimonials:
+    type: array
+    label: Testimonials
+    options:
+      structures:
+        values:
+          - value:
+              quote: Customer quote here
+              author: Customer Name
+              title: Job Title
+              company: Company Name
+              avatar:
+            label: Testimonial
+            icon: format_quote
+            _inputs:
+              quote:
+                type: textarea
+                label: Quote
+              author:
+                type: text
+                label: Author Name
+              title:
+                type: text
+                label: Job Title
+              company:
+                type: text
+                label: Company
+              avatar:
+                type: image
+                label: Avatar

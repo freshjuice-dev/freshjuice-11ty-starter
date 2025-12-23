@@ -1,0 +1,42 @@
+# Bookshop Component: Banner
+# Simple announcement or promotional banner
+
+spec:
+  structures:
+    - content_blocks
+  label: Banner
+  description: Simple announcement or promotional banner
+  icon: campaign
+  tags:
+    - Banner
+    - Announcement
+
+blueprint:
+  text: New feature launched! Check it out.
+  link_text: Learn More
+  link_url:
+  background: primary
+  dismissible: false
+
+_inputs:
+  text:
+    type: text
+    label: Banner Text
+  link_text:
+    type: text
+    label: Link Text
+  link_url:
+    type: url
+    label: Link URL
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - primary
+        - dark
+        - light
+  dismissible:
+    type: switch
+    label: Dismissible
+    comment: Allow users to close the banner

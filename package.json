@@ -66,5 +66,9 @@
     "pagefind": "^1.4.0",
     "shiki": "^3.20.0",
     "tailwindcss": "^4.1.18"
+  },
+  "dependencies": {
+    "@bookshop/browser": "3.17.1",
+    "@bookshop/eleventy-bookshop": "3.17.1"
   }
 }

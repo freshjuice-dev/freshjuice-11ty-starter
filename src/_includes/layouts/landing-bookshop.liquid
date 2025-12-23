@@ -1,0 +1,13 @@
+---
+layout: layouts/base.njk
+---
+{%- comment -%}
+  Landing Page Layout using Bookshop components
+  This layout renders content_blocks array using Bookshop
+{%- endcomment -%}
+
+{% for block in content_blocks %}
+  {% bookshop "{{block._bookshop_name}}" bind: block %}
+{% endfor %}
+
+{{ content }}

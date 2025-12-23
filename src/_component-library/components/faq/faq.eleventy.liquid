@@ -1,0 +1,60 @@
+{%- comment -%}
+  FAQ Component
+  Frequently asked questions with expandable answers
+{%- endcomment -%}
+
+{%- assign bg = background | default: "white" -%}
+{%- assign bg_class = "bg-white" -%}
+{%- if bg == "light" -%}
+  {%- assign bg_class = "bg-stone-50" -%}
+{%- endif -%}
+
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    {%- if section_title or section_description -%}
+    <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+      {%- if section_title -%}
+      <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+        {{ section_title }}
+      </h2>
+      {%- endif -%}
+      {%- if section_description -%}
+      <p class="text-xl text-stone-600">
+        {{ section_description }}
+      </p>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+
+    {%- if items.size > 0 -%}
+    <div class="max-w-3xl mx-auto space-y-4" x-data="{ openItem: null }">
+      {%- for item in items -%}
+      <div class="border border-stone-200 rounded-lg overflow-hidden">
+        <button
+          @click="openItem = openItem === {{ forloop.index }} ? null : {{ forloop.index }}"
+          class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 hover:bg-stone-50 transition-colors"
+        >
+          <span class="font-semibold text-stone-900">{{ item.question }}</span>
+          <svg
+            class="w-5 h-5 text-stone-500 transition-transform duration-200"
+            :class="openItem === {{ forloop.index }} ? 'rotate-180' : ''"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div
+          x-show="openItem === {{ forloop.index }}"
+          x-collapse
+          class="px-6 pb-4"
+        >
+          <p class="text-stone-600">{{ item.answer }}</p>
+        </div>
+      </div>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>

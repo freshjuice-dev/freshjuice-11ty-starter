@@ -1,0 +1,65 @@
+{%- comment -%}
+  Split Content Component
+  Two-column layout with image and text
+{%- endcomment -%}
+
+{%- assign img_pos = image_position | default: "right" -%}
+{%- assign bg = background | default: "white" -%}
+
+{%- comment -%} Background classes {%- endcomment -%}
+{%- case bg -%}
+  {%- when "light" -%}
+    {%- assign bg_class = "bg-stone-50" -%}
+    {%- assign text_class = "text-stone-900" -%}
+    {%- assign prose_class = "" -%}
+  {%- when "dark" -%}
+    {%- assign bg_class = "bg-stone-900" -%}
+    {%- assign text_class = "text-white" -%}
+    {%- assign prose_class = "prose-invert" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-white" -%}
+    {%- assign text_class = "text-stone-900" -%}
+    {%- assign prose_class = "" -%}
+{%- endcase -%}
+
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      {%- comment -%} Text Column {%- endcomment -%}
+      <div class="{% if img_pos == 'left' %}lg:order-2{% endif %}">
+        {%- if heading -%}
+        <h2 class="text-3xl md:text-4xl font-bold {{ text_class }} mb-6">
+          {{ heading }}
+        </h2>
+        {%- endif -%}
+
+        {%- if content_html -%}
+        <div class="prose prose-lg {{ prose_class }} prose-a:text-orange-600 mb-8">
+          {{ content_html }}
+        </div>
+        {%- endif -%}
+
+        {%- if buttons.size > 0 -%}
+        <div class="flex flex-wrap gap-4">
+          {%- for button in buttons -%}
+            <a href="{{ button.url | default: '#' }}" class="btn{% if button.variant == 'secondary' %} btn--secondary{% elsif button.variant == 'outline' %} btn--outline{% endif %}">
+              {{ button.text }}
+            </a>
+          {%- endfor -%}
+        </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Image Column {%- endcomment -%}
+      <div class="{% if img_pos == 'left' %}lg:order-1{% endif %}">
+        {%- if image -%}
+        <img src="{{ image }}" alt="{{ image_alt }}" class="w-full rounded-2xl shadow-lg" loading="lazy">
+        {%- else -%}
+        <div class="aspect-video bg-stone-200 rounded-2xl flex items-center justify-center">
+          <span class="text-stone-400">Image placeholder</span>
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>

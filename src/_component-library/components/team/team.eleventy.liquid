@@ -1,0 +1,85 @@
+{%- comment -%}
+  Team Component
+  Team member grid
+{%- endcomment -%}
+
+{%- assign cols = columns | default: 4 -%}
+{%- assign bg = background | default: "white" -%}
+
+{%- comment -%} Background classes {%- endcomment -%}
+{%- case bg -%}
+  {%- when "light" -%}
+    {%- assign bg_class = "bg-stone-50" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-white" -%}
+{%- endcase -%}
+
+{%- comment -%} Grid columns {%- endcomment -%}
+{%- case cols -%}
+  {%- when 2 -%}
+    {%- assign grid_class = "md:grid-cols-2" -%}
+  {%- when 3 -%}
+    {%- assign grid_class = "md:grid-cols-2 lg:grid-cols-3" -%}
+  {%- else -%}
+    {%- assign grid_class = "md:grid-cols-2 lg:grid-cols-4" -%}
+{%- endcase -%}
+
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    {%- if section_title or section_description -%}
+    <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+      {%- if section_title -%}
+      <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+        {{ section_title }}
+      </h2>
+      {%- endif -%}
+      {%- if section_description -%}
+      <p class="text-xl text-stone-600">
+        {{ section_description }}
+      </p>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+
+    {%- if members.size > 0 -%}
+    <div class="grid gap-8 {{ grid_class }}">
+      {%- for member in members -%}
+      <div class="text-center">
+        <div class="mb-4">
+          {%- if member.image -%}
+          <img src="{{ member.image }}" alt="{{ member.name }}" class="w-32 h-32 rounded-full mx-auto object-cover">
+          {%- else -%}
+          <div class="w-32 h-32 rounded-full mx-auto bg-stone-200 flex items-center justify-center">
+            <span class="text-4xl text-stone-400">{{ member.name | slice: 0 }}</span>
+          </div>
+          {%- endif -%}
+        </div>
+        <h3 class="text-lg font-semibold text-stone-900">{{ member.name }}</h3>
+        {%- if member.role -%}
+        <p class="text-orange-600 text-sm mb-2">{{ member.role }}</p>
+        {%- endif -%}
+        {%- if member.bio -%}
+        <p class="text-stone-600 text-sm">{{ member.bio }}</p>
+        {%- endif -%}
+        {%- if member.social.size > 0 -%}
+        <div class="flex justify-center gap-3 mt-3">
+          {%- for link in member.social -%}
+          <a href="{{ link.url }}" class="text-stone-400 hover:text-orange-600 transition-colors" target="_blank" rel="noopener">
+            <span class="sr-only">{{ link.network }}</span>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              {%- if link.network == "linkedin" -%}
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              {%- elsif link.network == "twitter" or link.network == "x" -%}
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              {%- endif -%}
+            </svg>
+          </a>
+          {%- endfor -%}
+        </div>
+        {%- endif -%}
+      </div>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>

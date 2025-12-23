@@ -1,0 +1,82 @@
+{%- comment -%}
+  Features Component
+  A grid of feature cards with icons, titles, and descriptions
+{%- endcomment -%}
+
+{%- assign cols = columns | default: 3 -%}
+{%- assign card_style = style | default: "cards" -%}
+{%- assign bg = background | default: "white" -%}
+
+{%- comment -%} Background classes {%- endcomment -%}
+{%- case bg -%}
+  {%- when "light" -%}
+    {%- assign bg_class = "bg-stone-50" -%}
+    {%- assign text_class = "text-stone-900" -%}
+    {%- assign subtext_class = "text-stone-600" -%}
+  {%- when "dark" -%}
+    {%- assign bg_class = "bg-stone-900" -%}
+    {%- assign text_class = "text-white" -%}
+    {%- assign subtext_class = "text-stone-300" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-white" -%}
+    {%- assign text_class = "text-stone-900" -%}
+    {%- assign subtext_class = "text-stone-600" -%}
+{%- endcase -%}
+
+{%- comment -%} Grid columns {%- endcomment -%}
+{%- case cols -%}
+  {%- when 2 -%}
+    {%- assign grid_class = "md:grid-cols-2" -%}
+  {%- when 4 -%}
+    {%- assign grid_class = "md:grid-cols-2 lg:grid-cols-4" -%}
+  {%- else -%}
+    {%- assign grid_class = "md:grid-cols-2 lg:grid-cols-3" -%}
+{%- endcase -%}
+
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    {%- if section_title or section_description -%}
+    <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+      {%- if section_title -%}
+      <h2 class="text-3xl md:text-4xl font-bold {{ text_class }} mb-4">
+        {{ section_title }}
+      </h2>
+      {%- endif -%}
+
+      {%- if section_description -%}
+      <p class="text-xl {{ subtext_class }}">
+        {{ section_description }}
+      </p>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+
+    {%- if features.size > 0 -%}
+    <div class="grid gap-8 {{ grid_class }}">
+      {%- for feature in features -%}
+      <div class="{% if card_style == 'cards' %}bg-white rounded-xl shadow-sm p-8{% elsif card_style == 'bordered' %}border border-stone-200 rounded-xl p-8{% else %}p-6{% endif %} text-center">
+        {%- if feature.icon -%}
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl {% if bg == 'dark' %}bg-orange-600 text-white{% else %}bg-amber-100 text-orange-700{% endif %} mb-5">
+          <svg class="w-7 h-7" aria-hidden="true">
+            <use href="/assets/images/icons.svg#{{ feature.icon }}"></use>
+          </svg>
+        </div>
+        {%- endif -%}
+
+        {%- if feature.title -%}
+        <h3 class="text-xl font-semibold {{ text_class }} mb-3">
+          {{ feature.title }}
+        </h3>
+        {%- endif -%}
+
+        {%- if feature.description -%}
+        <p class="{{ subtext_class }}">
+          {{ feature.description }}
+        </p>
+        {%- endif -%}
+      </div>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>

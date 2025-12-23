@@ -1,0 +1,34 @@
+{%- comment -%}
+  Shared Button Component
+  @param {string} text - Button text
+  @param {string} url - Button URL
+  @param {string} variant - Button variant: primary, secondary, outline, white, ghost
+  @param {string} size - Button size: xs, sm, md, lg
+  @param {string} icon - Optional Phosphor icon name
+{%- endcomment -%}
+
+{%- assign btn_class = "btn" -%}
+
+{%- case variant -%}
+  {%- when "secondary" -%}
+    {%- assign btn_class = btn_class | append: " btn--secondary" -%}
+  {%- when "outline" -%}
+    {%- assign btn_class = btn_class | append: " btn--outline" -%}
+  {%- when "white" -%}
+    {%- assign btn_class = btn_class | append: " btn--white" -%}
+  {%- when "ghost" -%}
+    {%- assign btn_class = btn_class | append: " btn--ghost" -%}
+{%- endcase -%}
+
+{%- case size -%}
+  {%- when "xs" -%}
+    {%- assign btn_class = btn_class | append: " btn--xs" -%}
+  {%- when "sm" -%}
+    {%- assign btn_class = btn_class | append: " btn--sm" -%}
+  {%- when "lg" -%}
+    {%- assign btn_class = btn_class | append: " btn--lg" -%}
+{%- endcase -%}
+
+<a href="{{ url | default: '#' }}" class="{{ btn_class }}">
+  {{- text -}}
+</a>

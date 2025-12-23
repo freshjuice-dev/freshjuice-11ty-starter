@@ -1,0 +1,79 @@
+# Bookshop Component: Gallery
+# Image gallery grid
+
+spec:
+  structures:
+    - content_blocks
+  label: Gallery
+  description: Image gallery with grid layout
+  icon: collections
+  tags:
+    - Gallery
+    - Images
+
+blueprint:
+  section_title:
+  columns: 3
+  gap: default
+  background: white
+  images:
+    - image: /assets/images/placeholder.jpg
+      alt: Image 1
+      caption:
+    - image: /assets/images/placeholder.jpg
+      alt: Image 2
+      caption:
+    - image: /assets/images/placeholder.jpg
+      alt: Image 3
+      caption:
+
+_inputs:
+  section_title:
+    type: text
+    label: Section Title
+  columns:
+    type: select
+    label: Columns
+    options:
+      values:
+        - 2
+        - 3
+        - 4
+  gap:
+    type: select
+    label: Gap Size
+    options:
+      values:
+        - small
+        - default
+        - large
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - white
+        - light
+        - dark
+  images:
+    type: array
+    label: Images
+    options:
+      structures:
+        values:
+          - value:
+              image:
+              alt: Image description
+              caption:
+            label: Image
+            icon: image
+            _inputs:
+              image:
+                type: image
+                label: Image
+              alt:
+                type: text
+                label: Alt Text
+              caption:
+                type: text
+                label: Caption

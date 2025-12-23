@@ -1,0 +1,93 @@
+{%- comment -%}
+  Video Component
+  Embedded video section with YouTube or Vimeo
+{%- endcomment -%}
+
+{%- assign bg = background | default: "white" -%}
+{%- assign width = max_width | default: "default" -%}
+{%- assign ratio = aspect_ratio | default: "16:9" -%}
+
+{%- comment -%} Extract video ID {%- endcomment -%}
+{%- assign video_id = "" -%}
+{%- if video_url contains "youtube.com/watch" -%}
+  {%- assign video_id = video_url | split: "v=" | last | split: "&" | first -%}
+  {%- assign video_type = "youtube" -%}
+{%- elsif video_url contains "youtu.be" -%}
+  {%- assign video_id = video_url | split: "/" | last | split: "?" | first -%}
+  {%- assign video_type = "youtube" -%}
+{%- elsif video_url contains "vimeo.com" -%}
+  {%- assign video_id = video_url | split: "/" | last -%}
+  {%- assign video_type = "vimeo" -%}
+{%- endif -%}
+
+{%- comment -%} Background classes {%- endcomment -%}
+{%- case bg -%}
+  {%- when "light" -%}
+    {%- assign bg_class = "bg-stone-50" -%}
+  {%- when "dark" -%}
+    {%- assign bg_class = "bg-stone-900" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-white" -%}
+{%- endcase -%}
+
+{%- comment -%} Width classes {%- endcomment -%}
+{%- case width -%}
+  {%- when "small" -%}
+    {%- assign width_class = "max-w-2xl" -%}
+  {%- when "large" -%}
+    {%- assign width_class = "max-w-6xl" -%}
+  {%- when "full" -%}
+    {%- assign width_class = "max-w-none" -%}
+  {%- else -%}
+    {%- assign width_class = "max-w-4xl" -%}
+{%- endcase -%}
+
+{%- comment -%} Aspect ratio classes {%- endcomment -%}
+{%- case ratio -%}
+  {%- when "4:3" -%}
+    {%- assign ratio_class = "aspect-[4/3]" -%}
+  {%- when "1:1" -%}
+    {%- assign ratio_class = "aspect-square" -%}
+  {%- else -%}
+    {%- assign ratio_class = "aspect-video" -%}
+{%- endcase -%}
+
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    {%- if section_title -%}
+    <h2 class="text-3xl md:text-4xl font-bold {% if bg == 'dark' %}text-white{% else %}text-stone-900{% endif %} text-center mb-8">
+      {{ section_title }}
+    </h2>
+    {%- endif -%}
+
+    <div class="{{ width_class }} mx-auto">
+      <div class="{{ ratio_class }} relative rounded-xl overflow-hidden shadow-lg">
+        {%- if video_type == "youtube" and video_id != "" -%}
+        <iframe
+          src="https://www.youtube.com/embed/{{ video_id }}"
+          title="{{ section_title | default: 'Video' }}"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          class="absolute inset-0 w-full h-full"
+          loading="lazy"
+        ></iframe>
+        {%- elsif video_type == "vimeo" and video_id != "" -%}
+        <iframe
+          src="https://player.vimeo.com/video/{{ video_id }}"
+          title="{{ section_title | default: 'Video' }}"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          class="absolute inset-0 w-full h-full"
+          loading="lazy"
+        ></iframe>
+        {%- else -%}
+        <div class="absolute inset-0 bg-stone-200 flex items-center justify-center">
+          <span class="text-stone-400">Video placeholder</span>
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>

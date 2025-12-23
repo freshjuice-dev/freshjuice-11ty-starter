@@ -1,0 +1,73 @@
+# Bookshop Component: Logo Cloud
+# Display partner/client logos
+
+spec:
+  structures:
+    - content_blocks
+  label: Logo Cloud
+  description: Display partner, client, or technology logos
+  icon: business
+  tags:
+    - Logos
+    - Partners
+
+blueprint:
+  section_title: Trusted By
+  style: default
+  background: white
+  logos:
+    - image: /assets/images/placeholder-logo.svg
+      alt: Partner 1
+      url:
+    - image: /assets/images/placeholder-logo.svg
+      alt: Partner 2
+      url:
+    - image: /assets/images/placeholder-logo.svg
+      alt: Partner 3
+      url:
+    - image: /assets/images/placeholder-logo.svg
+      alt: Partner 4
+      url:
+
+_inputs:
+  section_title:
+    type: text
+    label: Section Title
+  style:
+    type: select
+    label: Style
+    options:
+      values:
+        - default
+        - compact
+        - large
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - white
+        - light
+        - dark
+  logos:
+    type: array
+    label: Logos
+    options:
+      structures:
+        values:
+          - value:
+              image:
+              alt: Company Name
+              url:
+            label: Logo
+            icon: business
+            _inputs:
+              image:
+                type: image
+                label: Logo Image
+              alt:
+                type: text
+                label: Company Name
+              url:
+                type: url
+                label: Link URL (optional)

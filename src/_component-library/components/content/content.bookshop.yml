@@ -1,0 +1,50 @@
+# Bookshop Component: Content
+# Rich text content section
+
+spec:
+  structures:
+    - content_blocks
+  label: Content
+  description: Rich text content section with optional sidebar
+  icon: article
+  tags:
+    - Content
+    - Text
+
+blueprint:
+  content_html: <p>Add your content here. You can use rich text formatting including <strong>bold</strong>, <em>italic</em>, and links.</p>
+  max_width: default
+  background: white
+
+_inputs:
+  content_html:
+    type: html
+    label: Content
+    options:
+      bold: true
+      italic: true
+      link: true
+      bulletedlist: true
+      numberedlist: true
+      blockquote: true
+      code: true
+      horizontalrule: true
+      image: true
+      table: true
+  max_width:
+    type: select
+    label: Max Width
+    options:
+      values:
+        - narrow
+        - default
+        - wide
+        - full
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - white
+        - light
+        - dark

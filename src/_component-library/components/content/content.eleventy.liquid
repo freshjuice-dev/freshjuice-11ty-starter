@@ -1,0 +1,38 @@
+{%- comment -%}
+  Content Component
+  Rich text content section
+{%- endcomment -%}
+
+{%- assign width = max_width | default: "default" -%}
+{%- assign bg = background | default: "white" -%}
+
+{%- comment -%} Width classes {%- endcomment -%}
+{%- case width -%}
+  {%- when "narrow" -%}
+    {%- assign width_class = "max-w-2xl" -%}
+  {%- when "wide" -%}
+    {%- assign width_class = "max-w-6xl" -%}
+  {%- when "full" -%}
+    {%- assign width_class = "max-w-none" -%}
+  {%- else -%}
+    {%- assign width_class = "max-w-4xl" -%}
+{%- endcase -%}
+
+{%- comment -%} Background classes {%- endcomment -%}
+{%- case bg -%}
+  {%- when "light" -%}
+    {%- assign bg_class = "bg-stone-50" -%}
+  {%- when "dark" -%}
+    {%- assign bg_class = "bg-stone-900" -%}
+    {%- assign prose_class = "prose-invert" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-white" -%}
+{%- endcase -%}
+
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    <div class="prose prose-lg {{ width_class }} mx-auto {{ prose_class }} prose-headings:font-bold prose-a:text-orange-600 prose-a:no-underline hover:prose-a:underline">
+      {{ content_html }}
+    </div>
+  </div>
+</section>

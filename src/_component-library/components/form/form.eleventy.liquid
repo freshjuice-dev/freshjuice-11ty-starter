@@ -1,0 +1,118 @@
+{%- comment -%}
+  Form Component
+  Contact or lead capture form section
+{%- endcomment -%}
+
+{%- assign type = form_type | default: "contact" -%}
+{%- assign bg = background | default: "light" -%}
+{%- assign form_style = style | default: "default" -%}
+
+{%- comment -%} Background classes {%- endcomment -%}
+{%- case bg -%}
+  {%- when "white" -%}
+    {%- assign bg_class = "bg-white" -%}
+    {%- assign text_class = "text-stone-900" -%}
+    {%- assign input_class = "bg-stone-50" -%}
+  {%- when "dark" -%}
+    {%- assign bg_class = "bg-stone-900" -%}
+    {%- assign text_class = "text-white" -%}
+    {%- assign input_class = "bg-stone-800 text-white border-stone-700" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-stone-50" -%}
+    {%- assign text_class = "text-stone-900" -%}
+    {%- assign input_class = "bg-white" -%}
+{%- endcase -%}
+
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    <div class="max-w-2xl mx-auto{% if form_style == 'boxed' %} bg-white rounded-2xl shadow-lg p-8 lg:p-12{% endif %}">
+      {%- if heading or description -%}
+      <div class="text-center mb-8">
+        {%- if heading -%}
+        <h2 class="text-3xl md:text-4xl font-bold {{ text_class }} mb-4">
+          {{ heading }}
+        </h2>
+        {%- endif -%}
+        {%- if description -%}
+        <p class="text-lg {% if bg == 'dark' %}text-stone-300{% else %}text-stone-600{% endif %}">
+          {{ description }}
+        </p>
+        {%- endif -%}
+      </div>
+      {%- endif -%}
+
+      <form
+        action="{{ form_action | default: '#' }}"
+        method="POST"
+        class="space-y-6"
+        x-data="{ submitted: false }"
+        @submit.prevent="submitted = true"
+      >
+        {%- if type == "newsletter" -%}
+        {%- comment -%} Newsletter form {%- endcomment -%}
+        <div class="flex gap-4">
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            class="flex-1 px-4 py-3 rounded-lg border border-stone-200 {{ input_class }} focus:outline-none focus:ring-2 focus:ring-orange-500"
+          >
+          <button type="submit" class="btn">Subscribe</button>
+        </div>
+        {%- else -%}
+        {%- comment -%} Contact/Demo form {%- endcomment -%}
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="form-group">
+            <label for="name" class="block text-sm font-medium {{ text_class }} mb-2">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full px-4 py-3 rounded-lg border border-stone-200 {{ input_class }} focus:outline-none focus:ring-2 focus:ring-orange-500"
+            >
+          </div>
+          <div class="form-group">
+            <label for="email" class="block text-sm font-medium {{ text_class }} mb-2">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full px-4 py-3 rounded-lg border border-stone-200 {{ input_class }} focus:outline-none focus:ring-2 focus:ring-orange-500"
+            >
+          </div>
+        </div>
+        {%- if type == "demo" -%}
+        <div class="form-group">
+          <label for="company" class="block text-sm font-medium {{ text_class }} mb-2">Company</label>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            class="w-full px-4 py-3 rounded-lg border border-stone-200 {{ input_class }} focus:outline-none focus:ring-2 focus:ring-orange-500"
+          >
+        </div>
+        {%- endif -%}
+        <div class="form-group">
+          <label for="message" class="block text-sm font-medium {{ text_class }} mb-2">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            class="w-full px-4 py-3 rounded-lg border border-stone-200 {{ input_class }} focus:outline-none focus:ring-2 focus:ring-orange-500"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn--lg w-full">
+          {%- if type == "demo" -%}Request Demo{%- else -%}Send Message{%- endif -%}
+        </button>
+        {%- endif -%}
+
+        <div x-show="submitted" x-cloak class="text-center p-4 bg-green-50 text-green-700 rounded-lg">
+          {{ success_message | default: "Thank you! We'll be in touch soon." }}
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

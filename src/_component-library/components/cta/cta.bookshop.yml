@@ -1,0 +1,78 @@
+# Bookshop Component: CTA
+# Call-to-action section with heading, text, and buttons
+
+spec:
+  structures:
+    - content_blocks
+  label: Call to Action
+  description: Eye-catching call-to-action section with buttons
+  icon: campaign
+  tags:
+    - CTA
+    - Conversion
+
+blueprint:
+  heading: Ready to Get Started?
+  text: Join thousands of satisfied customers and transform your business today.
+  background: primary
+  style: default
+  buttons:
+    - text: Get Started
+      url: /contact/
+      variant: secondary
+    - text: Learn More
+      url: /about/
+      variant: white
+
+_inputs:
+  heading:
+    type: text
+    label: Heading
+  text:
+    type: textarea
+    label: Text
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - primary
+        - dark
+        - light
+        - gradient
+  style:
+    type: select
+    label: Style
+    options:
+      values:
+        - default
+        - boxed
+        - split
+  buttons:
+    type: array
+    label: Buttons
+    options:
+      structures:
+        values:
+          - value:
+              text: Button Text
+              url: /
+              variant: secondary
+            label: Button
+            icon: ads_click
+            _inputs:
+              text:
+                type: text
+                label: Button Text
+              url:
+                type: url
+                label: URL
+              variant:
+                type: select
+                label: Style
+                options:
+                  values:
+                    - primary
+                    - secondary
+                    - white
+                    - outline

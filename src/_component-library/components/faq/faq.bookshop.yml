@@ -1,0 +1,57 @@
+# Bookshop Component: FAQ
+# Frequently asked questions accordion
+
+spec:
+  structures:
+    - content_blocks
+  label: FAQ
+  description: Frequently asked questions with expandable answers
+  icon: help
+  tags:
+    - FAQ
+    - Support
+
+blueprint:
+  section_title: Frequently Asked Questions
+  section_description: Find answers to common questions
+  background: white
+  items:
+    - question: What is your refund policy?
+      answer: We offer a 30-day money-back guarantee on all plans. If you're not satisfied, simply contact our support team for a full refund.
+    - question: How do I get started?
+      answer: Getting started is easy! Simply sign up for an account, choose your plan, and follow our quick setup guide. You'll be up and running in minutes.
+    - question: Do you offer custom solutions?
+      answer: Yes! Our Enterprise plan includes custom development options. Contact our sales team to discuss your specific needs.
+
+_inputs:
+  section_title:
+    type: text
+    label: Section Title
+  section_description:
+    type: textarea
+    label: Section Description
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - white
+        - light
+  items:
+    type: array
+    label: FAQ Items
+    options:
+      structures:
+        values:
+          - value:
+              question: Your question here?
+              answer: Your answer here.
+            label: FAQ Item
+            icon: help
+            _inputs:
+              question:
+                type: text
+                label: Question
+              answer:
+                type: textarea
+                label: Answer

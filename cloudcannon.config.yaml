@@ -29,6 +29,32 @@ collections_config:
         path: .cloudcannon/schemas/landing.yaml
         name: Landing Page
 
+  landing_pages:
+    path: landing-pages
+    output: true
+    icon: web
+    name: Landing Pages
+    singular_name: Landing Page
+    description: Modular landing pages with drag-and-drop components
+    glob:
+      - "!**/*.json"
+    _enabled_editors:
+      - visual
+      - data
+    _inputs:
+      layout:
+        hidden: true
+      content_blocks:
+        type: array
+        label: Page Sections
+        comment: Add, remove, and reorder page sections
+    add_options:
+      - name: Add New Landing Page
+        schema: default
+    schemas:
+      default:
+        path: .cloudcannon/schemas/landing-page.md
+
   legal:
     path: legal
     output: true
@@ -259,6 +285,7 @@ collection_groups:
       - stories
       - cases
       - docs
+      - landing_pages
       - pages
       - legal
   - heading: People
@@ -980,5 +1007,9 @@ _editables:
 paths:
   uploads: src/assets/images
   dam_uploads: src/assets/images
+
+# Bookshop component library location
+_bookshop_locations:
+  - src/_component-library
 
 timezone: Etc/UTC

@@ -1,0 +1,75 @@
+{%- comment -%}
+  Stats Component
+  Display key statistics and metrics
+{%- endcomment -%}
+
+{%- assign bg = background | default: "gradient" -%}
+{%- assign stats_style = style | default: "default" -%}
+
+{%- comment -%} Background and text colors {%- endcomment -%}
+{%- case bg -%}
+  {%- when "primary" -%}
+    {%- assign bg_class = "bg-orange-600" -%}
+    {%- assign value_class = "text-white" -%}
+    {%- assign label_class = "text-orange-100" -%}
+  {%- when "dark" -%}
+    {%- assign bg_class = "bg-stone-900" -%}
+    {%- assign value_class = "text-white" -%}
+    {%- assign label_class = "text-stone-400" -%}
+  {%- when "light" -%}
+    {%- assign bg_class = "bg-stone-100" -%}
+    {%- assign value_class = "text-orange-600" -%}
+    {%- assign label_class = "text-stone-600" -%}
+  {%- when "white" -%}
+    {%- assign bg_class = "bg-white" -%}
+    {%- assign value_class = "text-orange-600" -%}
+    {%- assign label_class = "text-stone-600" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-gradient-to-br from-orange-50 to-orange-100" -%}
+    {%- assign value_class = "text-orange-600" -%}
+    {%- assign label_class = "text-stone-600" -%}
+{%- endcase -%}
+
+{%- comment -%} Grid columns based on stat count {%- endcomment -%}
+{%- assign stat_count = stats.size -%}
+{%- if stat_count == 2 -%}
+  {%- assign grid_class = "grid-cols-2" -%}
+{%- elsif stat_count == 3 -%}
+  {%- assign grid_class = "grid-cols-3" -%}
+{%- else -%}
+  {%- assign grid_class = "grid-cols-2 md:grid-cols-4" -%}
+{%- endif -%}
+
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    {%- if section_title or section_description -%}
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      {%- if section_title -%}
+      <h2 class="text-3xl md:text-4xl font-bold {% if bg == 'dark' or bg == 'primary' %}text-white{% else %}text-stone-900{% endif %} mb-4">
+        {{ section_title }}
+      </h2>
+      {%- endif -%}
+      {%- if section_description -%}
+      <p class="text-xl {{ label_class }}">
+        {{ section_description }}
+      </p>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+
+    {%- if stats.size > 0 -%}
+    <div class="grid {{ grid_class }} gap-8{% if stats_style == 'cards' %} max-w-4xl mx-auto{% endif %}">
+      {%- for stat in stats -%}
+      <div class="text-center{% if stats_style == 'cards' %} bg-white/10 backdrop-blur-sm rounded-xl p-6{% endif %}">
+        <div class="text-4xl md:text-5xl font-bold {{ value_class }} mb-2">
+          {{ stat.value }}
+        </div>
+        <div class="text-sm md:text-base {{ label_class }}">
+          {{ stat.label }}
+        </div>
+      </div>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>

@@ -1,0 +1,69 @@
+{%- comment -%}
+  Cards Component
+  Grid of content cards
+{%- endcomment -%}
+
+{%- assign cols = columns | default: 3 -%}
+{%- assign bg = background | default: "white" -%}
+
+{%- comment -%} Background classes {%- endcomment -%}
+{%- case bg -%}
+  {%- when "light" -%}
+    {%- assign bg_class = "bg-stone-50" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-white" -%}
+{%- endcase -%}
+
+{%- comment -%} Grid columns {%- endcomment -%}
+{%- case cols -%}
+  {%- when 2 -%}
+    {%- assign grid_class = "md:grid-cols-2" -%}
+  {%- when 4 -%}
+    {%- assign grid_class = "md:grid-cols-2 lg:grid-cols-4" -%}
+  {%- else -%}
+    {%- assign grid_class = "md:grid-cols-2 lg:grid-cols-3" -%}
+{%- endcase -%}
+
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    {%- if section_title or section_description -%}
+    <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+      {%- if section_title -%}
+      <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+        {{ section_title }}
+      </h2>
+      {%- endif -%}
+      {%- if section_description -%}
+      <p class="text-xl text-stone-600">
+        {{ section_description }}
+      </p>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+
+    {%- if cards.size > 0 -%}
+    <div class="grid gap-8 {{ grid_class }}">
+      {%- for card in cards -%}
+      <{% if card.url %}a href="{{ card.url }}"{% else %}div{% endif %} class="group flex flex-col bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden hover:shadow-lg hover:border-orange-300 transition-all duration-300">
+        {%- if card.image -%}
+        <div class="aspect-video overflow-hidden">
+          <img src="{{ card.image }}" alt="{{ card.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+        </div>
+        {%- endif -%}
+        <div class="flex-1 p-6">
+          {%- if card.badge -%}
+          <span class="inline-block px-2 py-1 text-xs font-semibold bg-orange-100 text-orange-700 rounded-full mb-3">{{ card.badge }}</span>
+          {%- endif -%}
+          {%- if card.title -%}
+          <h3 class="text-lg font-semibold text-stone-900 mb-2 group-hover:text-orange-600 transition-colors">{{ card.title }}</h3>
+          {%- endif -%}
+          {%- if card.description -%}
+          <p class="text-stone-600 text-sm">{{ card.description }}</p>
+          {%- endif -%}
+        </div>
+      </{% if card.url %}a{% else %}div{% endif %}>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>

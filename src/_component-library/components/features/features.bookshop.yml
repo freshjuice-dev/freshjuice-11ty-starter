@@ -1,0 +1,84 @@
+# Bookshop Component: Features
+# Grid of feature cards with icons
+
+spec:
+  structures:
+    - content_blocks
+  label: Features
+  description: Grid of feature cards with icons, titles, and descriptions
+  icon: grid_view
+  tags:
+    - Features
+    - Grid
+
+blueprint:
+  section_title: Our Features
+  section_description: Everything you need to succeed
+  columns: 3
+  style: cards
+  background: white
+  features:
+    - icon: rocket-launch
+      title: Feature One
+      description: A brief description of this amazing feature and its benefits.
+    - icon: shield-check
+      title: Feature Two
+      description: Another compelling feature that sets you apart from competition.
+    - icon: chart-line-up
+      title: Feature Three
+      description: One more feature that your customers will absolutely love.
+
+_inputs:
+  section_title:
+    type: text
+    label: Section Title
+  section_description:
+    type: textarea
+    label: Section Description
+  columns:
+    type: select
+    label: Columns
+    options:
+      values:
+        - 2
+        - 3
+        - 4
+  style:
+    type: select
+    label: Card Style
+    options:
+      values:
+        - cards
+        - minimal
+        - bordered
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - white
+        - light
+        - dark
+  features:
+    type: array
+    label: Features
+    options:
+      structures:
+        values:
+          - value:
+              icon: star
+              title: Feature Title
+              description: Feature description
+            label: Feature
+            icon: star
+            _inputs:
+              icon:
+                type: text
+                label: Icon
+                comment: "Phosphor icon name (e.g., rocket-launch, shield-check)"
+              title:
+                type: text
+                label: Title
+              description:
+                type: textarea
+                label: Description

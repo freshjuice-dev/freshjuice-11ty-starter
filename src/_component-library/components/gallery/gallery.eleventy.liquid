@@ -1,0 +1,68 @@
+{%- comment -%}
+  Gallery Component
+  Image gallery with grid layout
+{%- endcomment -%}
+
+{%- assign cols = columns | default: 3 -%}
+{%- assign gap_size = gap | default: "default" -%}
+{%- assign bg = background | default: "white" -%}
+
+{%- comment -%} Background classes {%- endcomment -%}
+{%- case bg -%}
+  {%- when "light" -%}
+    {%- assign bg_class = "bg-stone-50" -%}
+  {%- when "dark" -%}
+    {%- assign bg_class = "bg-stone-900" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-white" -%}
+{%- endcase -%}
+
+{%- comment -%} Grid columns {%- endcomment -%}
+{%- case cols -%}
+  {%- when 2 -%}
+    {%- assign grid_class = "md:grid-cols-2" -%}
+  {%- when 4 -%}
+    {%- assign grid_class = "md:grid-cols-2 lg:grid-cols-4" -%}
+  {%- else -%}
+    {%- assign grid_class = "md:grid-cols-2 lg:grid-cols-3" -%}
+{%- endcase -%}
+
+{%- comment -%} Gap classes {%- endcomment -%}
+{%- case gap_size -%}
+  {%- when "small" -%}
+    {%- assign gap_class = "gap-2" -%}
+  {%- when "large" -%}
+    {%- assign gap_class = "gap-8" -%}
+  {%- else -%}
+    {%- assign gap_class = "gap-4" -%}
+{%- endcase -%}
+
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    {%- if section_title -%}
+    <h2 class="text-3xl md:text-4xl font-bold {% if bg == 'dark' %}text-white{% else %}text-stone-900{% endif %} text-center mb-12">
+      {{ section_title }}
+    </h2>
+    {%- endif -%}
+
+    {%- if images.size > 0 -%}
+    <div class="grid {{ grid_class }} {{ gap_class }}">
+      {%- for item in images -%}
+      <figure class="group relative overflow-hidden rounded-lg">
+        <img
+          src="{{ item.image }}"
+          alt="{{ item.alt }}"
+          class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300"
+          loading="lazy"
+        >
+        {%- if item.caption -%}
+        <figcaption class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {{ item.caption }}
+        </figcaption>
+        {%- endif -%}
+      </figure>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>

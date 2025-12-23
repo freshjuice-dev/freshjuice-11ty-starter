@@ -1,0 +1,81 @@
+# Bookshop Component: Team
+# Team member grid
+
+spec:
+  structures:
+    - content_blocks
+  label: Team
+  description: Display team members with photos and bios
+  icon: groups
+  tags:
+    - Team
+    - People
+
+blueprint:
+  section_title: Meet Our Team
+  section_description: The people behind our success
+  columns: 4
+  background: white
+  members:
+    - name: Jane Doe
+      role: CEO & Founder
+      image:
+      bio: Passionate about innovation and building great teams.
+      social:
+        - network: linkedin
+          url:
+        - network: twitter
+          url:
+
+_inputs:
+  section_title:
+    type: text
+    label: Section Title
+  section_description:
+    type: textarea
+    label: Section Description
+  columns:
+    type: select
+    label: Columns
+    options:
+      values:
+        - 2
+        - 3
+        - 4
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - white
+        - light
+  members:
+    type: array
+    label: Team Members
+    options:
+      structures:
+        values:
+          - value:
+              name: Team Member
+              role: Job Title
+              image:
+              bio:
+              social: []
+            label: Member
+            icon: person
+            _inputs:
+              name:
+                type: text
+                label: Name
+              role:
+                type: text
+                label: Role/Title
+              image:
+                type: image
+                label: Photo
+              bio:
+                type: textarea
+                label: Short Bio
+              social:
+                type: array
+                label: Social Links

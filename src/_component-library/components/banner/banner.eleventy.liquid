@@ -1,0 +1,44 @@
+{%- comment -%}
+  Banner Component
+  Simple announcement or promotional banner
+{%- endcomment -%}
+
+{%- assign bg = background | default: "primary" -%}
+
+{%- comment -%} Background and text colors {%- endcomment -%}
+{%- case bg -%}
+  {%- when "dark" -%}
+    {%- assign bg_class = "bg-stone-900" -%}
+    {%- assign text_class = "text-white" -%}
+    {%- assign link_class = "text-orange-400 hover:text-orange-300" -%}
+  {%- when "light" -%}
+    {%- assign bg_class = "bg-stone-100" -%}
+    {%- assign text_class = "text-stone-900" -%}
+    {%- assign link_class = "text-orange-600 hover:text-orange-700" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-orange-600" -%}
+    {%- assign text_class = "text-white" -%}
+    {%- assign link_class = "text-white underline hover:no-underline" -%}
+{%- endcase -%}
+
+<div class="{{ bg_class }} py-3"{% if dismissible %} x-data="{ show: true }" x-show="show"{% endif %}>
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-center gap-4 text-center">
+      <p class="{{ text_class }} text-sm md:text-base">
+        {{ text }}
+        {%- if link_url and link_text -%}
+        <a href="{{ link_url }}" class="font-semibold {{ link_class }} ml-2">
+          {{ link_text }} &rarr;
+        </a>
+        {%- endif -%}
+      </p>
+      {%- if dismissible -%}
+      <button @click="show = false" class="{{ text_class }} opacity-75 hover:opacity-100" aria-label="Dismiss">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      {%- endif -%}
+    </div>
+  </div>
+</div>

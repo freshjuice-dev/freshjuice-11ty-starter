@@ -1,0 +1,43 @@
+{%- comment -%}
+  Divider Component
+  Visual divider between sections
+{%- endcomment -%}
+
+{%- assign divider_style = style | default: "line" -%}
+{%- assign divider_width = width | default: "default" -%}
+{%- assign divider_color = color | default: "light" -%}
+
+{%- comment -%} Width classes {%- endcomment -%}
+{%- case divider_width -%}
+  {%- when "narrow" -%}
+    {%- assign width_class = "max-w-xs" -%}
+  {%- when "wide" -%}
+    {%- assign width_class = "max-w-4xl" -%}
+  {%- when "full" -%}
+    {%- assign width_class = "max-w-none" -%}
+  {%- else -%}
+    {%- assign width_class = "max-w-2xl" -%}
+{%- endcase -%}
+
+{%- comment -%} Color classes {%- endcomment -%}
+{%- case divider_color -%}
+  {%- when "medium" -%}
+    {%- assign color_class = "border-stone-300" -%}
+  {%- when "primary" -%}
+    {%- assign color_class = "border-orange-300" -%}
+  {%- else -%}
+    {%- assign color_class = "border-stone-200" -%}
+{%- endcase -%}
+
+<div class="py-8 md:py-12">
+  <div class="container mx-auto px-4">
+    <hr class="{{ width_class }} mx-auto border-t-2 {{ color_class }}{% if divider_style == 'dashed' %} border-dashed{% endif %}" aria-hidden="true">
+    {%- if divider_style == "dots" -%}
+    <div class="flex justify-center gap-2 -mt-1">
+      <span class="w-2 h-2 rounded-full {% if divider_color == 'primary' %}bg-orange-400{% else %}bg-stone-300{% endif %}"></span>
+      <span class="w-2 h-2 rounded-full {% if divider_color == 'primary' %}bg-orange-400{% else %}bg-stone-300{% endif %}"></span>
+      <span class="w-2 h-2 rounded-full {% if divider_color == 'primary' %}bg-orange-400{% else %}bg-stone-300{% endif %}"></span>
+    </div>
+    {%- endif -%}
+  </div>
+</div>

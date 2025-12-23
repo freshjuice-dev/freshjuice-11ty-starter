@@ -1,0 +1,64 @@
+# Bookshop Component: Timeline
+# Vertical timeline for process or history
+
+spec:
+  structures:
+    - content_blocks
+  label: Timeline
+  description: Vertical timeline for displaying process steps or history
+  icon: timeline
+  tags:
+    - Timeline
+    - Process
+
+blueprint:
+  section_title: Our Journey
+  section_description:
+  background: white
+  items:
+    - title: Step One
+      date: "2020"
+      description: The beginning of our journey and what we accomplished.
+    - title: Step Two
+      date: "2021"
+      description: Continued growth and new milestones reached.
+    - title: Step Three
+      date: "2022"
+      description: Expanding our reach and impact.
+
+_inputs:
+  section_title:
+    type: text
+    label: Section Title
+  section_description:
+    type: textarea
+    label: Section Description
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - white
+        - light
+  items:
+    type: array
+    label: Timeline Items
+    options:
+      structures:
+        values:
+          - value:
+              title: Event Title
+              date: "2024"
+              description: Event description
+            label: Timeline Item
+            icon: event
+            _inputs:
+              title:
+                type: text
+                label: Title
+              date:
+                type: text
+                label: Date/Label
+              description:
+                type: textarea
+                label: Description

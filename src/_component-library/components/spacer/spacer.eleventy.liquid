@@ -1,0 +1,19 @@
+{%- comment -%}
+  Spacer Component
+  Adds vertical spacing between sections
+{%- endcomment -%}
+
+{%- assign spacing = size | default: "medium" -%}
+
+{%- case spacing -%}
+  {%- when "small" -%}
+    {%- assign space_class = "h-8 md:h-12" -%}
+  {%- when "large" -%}
+    {%- assign space_class = "h-20 md:h-32" -%}
+  {%- when "xlarge" -%}
+    {%- assign space_class = "h-32 md:h-48" -%}
+  {%- else -%}
+    {%- assign space_class = "h-12 md:h-20" -%}
+{%- endcase -%}
+
+<div class="{{ space_class }}" aria-hidden="true"></div>

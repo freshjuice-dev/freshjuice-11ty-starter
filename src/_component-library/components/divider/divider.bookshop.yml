@@ -1,0 +1,44 @@
+# Bookshop Component: Divider
+# Visual divider between sections
+
+spec:
+  structures:
+    - content_blocks
+  label: Divider
+  description: Visual divider line between sections
+  icon: horizontal_rule
+  tags:
+    - Utility
+    - Layout
+
+blueprint:
+  style: line
+  width: default
+  color: light
+
+_inputs:
+  style:
+    type: select
+    label: Style
+    options:
+      values:
+        - line
+        - dashed
+        - dots
+  width:
+    type: select
+    label: Width
+    options:
+      values:
+        - narrow
+        - default
+        - wide
+        - full
+  color:
+    type: select
+    label: Color
+    options:
+      values:
+        - light
+        - medium
+        - primary

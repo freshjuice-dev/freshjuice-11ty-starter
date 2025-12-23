@@ -1,0 +1,90 @@
+{%- comment -%}
+  Testimonials Component
+  Customer testimonials in grid or slider layout
+{%- endcomment -%}
+
+{%- assign testimonial_layout = layout | default: "grid" -%}
+{%- assign bg = background | default: "light" -%}
+
+{%- comment -%} Background classes {%- endcomment -%}
+{%- case bg -%}
+  {%- when "white" -%}
+    {%- assign bg_class = "bg-white" -%}
+    {%- assign card_class = "bg-stone-50" -%}
+    {%- assign text_class = "text-stone-900" -%}
+  {%- when "dark" -%}
+    {%- assign bg_class = "bg-stone-900" -%}
+    {%- assign card_class = "bg-stone-800" -%}
+    {%- assign text_class = "text-white" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-stone-50" -%}
+    {%- assign card_class = "bg-white" -%}
+    {%- assign text_class = "text-stone-900" -%}
+{%- endcase -%}
+
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    {%- if section_title -%}
+    <div class="text-center mb-12 lg:mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold {{ text_class }}">
+        {{ section_title }}
+      </h2>
+    </div>
+    {%- endif -%}
+
+    {%- if testimonials.size > 0 -%}
+      {%- if testimonial_layout == "single" -%}
+      {%- comment -%} Single large testimonial {%- endcomment -%}
+      {%- assign testimonial = testimonials[0] -%}
+      <div class="max-w-4xl mx-auto {{ card_class }} rounded-2xl shadow-sm p-8 lg:p-12 text-center">
+        <div class="text-orange-500 mb-6">
+          <svg class="w-12 h-12 mx-auto" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+        </div>
+        <blockquote class="text-2xl lg:text-3xl {{ text_class }} mb-8 italic">
+          "{{ testimonial.quote }}"
+        </blockquote>
+        <div class="flex items-center justify-center gap-4">
+          {%- if testimonial.avatar -%}
+          <img src="{{ testimonial.avatar }}" alt="{{ testimonial.author }}" class="w-14 h-14 rounded-full object-cover">
+          {%- endif -%}
+          <div class="text-left">
+            <div class="font-semibold {{ text_class }}">{{ testimonial.author }}</div>
+            {%- if testimonial.title or testimonial.company -%}
+            <div class="text-stone-500 text-sm">{{ testimonial.title }}{% if testimonial.title and testimonial.company %}, {% endif %}{{ testimonial.company }}</div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+      {%- else -%}
+      {%- comment -%} Grid layout {%- endcomment -%}
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {%- for testimonial in testimonials -%}
+        <div class="{{ card_class }} rounded-2xl shadow-sm p-8">
+          <div class="text-orange-500 mb-4">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+          </div>
+          <blockquote class="{% if bg == 'dark' %}text-stone-200{% else %}text-stone-700{% endif %} mb-6">
+            "{{ testimonial.quote }}"
+          </blockquote>
+          <div class="flex items-center gap-4">
+            {%- if testimonial.avatar -%}
+            <img src="{{ testimonial.avatar }}" alt="{{ testimonial.author }}" class="w-10 h-10 rounded-full object-cover">
+            {%- endif -%}
+            <div>
+              <div class="font-semibold {{ text_class }} text-sm">{{ testimonial.author }}</div>
+              {%- if testimonial.title or testimonial.company -%}
+              <div class="text-stone-500 text-xs">{{ testimonial.title }}{% if testimonial.title and testimonial.company %}, {% endif %}{{ testimonial.company }}</div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>

@@ -32,6 +32,8 @@ sections:
         url: "/terms/"
   - title: "Theme Test"
     links:
+      - label: "Landing Page Demo"
+        url: "/demo/"
       - label: "Typography"
         url: "/typography/"
       - label: "Form Elements"

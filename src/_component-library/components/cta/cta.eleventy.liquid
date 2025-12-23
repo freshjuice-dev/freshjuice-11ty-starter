@@ -1,0 +1,85 @@
+{%- comment -%}
+  CTA Component
+  Call-to-action section with heading, text, and buttons
+{%- endcomment -%}
+
+{%- assign bg = background | default: "primary" -%}
+{%- assign cta_style = style | default: "default" -%}
+
+{%- comment -%} Background and text colors {%- endcomment -%}
+{%- case bg -%}
+  {%- when "dark" -%}
+    {%- assign bg_class = "bg-stone-900" -%}
+    {%- assign text_class = "text-white" -%}
+    {%- assign subtext_class = "text-stone-300" -%}
+  {%- when "light" -%}
+    {%- assign bg_class = "bg-stone-100" -%}
+    {%- assign text_class = "text-stone-900" -%}
+    {%- assign subtext_class = "text-stone-600" -%}
+  {%- when "gradient" -%}
+    {%- assign bg_class = "bg-gradient-to-r from-orange-600 to-orange-700" -%}
+    {%- assign text_class = "text-white" -%}
+    {%- assign subtext_class = "text-orange-100" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-orange-600" -%}
+    {%- assign text_class = "text-white" -%}
+    {%- assign subtext_class = "text-orange-100" -%}
+{%- endcase -%}
+
+{%- if cta_style == "boxed" -%}
+<section class="py-16 lg:py-24">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto {{ bg_class }} rounded-2xl p-8 lg:p-12 text-center">
+      {%- if heading -%}
+      <h2 class="text-3xl md:text-4xl font-bold {{ text_class }} mb-4">
+        {{ heading }}
+      </h2>
+      {%- endif -%}
+
+      {%- if text -%}
+      <p class="text-xl {{ subtext_class }} mb-8">
+        {{ text }}
+      </p>
+      {%- endif -%}
+
+      {%- if buttons.size > 0 -%}
+      <div class="flex flex-wrap gap-4 justify-center">
+        {%- for button in buttons -%}
+          <a href="{{ button.url | default: '#' }}" class="btn{% if button.variant == 'white' %} btn--white{% elsif button.variant == 'outline' %} btn--outline{% elsif button.variant == 'primary' %} btn--primary{% else %} btn--secondary{% endif %} btn--lg">
+            {{ button.text }}
+          </a>
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+{%- else -%}
+<section class="py-16 lg:py-24 {{ bg_class }}">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      {%- if heading -%}
+      <h2 class="text-3xl md:text-4xl font-bold {{ text_class }} mb-4">
+        {{ heading }}
+      </h2>
+      {%- endif -%}
+
+      {%- if text -%}
+      <p class="text-xl {{ subtext_class }} mb-8">
+        {{ text }}
+      </p>
+      {%- endif -%}
+
+      {%- if buttons.size > 0 -%}
+      <div class="flex flex-wrap gap-4 justify-center">
+        {%- for button in buttons -%}
+          <a href="{{ button.url | default: '#' }}" class="btn{% if button.variant == 'white' %} btn--white{% elsif button.variant == 'outline' %} btn--outline{% elsif button.variant == 'primary' and bg == 'light' %}{% else %} btn--secondary{% endif %} btn--lg">
+            {{ button.text }}
+          </a>
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}

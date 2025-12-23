@@ -1,0 +1,7 @@
+{
+  "layout": "layouts/landing-bookshop.liquid",
+  "tags": ["landing-pages"],
+  "eleventyComputed": {
+    "permalink": "{% if permalink %}{{ permalink }}{% else %}/{{ page.fileSlug }}/{% endif %}"
+  }
+}

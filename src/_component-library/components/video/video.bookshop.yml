@@ -1,0 +1,58 @@
+# Bookshop Component: Video
+# Embedded video section
+
+spec:
+  structures:
+    - content_blocks
+  label: Video
+  description: Embedded video section with YouTube or Vimeo
+  icon: play_circle
+  tags:
+    - Video
+    - Media
+
+blueprint:
+  section_title:
+  video_url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+  thumbnail:
+  aspect_ratio: "16:9"
+  background: white
+  max_width: default
+
+_inputs:
+  section_title:
+    type: text
+    label: Section Title
+  video_url:
+    type: url
+    label: Video URL
+    comment: YouTube or Vimeo URL
+  thumbnail:
+    type: image
+    label: Custom Thumbnail
+    comment: Optional custom thumbnail image
+  aspect_ratio:
+    type: select
+    label: Aspect Ratio
+    options:
+      values:
+        - "16:9"
+        - "4:3"
+        - "1:1"
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - white
+        - light
+        - dark
+  max_width:
+    type: select
+    label: Max Width
+    options:
+      values:
+        - small
+        - default
+        - large
+        - full

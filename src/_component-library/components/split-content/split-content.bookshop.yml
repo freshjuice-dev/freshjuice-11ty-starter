@@ -1,0 +1,83 @@
+# Bookshop Component: Split Content
+# Two-column layout with image and text
+
+spec:
+  structures:
+    - content_blocks
+  label: Split Content
+  description: Two-column layout with image and text
+  icon: view_column
+  tags:
+    - Content
+    - Image
+
+blueprint:
+  heading: Section Heading
+  content_html: <p>Your content goes here. Describe your product, service, or feature in detail.</p>
+  image:
+  image_alt:
+  image_position: right
+  background: white
+  buttons: []
+
+_inputs:
+  heading:
+    type: text
+    label: Heading
+  content_html:
+    type: html
+    label: Content
+    options:
+      bold: true
+      italic: true
+      link: true
+      bulletedlist: true
+      numberedlist: true
+  image:
+    type: image
+    label: Image
+  image_alt:
+    type: text
+    label: Image Alt Text
+  image_position:
+    type: select
+    label: Image Position
+    options:
+      values:
+        - left
+        - right
+  background:
+    type: select
+    label: Background
+    options:
+      values:
+        - white
+        - light
+        - dark
+  buttons:
+    type: array
+    label: Buttons
+    options:
+      structures:
+        values:
+          - value:
+              text: Learn More
+              url: /
+              variant: primary
+            label: Button
+            icon: ads_click
+            _inputs:
+              text:
+                type: text
+                label: Button Text
+              url:
+                type: url
+                label: URL
+              variant:
+                type: select
+                label: Style
+                options:
+                  values:
+                    - primary
+                    - secondary
+                    - outline

@@ -1,0 +1,120 @@
+{%- comment -%}
+  Hero Component
+  A full-width hero section with multiple layout variants
+{%- endcomment -%}
+
+{%- assign variant = variant | default: "center" -%}
+{%- assign bg_color = background_color | default: "gradient" -%}
+{%- assign overlay = overlay_opacity | default: 60 -%}
+{%- assign height = min_height | default: "default" -%}
+
+{%- comment -%} Height classes {%- endcomment -%}
+{%- case height -%}
+  {%- when "tall" -%}
+    {%- assign height_class = "min-h-[80vh]" -%}
+  {%- when "fullscreen" -%}
+    {%- assign height_class = "min-h-screen" -%}
+  {%- else -%}
+    {%- assign height_class = "min-h-[70vh]" -%}
+{%- endcase -%}
+
+{%- comment -%} Background color classes {%- endcomment -%}
+{%- case bg_color -%}
+  {%- when "primary" -%}
+    {%- assign bg_class = "bg-orange-600" -%}
+  {%- when "dark" -%}
+    {%- assign bg_class = "bg-stone-900" -%}
+  {%- when "light" -%}
+    {%- assign bg_class = "bg-stone-100" -%}
+  {%- else -%}
+    {%- assign bg_class = "bg-gradient-to-br from-orange-600 to-orange-800" -%}
+{%- endcase -%}
+
+{%- comment -%} Alignment classes {%- endcomment -%}
+{%- case variant -%}
+  {%- when "left" -%}
+    {%- assign text_align = "text-left items-start" -%}
+    {%- assign container_align = "" -%}
+    {%- assign btn_align = "justify-start" -%}
+  {%- when "right" -%}
+    {%- assign text_align = "text-right items-end" -%}
+    {%- assign container_align = "ml-auto" -%}
+    {%- assign btn_align = "justify-end" -%}
+  {%- else -%}
+    {%- assign text_align = "text-center items-center" -%}
+    {%- assign container_align = "mx-auto" -%}
+    {%- assign btn_align = "justify-center" -%}
+{%- endcase -%}
+
+<section class="relative {{ height_class }} flex items-center py-20 lg:py-32 overflow-hidden">
+  {%- if background_image -%}
+  <div class="absolute inset-0 z-0">
+    <img
+      src="{{ background_image }}"
+      alt=""
+      class="w-full h-full object-cover"
+      loading="eager"
+    >
+    <div class="absolute inset-0 bg-stone-900" style="opacity: {{ overlay | divided_by: 100.0 }};"></div>
+  </div>
+  {%- else -%}
+  <div class="absolute inset-0 {{ bg_class }} z-0"></div>
+  {%- endif -%}
+
+  <div class="container mx-auto px-4 relative z-10">
+    {%- if variant == "split" -%}
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="flex flex-col text-left items-start">
+        {%- if heading -%}
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          {{ heading }}
+        </h1>
+        {%- endif -%}
+
+        {%- if subheading -%}
+        <p class="text-xl md:text-2xl text-white/90 mb-8">
+          {{ subheading }}
+        </p>
+        {%- endif -%}
+
+        {%- if buttons.size > 0 -%}
+        <div class="flex flex-wrap gap-4">
+          {%- for button in buttons -%}
+            <a href="{{ button.url | default: '#' }}" class="btn{% if button.variant == 'white' %} btn--white{% elsif button.variant == 'outline' %} btn--outline{% else %} btn--secondary{% endif %} btn--lg">
+              {{ button.text }}
+            </a>
+          {%- endfor -%}
+        </div>
+        {%- endif -%}
+      </div>
+      <div class="hidden lg:block">
+        {%- comment -%} Placeholder for split layout right side - can be used for forms or images {%- endcomment -%}
+      </div>
+    </div>
+    {%- else -%}
+    <div class="max-w-4xl {{ container_align }} flex flex-col {{ text_align }}">
+      {%- if heading -%}
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        {{ heading }}
+      </h1>
+      {%- endif -%}
+
+      {%- if subheading -%}
+      <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl{% if variant == 'center' %} mx-auto{% endif %}">
+        {{ subheading }}
+      </p>
+      {%- endif -%}
+
+      {%- if buttons.size > 0 -%}
+      <div class="flex flex-wrap gap-4 {{ btn_align }}">
+        {%- for button in buttons -%}
+          <a href="{{ button.url | default: '#' }}" class="btn{% if button.variant == 'white' %} btn--white{% elsif button.variant == 'outline' %} btn--outline{% else %} btn--secondary{% endif %} btn--lg">
+            {{ button.text }}
+          </a>
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>
