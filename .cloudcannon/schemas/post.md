@@ -11,7 +11,7 @@ author:
 image:
 image_alt:
 tags: []
-permalink:
+slug:
 noindex: false
 llms_exclude: false
 ---

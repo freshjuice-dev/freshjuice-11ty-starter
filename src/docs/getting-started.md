@@ -4,6 +4,7 @@ description: "Learn how to set up and run the FreshJuice 11ty starter."
 category: "Getting Started"
 order: 1
 last_updated: 2025-01-20
+slug: getting-started
 ---
 
 ## Prerequisites

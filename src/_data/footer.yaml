@@ -18,6 +18,8 @@ sections:
         url: "/docs/"
       - label: "Customer Stories"
         url: "/stories/"
+      - label: "Case Studies"
+        url: "/cases/"
       - label: "Getting Started"
         url: "/docs/getting-started/"
       - label: "GitHub"

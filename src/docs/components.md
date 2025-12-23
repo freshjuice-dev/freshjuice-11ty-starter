@@ -4,6 +4,7 @@ description: "Learn how to use the built-in Nunjucks components."
 category: "Reference"
 order: 10
 last_updated: 2025-01-20
+slug: components
 ---
 
 ## Overview

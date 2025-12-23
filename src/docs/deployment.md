@@ -4,6 +4,7 @@ description: "Deploy your site to Netlify, Vercel, or Cloudflare Pages."
 category: "Deployment"
 order: 30
 last_updated: 2025-01-20
+slug: deployment
 ---
 
 ## Supported Platforms

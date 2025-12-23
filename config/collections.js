@@ -42,6 +42,13 @@ export default function(eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
+  // Case studies collection
+  eleventyConfig.addCollection('cases', (collectionApi) => {
+    return collectionApi
+      .getFilteredByGlob('src/cases/*.md')
+      .sort((a, b) => b.date - a.date);
+  });
+
   // All content for sitemap
   eleventyConfig.addCollection('sitemap', (collectionApi) => {
     return collectionApi.getAll().filter((item) => {

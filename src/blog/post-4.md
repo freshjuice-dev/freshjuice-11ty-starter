@@ -9,6 +9,7 @@ tags:
   - typography
   - design
   - test
+slug: post-4
 ---
 
 This post serves as a comprehensive typography test, showcasing all the different text elements and styles available in our design system.

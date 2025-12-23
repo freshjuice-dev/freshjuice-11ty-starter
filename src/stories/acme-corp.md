@@ -20,6 +20,7 @@ quote: "Working with FreshJuice was a game-changer for our business. Their team 
 quote_author: "Jack O'Lantern"
 quote_author_title: "Head of Operations"
 quote_author_image: /assets/images/placeholder-avatar.jpg
+slug: acme-corp
 noindex: false
 llms_exclude: false
 ---

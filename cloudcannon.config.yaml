@@ -72,10 +72,10 @@ collections_config:
     _inputs:
       layout:
         hidden: true
-      permalink:
+      slug:
         type: text
-        label: Permalink
-        comment: "Custom slug (e.g., my-custom-slug). Auto-formatted to /blog/my-custom-slug/"
+        label: Slug
+        comment: "Custom URL slug (e.g., my-custom-slug). Auto-formatted to /blog/my-custom-slug/"
         options:
           pattern: "^[a-z0-9]+(-[a-z0-9]+)*$"
           pattern_message: "Use lowercase letters, numbers, and hyphens only (e.g., my-post-slug)"
@@ -101,10 +101,10 @@ collections_config:
     _inputs:
       layout:
         hidden: true
-      permalink:
+      slug:
         type: text
-        label: Permalink
-        comment: "Custom slug (e.g., getting-started). Auto-formatted to /docs/getting-started/"
+        label: Slug
+        comment: "Custom URL slug (e.g., getting-started). Auto-formatted to /docs/getting-started/"
         options:
           pattern: "^[a-z0-9]+(-[a-z0-9]+)*$"
           pattern_message: "Use lowercase letters, numbers, and hyphens only (e.g., getting-started)"
@@ -130,10 +130,10 @@ collections_config:
     _inputs:
       layout:
         hidden: true
-      permalink:
+      slug:
         type: text
-        label: Permalink
-        comment: "Custom slug (e.g., acme-corp). Auto-formatted to /stories/acme-corp/"
+        label: Slug
+        comment: "Custom URL slug (e.g., acme-corp). Auto-formatted to /stories/acme-corp/"
         options:
           pattern: "^[a-z0-9]+(-[a-z0-9]+)*$"
           pattern_message: "Use lowercase letters, numbers, and hyphens only (e.g., acme-corp)"
@@ -143,6 +143,35 @@ collections_config:
     schemas:
       default:
         path: .cloudcannon/schemas/story.md
+
+  cases:
+    path: cases
+    output: true
+    icon: cases
+    name: Case Studies
+    singular_name: Case Study
+    description: Technical case studies and project deep-dives
+    glob:
+      - "!**/*.json"
+    _enabled_editors:
+      - content
+      - data
+    _inputs:
+      layout:
+        hidden: true
+      slug:
+        type: text
+        label: Slug
+        comment: "Custom URL slug (e.g., project-name). Auto-formatted to /cases/project-name/"
+        options:
+          pattern: "^[a-z0-9]+(-[a-z0-9]+)*$"
+          pattern_message: "Use lowercase letters, numbers, and hyphens only (e.g., project-name)"
+    add_options:
+      - name: Add New Case Study
+        schema: default
+    schemas:
+      default:
+        path: .cloudcannon/schemas/case-study.md
 
   authors:
     path: authors
@@ -225,6 +254,7 @@ collection_groups:
     collections:
       - blog
       - stories
+      - cases
       - docs
       - pages
       - legal
@@ -376,6 +406,34 @@ _structures:
             type: text
             label: Label
             comment: "Description of the metric (e.g., Revenue Growth)"
+
+  results:
+    values:
+      - value:
+          value:
+          label:
+        preview:
+          text:
+            - key: value
+          subtext:
+            - key: label
+          icon: trophy
+        _inputs:
+          value:
+            type: text
+            label: Value
+            comment: "The result value (e.g., 200%, 5x faster)"
+          label:
+            type: text
+            label: Label
+            comment: "Description of the result"
+
+  technologies:
+    values:
+      - value:
+        preview:
+          text: Technology
+          icon: code
 
   blocks:
     style: modal
@@ -611,6 +669,58 @@ _inputs:
   quote_author_image:
     type: image
     label: Quote Author Image
+
+  # Case study inputs
+  client:
+    type: text
+    label: Client Name
+
+  timeline:
+    type: text
+    label: Timeline
+    comment: "e.g., 3 months, Q1 2025"
+
+  team_size:
+    type: text
+    label: Team Size
+    comment: "e.g., 4 developers, 2 designers"
+
+  technologies:
+    type: array
+    label: Technologies
+    comment: "Technologies and tools used"
+    options:
+      structures: _structures.technologies
+      allow_create: true
+
+  results:
+    type: array
+    label: Key Results
+    comment: "Measurable outcomes (up to 4 recommended)"
+    options:
+      structures: _structures.results
+
+  overview:
+    type: textarea
+    label: Overview
+    comment: "Brief project overview shown before main content"
+
+  testimonial:
+    type: textarea
+    label: Testimonial
+    comment: "Client testimonial quote"
+
+  testimonial_author:
+    type: text
+    label: Testimonial Author
+
+  testimonial_author_title:
+    type: text
+    label: Testimonial Author Title
+
+  testimonial_author_image:
+    type: image
+    label: Testimonial Author Image
 
   # General settings inputs - Metadata
   site_name:

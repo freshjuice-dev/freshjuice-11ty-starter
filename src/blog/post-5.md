@@ -9,6 +9,7 @@ tags:
   - performance
   - optimization
   - tutorial
+slug: post-5
 ---
 
 Website performance directly impacts user experience, SEO rankings, and conversion rates. A fast website keeps visitors engaged while a slow one drives them away.

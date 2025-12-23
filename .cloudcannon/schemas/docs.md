@@ -8,7 +8,7 @@ title:
 description:
 category:
 order:
-permalink:
+slug:
 last_updated:
 related_docs: []
 noindex: false

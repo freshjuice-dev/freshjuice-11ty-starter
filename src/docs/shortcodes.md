@@ -4,6 +4,7 @@ description: "Available shortcodes and filters for your templates."
 category: "Reference"
 order: 11
 last_updated: 2025-01-20
+slug: shortcodes
 ---
 
 ## Shortcodes

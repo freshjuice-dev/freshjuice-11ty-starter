@@ -9,6 +9,7 @@ tags:
   - css
   - tailwind
   - tutorial
+slug: post-3
 ---
 
 TailwindCSS has revolutionized the way developers write CSS. Its utility-first approach allows for rapid prototyping and consistent designs.

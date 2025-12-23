@@ -9,6 +9,7 @@ tags:
   - javascript
   - best-practices
   - tutorial
+slug: post-6
 ---
 
 JavaScript continues to evolve rapidly. Staying current with best practices helps you write better code and build more maintainable applications.

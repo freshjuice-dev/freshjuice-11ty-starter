@@ -1,0 +1,170 @@
+---
+layout: layouts/base.njk
+title: "Case Studies"
+description: "Explore our technical case studies and project deep-dives."
+pagination:
+  data: collections.cases
+  size: 6
+  alias: cases
+permalink: /cases/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}
+---
+{% from "_components/index.njk" import badge %}
+
+<section class="py-16 lg:py-24">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-4">Case Studies</h1>
+      <p class="text-xl text-stone-600 max-w-2xl mx-auto">
+        Technical deep-dives into our projects, methodologies, and results.
+      </p>
+    </div>
+
+    {% if cases | length %}
+    <div class="max-w-6xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {% for case in cases %}
+      <a href="{{ case.url }}" class="group flex flex-col bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden hover:shadow-lg hover:border-primary-300 transition-all duration-300">
+        {# Featured Image #}
+        {% if case.data.image %}
+        <div class="aspect-video overflow-hidden bg-stone-100">
+          <img src="{{ case.data.image }}" alt="{{ case.data.image_alt or case.data.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+        </div>
+        {% endif %}
+
+        <div class="flex flex-col flex-1 p-6">
+          {# Top Section - Category, Title, Description #}
+          <div class="flex-1">
+            {# Category Badge #}
+            {% if case.data.category %}
+            <div class="mb-3">
+              {{ badge({ text: case.data.category, variant: "primary" }) }}
+            </div>
+            {% endif %}
+
+            {# Title #}
+            <h2 class="text-xl font-bold text-stone-900 mb-2 group-hover:text-primary-600 transition-colors">
+              {{ case.data.title }}
+            </h2>
+
+            {# Description #}
+            {% if case.data.description %}
+            <p class="text-stone-600 text-sm line-clamp-2">{{ case.data.description }}</p>
+            {% endif %}
+          </div>
+
+          {# Bottom Section - Client & Technologies #}
+          <div class="mt-4">
+            {# Client & Timeline #}
+            <div class="flex items-center gap-4 pt-4 border-t border-stone-100 text-sm text-stone-500">
+              {% if case.data.client %}
+              <div class="flex items-center gap-1.5">
+                {% phosphor "building-office", "duotone", { size: 16 } %}
+                <span>{{ case.data.client }}</span>
+              </div>
+              {% endif %}
+              {% if case.data.timeline %}
+              <div class="flex items-center gap-1.5">
+                {% phosphor "calendar", "duotone", { size: 16 } %}
+                <span>{{ case.data.timeline }}</span>
+              </div>
+              {% endif %}
+            </div>
+
+            {# Technologies Preview (first 3) #}
+            {% if case.data.technologies and case.data.technologies.length %}
+            <div class="flex flex-wrap gap-1.5 mt-3">
+              {% for tech in case.data.technologies | limit(3) %}
+              <span class="px-2 py-0.5 bg-stone-100 rounded text-xs font-medium text-stone-600">{{ tech }}</span>
+              {% endfor %}
+              {% if case.data.technologies.length > 3 %}
+              <span class="px-2 py-0.5 bg-stone-100 rounded text-xs font-medium text-stone-500">+{{ case.data.technologies.length - 3 }}</span>
+              {% endif %}
+            </div>
+            {% endif %}
+
+            {# Results Preview (first 2) #}
+            {% if case.data.results and case.data.results.length %}
+            <div class="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-stone-100">
+              {% for result in case.data.results | limit(2) %}
+              <div class="text-center">
+                <div class="text-lg font-bold text-primary-600">{{ result.value }}</div>
+                <div class="text-xs text-stone-500">{{ result.label }}</div>
+              </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    {# Pagination Navigation #}
+    {% if pagination.pages | length > 1 %}
+    <nav class="mt-12 flex items-center justify-center gap-2" aria-label="Case studies pagination">
+      {# Previous Button #}
+      {% if pagination.href.previous %}
+      <a href="{{ pagination.href.previous }}" class="pager pager--link">
+        {% phosphor "caret-left", "bold", { size: 18 } %}
+        <span class="sr-only">Previous</span>
+      </a>
+      {% else %}
+      <span class="pager pager--disabled">
+        {% phosphor "caret-left", "bold", { size: 18 } %}
+        <span class="sr-only">Previous</span>
+      </span>
+      {% endif %}
+
+      {# Page Numbers #}
+      {% set totalPages = pagination.pages | length %}
+      {% set currentPage = pagination.pageNumber + 1 %}
+      {% set showLeftEllipsis = currentPage > 4 %}
+      {% set showRightEllipsis = (totalPages - currentPage) > 3 %}
+      {% set lastShown = { value: 0 } %}
+
+      {% for pageEntry in pagination.pages %}
+        {% set pageNum = loop.index %}
+        {% set pageUrl = pagination.hrefs[loop.index0] %}
+        {% set isFirst = (pageNum == 1) %}
+        {% set isLast = (pageNum == totalPages) %}
+        {% set nearCurrent = (pageNum >= currentPage - 1) and (pageNum <= currentPage + 1) %}
+        {% set inLeftEdge = (pageNum <= 3) and (not showLeftEllipsis) %}
+        {% set inRightEdge = (pageNum >= totalPages - 2) and (not showRightEllipsis) %}
+        {% set shouldShow = isFirst or isLast or nearCurrent or inLeftEdge or inRightEdge %}
+
+        {% if shouldShow %}
+          {% if lastShown.value > 0 and (pageNum - lastShown.value) > 1 %}
+          <span class="pager pager--ellipsis">...</span>
+          {% endif %}
+
+          {% if pageNum == currentPage %}
+          <span class="pager pager--current">{{ pageNum }}</span>
+          {% else %}
+          <a href="{{ pageUrl }}" class="pager pager--link">{{ pageNum }}</a>
+          {% endif %}
+
+          {% set lastShown = { value: pageNum } %}
+        {% endif %}
+      {% endfor %}
+
+      {# Next Button #}
+      {% if pagination.href.next %}
+      <a href="{{ pagination.href.next }}" class="pager pager--link">
+        <span class="sr-only">Next</span>
+        {% phosphor "caret-right", "bold", { size: 18 } %}
+      </a>
+      {% else %}
+      <span class="pager pager--disabled">
+        <span class="sr-only">Next</span>
+        {% phosphor "caret-right", "bold", { size: 18 } %}
+      </span>
+      {% endif %}
+    </nav>
+    {% endif %}
+
+    {% else %}
+    <div class="text-center py-12">
+      <p class="text-stone-600">No case studies yet. Check back soon!</p>
+    </div>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,7 @@
+{
+  "layout": "layouts/case-study.njk",
+  "tags": ["cases"],
+  "eleventyComputed": {
+    "permalink": "{% if slug %}/cases/{{ slug | slugify }}/{% else %}/cases/{{ page.fileSlug }}/{% endif %}"
+  }
+}

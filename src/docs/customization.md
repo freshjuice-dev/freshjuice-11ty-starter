@@ -4,6 +4,7 @@ description: "Learn how to customize colors, fonts, and styles."
 category: "Getting Started"
 order: 2
 last_updated: 2025-01-20
+slug: customization
 ---
 
 ## Theme Colors

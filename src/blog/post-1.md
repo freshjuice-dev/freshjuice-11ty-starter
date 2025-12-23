@@ -8,6 +8,7 @@ image_alt: "Ripe yellow banana on a dark background"
 tags:
   - tutorial
   - eleventy
+slug: post-1
 ---
 
 ## Introduction to Eleventy

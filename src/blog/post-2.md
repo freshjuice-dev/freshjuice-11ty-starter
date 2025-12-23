@@ -8,6 +8,7 @@ image_alt: "Fresh red raspberries close-up"
 tags:
   - design
   - accessibility
+slug: post-2
 ---
 
 > Good design is as little design as possible. Less, but better, because it concentrates on the essential aspects, and the products are not burdened with non-essentials.

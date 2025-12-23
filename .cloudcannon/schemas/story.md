@@ -17,7 +17,7 @@ quote:
 quote_author:
 quote_author_title:
 quote_author_image:
-permalink:
+slug:
 noindex: false
 llms_exclude: false
 ---

@@ -20,6 +20,7 @@ quote: "Our strawberries were always delicious, but now our website is just as s
 quote_author: "Barry D. Hatchet"
 quote_author_title: "Head of Growth"
 quote_author_image: /assets/images/placeholder-avatar.jpg
+slug: berry-good-farms
 noindex: false
 llms_exclude: false
 ---

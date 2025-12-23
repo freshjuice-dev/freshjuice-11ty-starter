@@ -20,6 +20,7 @@ quote: "We went from selling coconuts on the beach to running a global empire. T
 quote_author: "Sandy Beaches"
 quote_author_title: "Chief Wave Officer"
 quote_author_image: /assets/images/placeholder-avatar.jpg
+slug: tropical-vibes
 noindex: false
 llms_exclude: false
 ---

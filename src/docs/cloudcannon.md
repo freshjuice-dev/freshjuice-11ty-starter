@@ -4,6 +4,7 @@ description: "Configure and use CloudCannon for content management."
 category: "CMS"
 order: 20
 last_updated: 2025-01-20
+slug: cloudcannon
 ---
 
 ## Overview

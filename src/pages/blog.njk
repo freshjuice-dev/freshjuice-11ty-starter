@@ -20,7 +20,7 @@ permalink: /blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber
     </div>
 
     {% if posts | length %}
-    <div class="max-w-5xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <div class="max-w-6xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {% for post in posts %}
         {%- set authorData = collections.authors | getAuthor(post.data.author) -%}
         {{ card({
