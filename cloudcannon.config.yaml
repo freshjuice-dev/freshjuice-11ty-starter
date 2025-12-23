@@ -443,6 +443,11 @@ _inputs:
       image: true
       table: true
 
+  permalink:
+    type: text
+    label: Permalink
+    comment: "Custom URL path (e.g., /blog/my-custom-slug/)"
+
   noindex:
     type: switch
     label: Exclude from Search Engines
