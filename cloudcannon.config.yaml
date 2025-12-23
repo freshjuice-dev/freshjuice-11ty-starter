@@ -18,6 +18,13 @@ collections_config:
       - visual
       - content
       - data
+    _inputs:
+      layout:
+        hidden: true
+      slug:
+        type: text
+        label: URL Slug
+        comment: "Use 'home' for homepage, or path like 'about' or 'services/consulting'"
     add_options:
       - name: Add New Page
         schema: default
@@ -467,6 +474,7 @@ _structures:
 
   blocks:
     style: modal
+    id_key: _id
     values:
       - label: Hero
         icon: view_carousel
@@ -629,10 +637,7 @@ _inputs:
   permalink:
     type: text
     label: Permalink
-    comment: "Full path with slashes (e.g., /about/ or /services/consulting/)"
-    options:
-      pattern: "^/[a-z0-9]+(-[a-z0-9]+)*(/[a-z0-9]+(-[a-z0-9]+)*)*/$"
-      pattern_message: "Use format /path/ or /nested/path/ with lowercase letters, numbers, and hyphens"
+    comment: "Custom URL path (e.g., /custom-path/ or /nested/path/)"
 
   noindex:
     type: switch
