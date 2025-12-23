@@ -55,6 +55,8 @@ collections_config:
         type: array
         label: Page Sections
         comment: Add, remove, and reorder page sections
+        options:
+          structures: _structures.content_blocks
     add_options:
       - name: Add New Landing Page
         schema: default

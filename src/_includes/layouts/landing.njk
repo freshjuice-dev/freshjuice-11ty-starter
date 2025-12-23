@@ -7,20 +7,20 @@ layout: layouts/base.njk
 {% from "_blocks/testimonials.njk" import testimonials %}
 {% from "_blocks/content.njk" import contentBlock %}
 
+<div data-editable="array" data-prop="blocks" data-id-key="_id" data-component-key="_id">
 {% for block in blocks %}
-  {# Pass _index for CloudCannon editable region binding #}
-  {% set blockWithIndex = block | setAttribute("_index", loop.index0) %}
   {% if block._id === 'hero' %}
-    {{ hero(blockWithIndex) }}
+    {{ hero(block) }}
   {% elif block._id === 'features' %}
-    {{ features(blockWithIndex) }}
+    {{ features(block) }}
   {% elif block._id === 'cta' %}
-    {{ cta(blockWithIndex) }}
+    {{ cta(block) }}
   {% elif block._id === 'testimonials' %}
-    {{ testimonials(blockWithIndex) }}
+    {{ testimonials(block) }}
   {% elif block._id === 'content' %}
-    {{ contentBlock(blockWithIndex) }}
+    {{ contentBlock(block) }}
   {% endif %}
 {% endfor %}
+</div>
 
 {{ content | safe }}
