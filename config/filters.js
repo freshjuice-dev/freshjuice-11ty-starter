@@ -80,4 +80,9 @@ export default function(eleventyConfig) {
   eleventyConfig.addFilter('year', () => {
     return new Date().getFullYear();
   });
+
+  // Set attribute on object (returns new object)
+  eleventyConfig.addFilter('setAttribute', (obj, key, value) => {
+    return { ...obj, [key]: value };
+  });
 }

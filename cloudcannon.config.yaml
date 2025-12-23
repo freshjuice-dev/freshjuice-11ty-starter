@@ -67,6 +67,7 @@ collections_config:
     glob:
       - "!**/*.json"
     _enabled_editors:
+      - visual
       - content
       - data
     _inputs:
@@ -125,6 +126,7 @@ collections_config:
     glob:
       - "!**/*.json"
     _enabled_editors:
+      - visual
       - content
       - data
     _inputs:
@@ -154,6 +156,7 @@ collections_config:
     glob:
       - "!**/*.json"
     _enabled_editors:
+      - visual
       - content
       - data
     _inputs:
@@ -942,6 +945,7 @@ _inputs:
     comment: "Spread the juice! Show some love for FreshJuice 🍊"
 
 _editables:
+  # Rich text content areas (content editor and visual editor)
   content:
     bold: true
     italic: true
@@ -953,6 +957,25 @@ _editables:
     horizontalrule: true
     image: true
     table: true
+
+  # Elements with class="editable" in visual editor
+  text:
+    bold: true
+    italic: true
+    link: true
+
+  block:
+    bold: true
+    italic: true
+    link: true
+    blockquote: true
+    bulletedlist: true
+    numberedlist: true
+    code: true
+    horizontalrule: true
+    image: true
+    table: true
+    heading: h2,h3,h4
 
 paths:
   uploads: src/assets/images

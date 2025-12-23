@@ -16,34 +16,34 @@ layout: layouts/base.njk
     <header class="mb-12">
       {# Category Badge #}
       {% if category %}
-      <div class="mb-4">
+      <div class="mb-4" data-cms-bind="#category">
         {{ badge({ text: category, variant: "primary" }) }}
       </div>
       {% endif %}
 
       {# Title #}
-      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{{ title }}</h1>
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" data-cms-bind="#title">{{ title }}</h1>
 
       {% if description %}
-      <p class="text-xl text-gray-600 mb-6">{{ description }}</p>
+      <p class="text-xl text-gray-600 mb-6" data-cms-bind="#description">{{ description }}</p>
       {% endif %}
 
       {# Client & Timeline Info #}
       <div class="flex flex-wrap items-center gap-6 text-sm text-gray-500">
         {% if client %}
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2" data-cms-bind="#client">
           {% phosphor "building-office", "duotone", { size: 18 } %}
           <span>{{ client }}</span>
         </div>
         {% endif %}
         {% if timeline %}
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2" data-cms-bind="#timeline">
           {% phosphor "calendar", "duotone", { size: 18 } %}
           <span>{{ timeline }}</span>
         </div>
         {% endif %}
         {% if team_size %}
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2" data-cms-bind="#team_size">
           {% phosphor "users", "duotone", { size: 18 } %}
           <span>{{ team_size }}</span>
         </div>
@@ -53,11 +53,11 @@ layout: layouts/base.njk
 
     {# Technologies Used #}
     {% if technologies and technologies.length %}
-    <div class="mb-8 p-6 bg-gray-50 rounded-lg">
+    <div class="mb-8 p-6 bg-gray-50 rounded-lg" data-cms-bind="#technologies">
       <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Technologies Used</h2>
       <div class="flex flex-wrap gap-2">
         {% for tech in technologies %}
-        <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm font-medium text-gray-700">{{ tech }}</span>
+        <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm font-medium text-gray-700" data-cms-bind="#technologies[{{ loop.index0 }}]">{{ tech }}</span>
         {% endfor %}
       </div>
     </div>
@@ -65,11 +65,11 @@ layout: layouts/base.njk
 
     {# Key Results #}
     {% if results and results.length %}
-    <div class="grid grid-cols-2 md:grid-cols-{{ results | length if results | length <= 4 else 4 }} gap-6 p-6 bg-gradient-to-br from-primary-50 to-orange-50 rounded-lg mb-12">
+    <div class="grid grid-cols-2 md:grid-cols-{{ results | length if results | length <= 4 else 4 }} gap-6 p-6 bg-gradient-to-br from-primary-50 to-orange-50 rounded-lg mb-12" data-cms-bind="#results">
       {% for result in results %}
-      <div class="text-center">
-        <div class="text-3xl md:text-4xl font-bold text-primary-600 mb-1">{{ result.value }}</div>
-        <div class="text-sm text-gray-600">{{ result.label }}</div>
+      <div class="text-center" data-cms-bind="#results[{{ loop.index0 }}]">
+        <div class="text-3xl md:text-4xl font-bold text-primary-600 mb-1" data-cms-bind="#results[{{ loop.index0 }}].value">{{ result.value }}</div>
+        <div class="text-sm text-gray-600" data-cms-bind="#results[{{ loop.index0 }}].label">{{ result.label }}</div>
       </div>
       {% endfor %}
     </div>
@@ -78,36 +78,36 @@ layout: layouts/base.njk
     {# Featured Image #}
     {% if image %}
     <figure class="mb-12 -mx-4 lg:mx-0">
-      <img src="{{ image }}" alt="{{ image_alt or title }}" class="w-full rounded-lg" loading="lazy">
+      <img src="{{ image }}" alt="{{ image_alt or title }}" class="w-full rounded-lg" loading="lazy" data-cms-bind="#image">
     </figure>
     {% endif %}
 
     {# Overview Section #}
     {% if overview %}
-    <div class="mb-12 p-6 border-l-4 border-primary-500 bg-gray-50">
+    <div class="mb-12 p-6 border-l-4 border-primary-500 bg-gray-50" data-cms-bind="#overview">
       <h2 class="text-lg font-bold text-gray-900 mb-2">Overview</h2>
       <p class="text-gray-600">{{ overview }}</p>
     </div>
     {% endif %}
 
     {# Main Content #}
-    <div class="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline">
+    <div class="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline editable">
       {{ content | safe }}
     </div>
 
     {# Testimonial #}
     {% if testimonial %}
-    <blockquote class="my-12 p-8 bg-gray-50 border-l-4 border-primary-500">
+    <blockquote class="my-12 p-8 bg-gray-50 border-l-4 border-primary-500" data-cms-bind="#testimonial">
       <p class="text-xl italic text-gray-700 mb-4">"{{ testimonial }}"</p>
       {% if testimonial_author %}
       <footer class="flex items-center gap-3">
         {% if testimonial_author_image %}
-        <img src="{{ testimonial_author_image }}" alt="{{ testimonial_author }}" class="w-12 h-12 rounded-full object-cover">
+        <img src="{{ testimonial_author_image }}" alt="{{ testimonial_author }}" class="w-12 h-12 rounded-full object-cover" data-cms-bind="#testimonial_author_image">
         {% endif %}
         <div>
-          <div class="font-semibold text-gray-900">{{ testimonial_author }}</div>
+          <div class="font-semibold text-gray-900" data-cms-bind="#testimonial_author">{{ testimonial_author }}</div>
           {% if testimonial_author_title %}
-          <div class="text-sm text-gray-500">{{ testimonial_author_title }}{% if client %}, {{ client }}{% endif %}</div>
+          <div class="text-sm text-gray-500" data-cms-bind="#testimonial_author_title">{{ testimonial_author_title }}{% if client %}, {{ client }}{% endif %}</div>
           {% endif %}
         </div>
       </footer>

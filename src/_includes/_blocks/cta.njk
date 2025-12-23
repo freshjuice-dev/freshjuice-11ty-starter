@@ -4,6 +4,7 @@
   @param {string} text - CTA description
   @param {array} buttons - CTA buttons
   @param {string} background_color - Background color: primary, dark, light
+  @param {number} _index - Block index for CloudCannon editable binding
 #}
 {% macro cta(props) %}
 {% from "_components/index.njk" import button %}
@@ -24,24 +25,25 @@
   'dark': 'text-stone-300',
   'light': 'text-stone-600'
 } -%}
+{%- set bindPath = 'blocks[' + props._index + ']' if props._index is defined else '' -%}
 
-<section class="py-16 lg:py-24 {{ bgClass[bgColor] }}">
+<section class="py-16 lg:py-24 {{ bgClass[bgColor] }}"{% if bindPath %} data-cms-bind="#{{ bindPath }}"{% endif %}>
   <div class="container mx-auto px-4">
     <div class="max-w-3xl mx-auto text-center">
       {% if props.heading %}
-      <h2 class="text-3xl md:text-4xl font-bold {{ textClass[bgColor] }} mb-4">
+      <h2 class="text-3xl md:text-4xl font-bold {{ textClass[bgColor] }} mb-4"{% if bindPath %} data-cms-bind="#{{ bindPath }}.heading"{% endif %}>
         {{ props.heading }}
       </h2>
       {% endif %}
 
       {% if props.text %}
-      <p class="text-xl {{ subtextClass[bgColor] }} mb-8">
+      <p class="text-xl {{ subtextClass[bgColor] }} mb-8"{% if bindPath %} data-cms-bind="#{{ bindPath }}.text"{% endif %}>
         {{ props.text }}
       </p>
       {% endif %}
 
       {% if props.buttons and props.buttons.length %}
-      <div class="flex flex-wrap gap-4 justify-center">
+      <div class="flex flex-wrap gap-4 justify-center"{% if bindPath %} data-cms-bind="#{{ bindPath }}.buttons"{% endif %}>
         {% for btn in props.buttons %}
           {{ button({
             text: btn.text,

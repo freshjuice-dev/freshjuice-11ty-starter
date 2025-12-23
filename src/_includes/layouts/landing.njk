@@ -8,16 +8,18 @@ layout: layouts/base.njk
 {% from "_blocks/content.njk" import contentBlock %}
 
 {% for block in blocks %}
+  {# Pass _index for CloudCannon editable region binding #}
+  {% set blockWithIndex = block | setAttribute("_index", loop.index0) %}
   {% if block._id === 'hero' %}
-    {{ hero(block) }}
+    {{ hero(blockWithIndex) }}
   {% elif block._id === 'features' %}
-    {{ features(block) }}
+    {{ features(blockWithIndex) }}
   {% elif block._id === 'cta' %}
-    {{ cta(block) }}
+    {{ cta(blockWithIndex) }}
   {% elif block._id === 'testimonials' %}
-    {{ testimonials(block) }}
+    {{ testimonials(blockWithIndex) }}
   {% elif block._id === 'content' %}
-    {{ contentBlock(block) }}
+    {{ contentBlock(blockWithIndex) }}
   {% endif %}
 {% endfor %}
 

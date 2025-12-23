@@ -15,7 +15,7 @@ layout: layouts/base.njk
 
     <header class="mb-8 lg:mb-12">
       {% if tags %}
-      <div class="flex flex-wrap gap-2 mb-4">
+      <div class="flex flex-wrap gap-2 mb-4" data-cms-bind="#tags">
         {% for tag in tags %}
           {% if tag !== 'blog' %}
             {{ badge({ text: tag }) }}
@@ -24,31 +24,31 @@ layout: layouts/base.njk
       </div>
       {% endif %}
 
-      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{{ title }}</h1>
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" data-cms-bind="#title">{{ title }}</h1>
 
       {% if description %}
-      <p class="text-xl text-gray-600 mb-6">{{ description }}</p>
+      <p class="text-xl text-gray-600 mb-6" data-cms-bind="#description">{{ description }}</p>
       {% endif %}
 
       <div class="flex items-center gap-4 text-gray-500">
-        <time datetime="{{ date | dateToISOString }}">{{ date | readableDate }}</time>
+        <time datetime="{{ date | dateToISOString }}" data-cms-bind="#date">{{ date | readableDate }}</time>
         {% if author %}
           {%- set authorData = collections.authors | getAuthor(author) -%}
-          <span>by {{ authorData.data.name if authorData else author }}</span>
+          <span data-cms-bind="#author">by {{ authorData.data.name if authorData else author }}</span>
         {% endif %}
       </div>
     </header>
 
     {% if image %}
     <figure class="mb-8 lg:mb-12 -mx-4 lg:mx-0">
-      <img src="{{ image }}" alt="{{ image_alt or title }}" class="w-full rounded-lg" loading="lazy">
+      <img src="{{ image }}" alt="{{ image_alt or title }}" class="w-full rounded-lg" loading="lazy" data-cms-bind="#image">
       {% if image_caption %}
       <figcaption class="text-center text-gray-500 text-sm mt-2">{{ image_caption }}</figcaption>
       {% endif %}
     </figure>
     {% endif %}
 
-    <div class="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline">
+    <div class="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline editable">
       {{ content | safe }}
     </div>
 

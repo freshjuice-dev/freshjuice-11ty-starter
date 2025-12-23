@@ -5,6 +5,7 @@
   @param {string} background_image - Background image URL
   @param {array} cta_buttons - Call to action buttons
   @param {string} alignment - Text alignment: left, center, right
+  @param {number} _index - Block index for CloudCannon editable binding
 #}
 {% macro hero(props) %}
 {% from "_components/index.njk" import button %}
@@ -15,8 +16,9 @@
   'center': 'text-center items-center',
   'right': 'text-right items-end'
 } -%}
+{%- set bindPath = 'blocks[' + props._index + ']' if props._index is defined else '' -%}
 
-<section class="relative min-h-[70vh] flex items-center py-20 lg:py-32 overflow-hidden">
+<section class="relative min-h-[70vh] flex items-center py-20 lg:py-32 overflow-hidden"{% if bindPath %} data-cms-bind="#{{ bindPath }}"{% endif %}>
   {% if props.background_image %}
   <div class="absolute inset-0 z-0">
     <img
@@ -24,6 +26,7 @@
       alt=""
       class="w-full h-full object-cover"
       loading="eager"
+      {% if bindPath %}data-cms-bind="#{{ bindPath }}.background_image"{% endif %}
     >
     <div class="absolute inset-0 bg-stone-900/60"></div>
   </div>
@@ -34,19 +37,19 @@
   <div class="container mx-auto px-4 relative z-10">
     <div class="max-w-4xl {% if alignment === 'center' %}mx-auto{% elif alignment === 'right' %}ml-auto{% endif %} flex flex-col {{ alignClass[alignment] }}">
       {% if props.heading %}
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"{% if bindPath %} data-cms-bind="#{{ bindPath }}.heading"{% endif %}>
         {{ props.heading }}
       </h1>
       {% endif %}
 
       {% if props.subheading %}
-      <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl">
+      <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl"{% if bindPath %} data-cms-bind="#{{ bindPath }}.subheading"{% endif %}>
         {{ props.subheading }}
       </p>
       {% endif %}
 
       {% if props.cta_buttons and props.cta_buttons.length %}
-      <div class="flex flex-wrap gap-4 {% if alignment === 'center' %}justify-center{% elif alignment === 'right' %}justify-end{% endif %}">
+      <div class="flex flex-wrap gap-4 {% if alignment === 'center' %}justify-center{% elif alignment === 'right' %}justify-end{% endif %}"{% if bindPath %} data-cms-bind="#{{ bindPath }}.cta_buttons"{% endif %}>
         {% for btn in props.cta_buttons %}
           {{ button({
             text: btn.text,
