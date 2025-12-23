@@ -1,13 +1,16 @@
 ---
 layout: layouts/base.njk
 ---
+{#
+  Legacy Nunjucks Landing Layout
+  For full visual editing, use layouts/landing-bookshop.liquid instead
+#}
 {% from "_blocks/hero.njk" import hero %}
 {% from "_blocks/features.njk" import features %}
 {% from "_blocks/cta.njk" import cta %}
 {% from "_blocks/testimonials.njk" import testimonials %}
 {% from "_blocks/content.njk" import contentBlock %}
 
-<div data-editable="array" data-prop="blocks" data-id-key="_id" data-component-key="_id">
 {% for block in blocks %}
   {% if block._id === 'hero' %}
     {{ hero(block) }}
@@ -21,6 +24,5 @@ layout: layouts/base.njk
     {{ contentBlock(block) }}
   {% endif %}
 {% endfor %}
-</div>
 
 {{ content | safe }}

@@ -25,6 +25,12 @@ collections_config:
         type: text
         label: URL Slug
         comment: "Use 'home' for homepage, or path like 'about' or 'services/consulting'"
+      content_blocks:
+        type: array
+        label: Page Sections
+        comment: Add, remove, and reorder page sections
+        options:
+          structures: _structures.content_blocks
     add_options:
       - name: Add New Page
         schema: default

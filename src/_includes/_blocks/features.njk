@@ -1,25 +1,22 @@
 {#
-  Features Block
-  @param {string} section_title - Section heading
-  @param {string} section_description - Section description
-  @param {array} features - Feature items (icon, title, description)
-  @param {number} columns - Number of columns: 2, 3, 4
+  Features Block (Legacy Nunjucks)
+  For full visual editing, use Bookshop features component instead
 #}
 {% macro features(props) %}
 {%- set columns = props.columns or 3 -%}
 
-<section class="py-16 lg:py-24 bg-white" data-editable="array-item" data-id="features" data-component="features">
+<section class="py-16 lg:py-24 bg-white">
   <div class="container mx-auto px-4">
     {% if props.section_title or props.section_description %}
     <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
       {% if props.section_title %}
-      <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4" data-editable="text" data-prop="section_title">
+      <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
         {{ props.section_title }}
       </h2>
       {% endif %}
 
       {% if props.section_description %}
-      <p class="text-xl text-stone-600" data-editable="text" data-prop="section_description">
+      <p class="text-xl text-stone-600">
         {{ props.section_description }}
       </p>
       {% endif %}

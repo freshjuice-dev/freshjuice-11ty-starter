@@ -1,26 +1,24 @@
 {#
-  Content Block
-  @param {string} content - Rich text content (markdown)
-  @param {boolean} sidebar - Show sidebar
-  @param {string} sidebar_content - Sidebar content
+  Content Block (Legacy Nunjucks)
+  For full visual editing, use Bookshop content component instead
 #}
 {% macro contentBlock(props) %}
 
-<section class="py-16 lg:py-24" data-editable="array-item" data-id="content" data-component="content">
+<section class="py-16 lg:py-24">
   <div class="container mx-auto px-4">
     {% if props.sidebar %}
     <div class="grid gap-12 lg:grid-cols-3">
-      <div class="lg:col-span-2 prose prose-lg max-w-none" data-editable="block" data-prop="content">
+      <div class="lg:col-span-2 prose prose-lg max-w-none">
         {{ props.content | safe }}
       </div>
       <aside class="lg:col-span-1">
-        <div class="sticky top-24 bg-stone-50 rounded-xl p-6" data-editable="block" data-prop="sidebar_content">
+        <div class="sticky top-24 bg-stone-50 rounded-xl p-6">
           {{ props.sidebar_content | safe }}
         </div>
       </aside>
     </div>
     {% else %}
-    <div class="prose prose-lg max-w-4xl mx-auto" data-editable="block" data-prop="content">
+    <div class="prose prose-lg max-w-4xl mx-auto">
       {{ props.content | safe }}
     </div>
     {% endif %}

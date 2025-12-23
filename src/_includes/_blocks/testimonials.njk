@@ -1,17 +1,15 @@
 {#
-  Testimonials Block
-  @param {string} section_title - Section heading
-  @param {array} testimonials - Testimonial items (quote, author, company, avatar)
-  @param {string} layout - Display layout: grid, slider
+  Testimonials Block (Legacy Nunjucks)
+  For full visual editing, use Bookshop testimonials component instead
 #}
 {% macro testimonials(props) %}
 {%- set layout = props.layout or 'grid' -%}
 
-<section class="py-16 lg:py-24 bg-stone-50" data-editable="array-item" data-id="testimonials" data-component="testimonials">
+<section class="py-16 lg:py-24 bg-stone-50">
   <div class="container mx-auto px-4">
     {% if props.section_title %}
     <div class="text-center mb-12 lg:mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-stone-900" data-editable="text" data-prop="section_title">
+      <h2 class="text-3xl md:text-4xl font-bold text-stone-900">
         {{ props.section_title }}
       </h2>
     </div>

@@ -1,9 +1,6 @@
 {#
-  CTA Block
-  @param {string} heading - CTA heading
-  @param {string} text - CTA description
-  @param {array} buttons - CTA buttons
-  @param {string} background_color - Background color: primary, dark, light
+  CTA Block (Legacy Nunjucks)
+  For full visual editing, use Bookshop cta component instead
 #}
 {% macro cta(props) %}
 {% from "_components/index.njk" import button %}
@@ -25,17 +22,17 @@
   'light': 'text-stone-600'
 } -%}
 
-<section class="py-16 lg:py-24 {{ bgClass[bgColor] }}" data-editable="array-item" data-id="cta" data-component="cta">
+<section class="py-16 lg:py-24 {{ bgClass[bgColor] }}">
   <div class="container mx-auto px-4">
     <div class="max-w-3xl mx-auto text-center">
       {% if props.heading %}
-      <h2 class="text-3xl md:text-4xl font-bold {{ textClass[bgColor] }} mb-4" data-editable="text" data-prop="heading">
+      <h2 class="text-3xl md:text-4xl font-bold {{ textClass[bgColor] }} mb-4">
         {{ props.heading }}
       </h2>
       {% endif %}
 
       {% if props.text %}
-      <p class="text-xl {{ subtextClass[bgColor] }} mb-8" data-editable="text" data-prop="text">
+      <p class="text-xl {{ subtextClass[bgColor] }} mb-8">
         {{ props.text }}
       </p>
       {% endif %}
