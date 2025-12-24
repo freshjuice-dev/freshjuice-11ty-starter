@@ -57,9 +57,7 @@
       <div class="{% if card_style == 'cards' %}bg-white rounded-xl shadow-sm p-8{% elsif card_style == 'bordered' %}border border-stone-200 rounded-xl p-8{% else %}p-6{% endif %} text-center" data-editable="array-item">
         {%- if feature.icon -%}
         <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl {% if bg == 'dark' %}bg-orange-600 text-white{% else %}bg-amber-100 text-orange-700{% endif %} mb-5">
-          <svg class="w-7 h-7" aria-hidden="true">
-            <use href="/assets/images/icons.svg#{{ feature.icon }}"></use>
-          </svg>
+          {% phicon feature.icon "regular" "!w-7 !h-7" %}
         </div>
         {%- endif -%}
 
