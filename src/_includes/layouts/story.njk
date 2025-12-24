@@ -30,8 +30,8 @@ layout: layouts/base.njk
 
       {# Company Info #}
       <div class="flex items-center gap-4">
-        {% if logo %}
-        <img src="{{ logo }}" alt="{{ company }} logo" class="h-10 w-auto object-contain" data-cms-bind="#logo">
+        {% if company_logo %}
+        <img src="{{ company_logo }}" alt="{{ company }} logo" class="h-10 w-auto object-contain" data-cms-bind="#company_logo">
         {% endif %}
         {% if company %}
         <span class="text-lg font-medium text-gray-900" data-cms-bind="#company">{{ company }}</span>

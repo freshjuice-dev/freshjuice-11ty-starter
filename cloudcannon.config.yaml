@@ -678,7 +678,7 @@ _inputs:
     type: text
     label: Company Name
 
-  logo:
+  company_logo:
     type: image
     label: Company Logo
 

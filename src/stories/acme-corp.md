@@ -3,7 +3,7 @@ title: "How Acme Corp Increased Revenue by 150% in 6 Months"
 description: "Discover how Acme Corp transformed their digital presence and achieved remarkable growth with our solutions."
 date: 2025-01-15
 company: Acme Corporation
-logo: /assets/images/placeholder-logo.svg
+company_logo: /assets/images/placeholder-logo.svg
 industry: SaaS
 image: /assets/images/placeholder.jpg
 image_alt: "Acme Corp success story"

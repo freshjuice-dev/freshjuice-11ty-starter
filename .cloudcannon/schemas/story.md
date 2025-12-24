@@ -8,7 +8,7 @@ title:
 description:
 date:
 company:
-logo:
+company_logo:
 industry:
 image:
 image_alt:

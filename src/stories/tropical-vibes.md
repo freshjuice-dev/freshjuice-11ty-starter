@@ -3,7 +3,7 @@ title: "How Tropical Vibes Co. Scaled to 1M Users in Just 3 Months"
 description: "From a small beach-side startup to a global sensation, see how Tropical Vibes revolutionized their customer experience."
 date: 2025-01-10
 company: Tropical Vibes Co.
-logo: /assets/images/placeholder-logo.svg
+company_logo: /assets/images/placeholder-logo.svg
 industry: E-commerce
 image: /assets/images/pexels-psco-27269.jpg
 image_alt: "Tropical pineapples on the beach"

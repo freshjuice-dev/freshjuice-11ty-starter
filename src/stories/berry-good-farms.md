@@ -3,7 +3,7 @@ title: "Berry Good Farms Grew Online Sales by 500% with a Fresh Approach"
 description: "How a family-owned berry farm transformed their direct-to-consumer business and became the sweetest success story in agriculture tech."
 date: 2025-01-05
 company: Berry Good Farms
-logo: /assets/images/placeholder-logo.svg
+company_logo: /assets/images/placeholder-logo.svg
 industry: Agriculture
 image: /assets/images/pexels-nietjuhart-2820144.jpg
 image_alt: "Fresh strawberries in a bowl"
