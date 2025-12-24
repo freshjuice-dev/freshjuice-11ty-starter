@@ -68,7 +68,7 @@ collections_config:
         schema: default
     schemas:
       default:
-        path: .cloudcannon/schemas/landing-page.md
+        path: .cloudcannon/schemas/landing-page.liquid
 
   legal:
     path: legal

@@ -38,13 +38,13 @@
     {%- if section_title or section_description -%}
     <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
       {%- if section_title -%}
-      <h2 class="text-3xl md:text-4xl font-bold {{ text_class }} mb-4">
+      <h2 class="text-3xl md:text-4xl font-bold {{ text_class }} mb-4" data-editable="text" data-prop="section_title">
         {{ section_title }}
       </h2>
       {%- endif -%}
 
       {%- if section_description -%}
-      <p class="text-xl {{ subtext_class }}">
+      <p class="text-xl {{ subtext_class }}" data-editable="text" data-prop="section_description">
         {{ section_description }}
       </p>
       {%- endif -%}
@@ -52,9 +52,9 @@
     {%- endif -%}
 
     {%- if features.size > 0 -%}
-    <div class="grid gap-8 {{ grid_class }}">
+    <div class="grid gap-8 {{ grid_class }}" data-editable="array" data-prop="features">
       {%- for feature in features -%}
-      <div class="{% if card_style == 'cards' %}bg-white rounded-xl shadow-sm p-8{% elsif card_style == 'bordered' %}border border-stone-200 rounded-xl p-8{% else %}p-6{% endif %} text-center">
+      <div class="{% if card_style == 'cards' %}bg-white rounded-xl shadow-sm p-8{% elsif card_style == 'bordered' %}border border-stone-200 rounded-xl p-8{% else %}p-6{% endif %} text-center" data-editable="array-item">
         {%- if feature.icon -%}
         <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl {% if bg == 'dark' %}bg-orange-600 text-white{% else %}bg-amber-100 text-orange-700{% endif %} mb-5">
           <svg class="w-7 h-7" aria-hidden="true">

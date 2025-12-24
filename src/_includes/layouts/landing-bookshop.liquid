@@ -6,8 +6,12 @@ layout: layouts/base.njk
   This layout renders content_blocks array using Bookshop
 {%- endcomment -%}
 
+<div data-editable="array" data-prop="content_blocks">
 {% for block in content_blocks %}
-  {% bookshop "{{block._bookshop_name}}" bind: block %}
+  <div data-editable="array-item">
+    {% bookshop "{{block._bookshop_name}}" bind: block %}
+  </div>
 {% endfor %}
+</div>
 
 {{ content }}
