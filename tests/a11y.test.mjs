@@ -3,15 +3,29 @@
 /**
  * Accessibility Test
  *
- * Uses axe-core + Puppeteer to test local _site folder for WCAG violations.
+ * Uses axe-core + Puppeteer to test for WCAG violations.
+ * Tests both light and dark themes by default.
  * Generates a Markdown report in _reports folder.
  *
  * Usage:
+ *   # Local testing (from _site folder)
  *   npm run test:a11y
  *   npm run test:a11y -- --limit=5
+ *   npm run test:a11y -- --theme=dark
+ *
+ *   # Remote testing (from sitemap)
+ *   npm run test:a11y -- --sitemap=https://example.com/sitemap.xml
+ *   npm run test:a11y -- --sitemap=https://example.com/sitemap.xml --base-url=https://actual-site.com
+ *
+ * Options:
+ *   --sitemap=URL    Fetch pages from sitemap XML instead of local _site
+ *   --base-url=URL   Replace sitemap domain with this URL (useful for staging)
+ *   --limit=N        Test only first N pages
+ *   --theme=light|dark|both  Test specific theme(s)
+ *   --standard=wcag21aa  WCAG standard to test against
  *
  * Requirements (optional dependencies):
- *   npm install puppeteer @axe-core/puppeteer serve-handler
+ *   npm install --no-save puppeteer @axe-core/puppeteer serve-handler
  */
 
 import { writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from 'fs';
@@ -27,7 +41,7 @@ try {
   handler = (await import('serve-handler')).default;
 } catch {
   console.error('\n❌ Missing optional dependencies for a11y testing.');
-  console.error('   Install them with: npm install puppeteer @axe-core/puppeteer serve-handler\n');
+  console.error('   Install them with: npm install --no-save puppeteer @axe-core/puppeteer serve-handler\n');
   process.exit(1);
 }
 
@@ -43,13 +57,18 @@ const CONFIG = {
   standard: 'wcag21aa',
   timeout: 30000,
   viewport: { width: 1280, height: 800 },
+  themes: ['light'], // Light theme only (no dark mode in this theme)
   skipPatterns: [
     /\.xml$/,
     /\.json$/,
     /\.txt$/,
     /\/404\//,
     /\/500\//,
+    /\/_component-library\//,
   ],
+  // Remote testing options
+  sitemapUrl: null,
+  baseUrl: null,
 };
 
 // Parse CLI arguments
@@ -60,8 +79,54 @@ function parseArgs() {
       CONFIG.limit = parseInt(arg.split('=')[1], 10);
     } else if (arg.startsWith('--standard=')) {
       CONFIG.standard = arg.split('=')[1];
+    } else if (arg.startsWith('--theme=')) {
+      const theme = arg.split('=')[1];
+      if (theme === 'light' || theme === 'dark') {
+        CONFIG.themes = [theme];
+      } else if (theme === 'both') {
+        CONFIG.themes = ['light', 'dark'];
+      }
+    } else if (arg.startsWith('--sitemap=')) {
+      CONFIG.sitemapUrl = arg.split('=')[1];
+    } else if (arg.startsWith('--base-url=')) {
+      CONFIG.baseUrl = arg.split('=')[1].replace(/\/$/, '');
     }
   }
+}
+
+// Fetch and parse sitemap XML
+async function fetchSitemapUrls(sitemapUrl, baseUrl) {
+  console.log(`   Fetching sitemap: ${sitemapUrl}`);
+
+  const response = await fetch(sitemapUrl);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch sitemap: ${response.status}`);
+  }
+
+  const xml = await response.text();
+  const urls = [];
+
+  // Simple regex to extract <loc> URLs from sitemap
+  const locRegex = /<loc>([^<]+)<\/loc>/g;
+  let match;
+
+  while ((match = locRegex.exec(xml)) !== null) {
+    let url = match[1];
+
+    // Replace domain with baseUrl if provided
+    if (baseUrl) {
+      const urlObj = new URL(url);
+      url = baseUrl + urlObj.pathname;
+    }
+
+    // Skip patterns
+    const pathname = new URL(url).pathname;
+    if (!CONFIG.skipPatterns.some(pattern => pattern.test(pathname))) {
+      urls.push(url);
+    }
+  }
+
+  return urls;
 }
 
 // Get all HTML files from _site
@@ -112,19 +177,34 @@ function startServer() {
   });
 }
 
-// Run axe-core on a single page
-async function auditPage(browser, url, index, total) {
+// Run axe-core on a single page with specific theme
+async function auditPage(browser, url, theme, index, total, isRemote = false) {
   const page = await browser.newPage();
-  const fullUrl = `http://localhost:${CONFIG.port}${url}`;
+  const fullUrl = isRemote ? url : `http://localhost:${CONFIG.port}${url}`;
+  const displayUrl = isRemote ? new URL(url).pathname : url;
+  const themeLabel = theme === 'dark' ? '🌙' : '☀️';
 
   try {
     await page.setViewport(CONFIG.viewport);
-    process.stdout.write(`   [${index + 1}/${total}] ${url} `);
+    process.stdout.write(`   [${index + 1}/${total}] ${themeLabel} ${displayUrl} `);
 
     await page.goto(fullUrl, {
       waitUntil: 'networkidle2',
       timeout: CONFIG.timeout
     });
+
+    // Apply theme by toggling dark class on html element
+    if (theme === 'dark') {
+      await page.evaluate(() => {
+        document.documentElement.classList.add('dark');
+      });
+      // Wait for any CSS transitions
+      await new Promise(resolve => setTimeout(resolve, 100));
+    } else {
+      await page.evaluate(() => {
+        document.documentElement.classList.remove('dark');
+      });
+    }
 
     const tags = getTagsForStandard(CONFIG.standard);
     const results = await new AxePuppeteer(page)
@@ -140,7 +220,8 @@ async function auditPage(browser, url, index, total) {
     }
 
     return {
-      url,
+      url: `${displayUrl} [${theme}]`,
+      theme,
       violations: results.violations,
       incomplete: results.incomplete,
     };
@@ -148,7 +229,8 @@ async function auditPage(browser, url, index, total) {
   } catch (error) {
     console.log(`- Error: ${error.message}`);
     return {
-      url,
+      url: `${displayUrl} [${theme}]`,
+      theme,
       error: error.message,
       violations: [],
       incomplete: [],
@@ -202,11 +284,14 @@ function generateMarkdownReport(results) {
     minor: '🔵',
   };
 
+  const uniquePages = results.length / CONFIG.themes.length;
+
   let md = `# Accessibility Test Report
 
 **Generated:** ${timestamp}
 **Standard:** ${CONFIG.standard.toUpperCase()}
-**Pages tested:** ${results.length}
+**Themes tested:** ${CONFIG.themes.map(t => t === 'dark' ? '🌙 Dark' : '☀️ Light').join(', ')}
+**Pages tested:** ${uniquePages} pages × ${CONFIG.themes.length} themes = ${results.length} total
 
 ## Summary
 
@@ -261,24 +346,45 @@ async function main() {
   console.log('=====================\n');
   console.log(`   Standard: ${CONFIG.standard.toUpperCase()}`);
 
-  // Check if _site exists
-  if (!existsSync(CONFIG.siteDir)) {
-    console.error('\n❌ Error: _site folder not found. Run "npm run build" first.\n');
-    process.exit(1);
+  let urls = [];
+  let isRemote = false;
+  let server = null;
+
+  // Remote mode: fetch from sitemap
+  if (CONFIG.sitemapUrl) {
+    isRemote = true;
+    const baseUrl = CONFIG.baseUrl || null;
+    urls = await fetchSitemapUrls(CONFIG.sitemapUrl, baseUrl);
+    console.log(`   Mode: Remote (sitemap)`);
+    if (baseUrl) {
+      console.log(`   Base URL: ${baseUrl}`);
+    }
+  } else {
+    // Local mode: scan _site folder
+    if (!existsSync(CONFIG.siteDir)) {
+      console.error('\n❌ Error: _site folder not found. Run "npm run build" first.\n');
+      process.exit(1);
+    }
+    urls = getHtmlFiles(CONFIG.siteDir);
+    console.log(`   Mode: Local (_site folder)`);
   }
 
-  // Get HTML files
-  let urls = getHtmlFiles(CONFIG.siteDir);
   console.log(`   Found ${urls.length} pages to test`);
+  console.log(`   Themes: ${CONFIG.themes.join(', ')}`);
 
   if (CONFIG.limit > 0) {
     urls = urls.slice(0, CONFIG.limit);
     console.log(`   Limited to ${CONFIG.limit} pages`);
   }
 
-  // Start server
-  console.log('\n📡 Starting local server...');
-  const server = await startServer();
+  const totalTests = urls.length * CONFIG.themes.length;
+  console.log(`   Total tests: ${totalTests} (${urls.length} pages × ${CONFIG.themes.length} themes)`);
+
+  // Start local server only for local mode
+  if (!isRemote) {
+    console.log('\n📡 Starting local server...');
+    server = await startServer();
+  }
 
   // Launch browser
   console.log('\n🚀 Running tests...\n');
@@ -287,15 +393,20 @@ async function main() {
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
 
-  // Audit each page
+  // Audit each page in each theme
   const results = [];
-  for (let i = 0; i < urls.length; i++) {
-    const result = await auditPage(browser, urls[i], i, urls.length);
-    results.push(result);
+  let testIndex = 0;
+  for (const theme of CONFIG.themes) {
+    console.log(`\n   ${theme === 'dark' ? '🌙 Dark' : '☀️ Light'} theme:\n`);
+    for (const url of urls) {
+      const result = await auditPage(browser, url, theme, testIndex, totalTests, isRemote);
+      results.push(result);
+      testIndex++;
+    }
   }
 
   await browser.close();
-  server.close();
+  if (server) server.close();
 
   // Ensure output directory exists
   if (!existsSync(CONFIG.outputDir)) {
