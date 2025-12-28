@@ -52,7 +52,7 @@
           <div class="text-left">
             <div class="font-semibold {{ text_class }}">{{ testimonial.author }}</div>
             {%- if testimonial.title or testimonial.company -%}
-            <div class="text-stone-500 text-sm">{{ testimonial.title }}{% if testimonial.title and testimonial.company %}, {% endif %}{{ testimonial.company }}</div>
+            <div class="text-stone-600 text-sm">{{ testimonial.title }}{% if testimonial.title and testimonial.company %}, {% endif %}{{ testimonial.company }}</div>
             {%- endif -%}
           </div>
         </div>
@@ -77,7 +77,7 @@
             <div>
               <div class="font-semibold {{ text_class }} text-sm">{{ testimonial.author }}</div>
               {%- if testimonial.title or testimonial.company -%}
-              <div class="text-stone-500 text-xs">{{ testimonial.title }}{% if testimonial.title and testimonial.company %}, {% endif %}{{ testimonial.company }}</div>
+              <div class="text-stone-600 text-xs">{{ testimonial.title }}{% if testimonial.title and testimonial.company %}, {% endif %}{{ testimonial.company }}</div>
               {%- endif -%}
             </div>
           </div>

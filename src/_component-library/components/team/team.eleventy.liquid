@@ -50,7 +50,7 @@
           <img src="{{ member.image }}" alt="{{ member.name }}" class="w-32 h-32 rounded-full mx-auto object-cover">
           {%- else -%}
           <div class="w-32 h-32 rounded-full mx-auto bg-stone-200 flex items-center justify-center">
-            <span class="text-4xl text-stone-400">{{ member.name | slice: 0 }}</span>
+            <span class="text-4xl text-stone-500">{{ member.name | slice: 0 }}</span>
           </div>
           {%- endif -%}
         </div>
@@ -64,7 +64,7 @@
         {%- if member.social.size > 0 -%}
         <div class="flex justify-center gap-3 mt-3">
           {%- for link in member.social -%}
-          <a href="{{ link.url }}" class="text-stone-400 hover:text-orange-600 transition-colors" target="_blank" rel="noopener">
+          <a href="{{ link.url }}" class="text-stone-500 hover:text-orange-600 transition-colors" target="_blank" rel="noopener">
             <span class="sr-only">{{ link.network }}</span>
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               {%- if link.network == "linkedin" -%}

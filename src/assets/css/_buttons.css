@@ -33,7 +33,7 @@
 }
 
 @utility btn--white {
-  @apply text-white bg-transparent border-white shadow-none hover:bg-white hover:text-orange-700;
+  @apply text-stone-900 bg-white border-white shadow-none hover:bg-stone-100 hover:text-stone-900;
 }
 
 @utility btn--danger {
@@ -75,9 +75,9 @@
 }
 
 @utility pager--disabled {
-  @apply text-stone-400 bg-stone-100 border border-stone-200 cursor-not-allowed;
+  @apply text-stone-500 bg-stone-100 border border-stone-200 cursor-not-allowed;
 }
 
 @utility pager--ellipsis {
-  @apply text-stone-400 cursor-default;
+  @apply text-stone-500 cursor-default;
 }

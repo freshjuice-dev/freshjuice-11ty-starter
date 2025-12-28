@@ -218,7 +218,7 @@
 
   /* Help text */
   .form-help {
-    @apply text-sm text-stone-500 mt-1;
+    @apply text-sm text-stone-600 mt-1;
   }
 
   /* Error state */

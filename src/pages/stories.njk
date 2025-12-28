@@ -68,8 +68,8 @@ permalink: /stories/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNum
             <div class="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-stone-100">
               {% for metric in story.data.metrics | limit(2) %}
               <div class="text-center">
-                <div class="text-lg font-bold text-primary-600">{{ metric.value }}</div>
-                <div class="text-xs text-stone-500">{{ metric.label }}</div>
+                <div class="text-lg font-bold text-primary-700">{{ metric.value }}</div>
+                <div class="text-xs text-stone-600">{{ metric.label }}</div>
               </div>
               {% endfor %}
             </div>

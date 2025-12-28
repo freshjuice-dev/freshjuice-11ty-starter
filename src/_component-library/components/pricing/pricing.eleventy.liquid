@@ -32,7 +32,7 @@
       <div class="relative flex flex-col rounded-2xl {% if plan.featured %}bg-stone-900 text-white ring-4 ring-orange-500{% else %}bg-white border border-stone-200{% endif %} p-8">
         {%- if plan.featured -%}
         <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-          <span class="bg-orange-500 text-white text-sm font-semibold px-4 py-1 rounded-full">Most Popular</span>
+          <span class="bg-orange-700 text-white text-sm font-semibold px-4 py-1 rounded-full">Most Popular</span>
         </div>
         {%- endif -%}
 
@@ -46,7 +46,7 @@
         <div class="mb-6">
           <span class="text-4xl font-bold">{{ plan.price }}</span>
           {%- if plan.period -%}
-          <span class="{% if plan.featured %}text-stone-400{% else %}text-stone-500{% endif %}">{{ plan.period }}</span>
+          <span class="{% if plan.featured %}text-stone-400{% else %}text-stone-600{% endif %}">{{ plan.period }}</span>
           {%- endif -%}
         </div>
 

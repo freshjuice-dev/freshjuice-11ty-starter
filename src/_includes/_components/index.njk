@@ -99,7 +99,7 @@
   {% endif %}
   <div class="flex flex-col flex-1 p-6">
     {% if props.date or props.author %}
-    <div class="flex items-center gap-3 text-sm text-stone-500 mb-3">
+    <div class="flex items-center gap-3 text-sm text-stone-600 mb-3">
       {% if props.date %}<time datetime="{{ props.date | dateToISOString }}">{{ props.date | shortDate }}</time>{% endif %}
       {% if props.date and props.author %}<span>&middot;</span>{% endif %}
       {% if props.author %}<span>{{ props.author }}</span>{% endif %}
@@ -145,17 +145,17 @@
     {% if props.social %}
     <div class="flex gap-3 mt-3">
       {% if props.social.twitter %}
-      <a href="{{ props.social.twitter }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-stone-600 transition-colors" aria-label="Twitter">
+      <a href="{{ props.social.twitter }}" target="_blank" rel="noopener noreferrer" class="text-stone-500 hover:text-stone-700 transition-colors" aria-label="Twitter">
         {% phosphor "x-logo", "bold", { size: 20 } %}
       </a>
       {% endif %}
       {% if props.social.linkedin %}
-      <a href="{{ props.social.linkedin }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-stone-600 transition-colors" aria-label="LinkedIn">
+      <a href="{{ props.social.linkedin }}" target="_blank" rel="noopener noreferrer" class="text-stone-500 hover:text-stone-700 transition-colors" aria-label="LinkedIn">
         {% phosphor "linkedin-logo", "bold", { size: 20 } %}
       </a>
       {% endif %}
       {% if props.social.github %}
-      <a href="{{ props.social.github }}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-stone-600 transition-colors" aria-label="GitHub">
+      <a href="{{ props.social.github }}" target="_blank" rel="noopener noreferrer" class="text-stone-500 hover:text-stone-700 transition-colors" aria-label="GitHub">
         {% phosphor "github-logo", "bold", { size: 20 } %}
       </a>
       {% endif %}
@@ -179,7 +179,7 @@
   <figure class="{{ props.className }}">
     <img src="{{ props.src }}" alt="{{ props.alt }}" class="w-full" {% if lazy %}loading="lazy"{% endif %}>
     {% if props.caption %}
-    <figcaption class="text-center text-stone-500 text-sm mt-2">{{ props.caption }}</figcaption>
+    <figcaption class="text-center text-stone-600 text-sm mt-2">{{ props.caption }}</figcaption>
     {% endif %}
   </figure>
 {% endmacro %}

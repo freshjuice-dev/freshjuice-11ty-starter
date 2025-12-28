@@ -68,7 +68,7 @@ layout: layouts/base.njk
     <div class="grid grid-cols-2 md:grid-cols-{{ results | length if results | length <= 4 else 4 }} gap-6 p-6 bg-gradient-to-br from-primary-50 to-orange-50 rounded-lg mb-12" data-cms-bind="#results">
       {% for result in results %}
       <div class="text-center" data-cms-bind="#results[{{ loop.index0 }}]">
-        <div class="text-3xl md:text-4xl font-bold text-primary-600 mb-1" data-cms-bind="#results[{{ loop.index0 }}].value">{{ result.value }}</div>
+        <div class="text-3xl md:text-4xl font-bold text-primary-700 mb-1" data-cms-bind="#results[{{ loop.index0 }}].value">{{ result.value }}</div>
         <div class="text-sm text-gray-600" data-cms-bind="#results[{{ loop.index0 }}].label">{{ result.label }}</div>
       </div>
       {% endfor %}

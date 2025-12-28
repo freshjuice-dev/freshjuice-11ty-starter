@@ -35,14 +35,14 @@ faq:
       <div class="inline-flex items-center gap-4 bg-white rounded-full p-1.5 shadow-sm border border-stone-200 mb-12">
         <button
           @click="yearly = false"
-          :class="!yearly ? 'bg-orange-600 text-white shadow-md' : 'text-stone-600 hover:text-stone-900'"
+          :class="!yearly ? 'bg-orange-700 text-white shadow-md' : 'text-stone-600 hover:text-stone-900'"
           class="px-6 py-2 rounded-full font-medium transition-all duration-200"
         >
           Monthly
         </button>
         <button
           @click="yearly = true"
-          :class="yearly ? 'bg-orange-600 text-white shadow-md' : 'text-stone-600 hover:text-stone-900'"
+          :class="yearly ? 'bg-orange-700 text-white shadow-md' : 'text-stone-600 hover:text-stone-900'"
           class="px-6 py-2 rounded-full font-medium transition-all duration-200"
         >
           Yearly
@@ -56,15 +56,15 @@ faq:
         <div class="relative bg-white rounded-2xl shadow-lg border border-stone-200 p-8 flex flex-col">
           <div class="mb-6">
             <h3 class="text-lg font-semibold text-stone-900 mb-2">Starter</h3>
-            <p class="text-stone-500 text-sm">Perfect for individuals and small projects</p>
+            <p class="text-stone-600 text-sm">Perfect for individuals and small projects</p>
           </div>
           <div class="mb-6">
             <div class="flex items-baseline gap-1">
               <span class="text-4xl font-bold text-stone-900" x-text="yearly ? '$19' : '$24'">$24</span>
-              <span class="text-stone-500">/month</span>
+              <span class="text-stone-600">/month</span>
             </div>
-            <p class="text-sm text-stone-400 mt-1" x-show="yearly">Billed annually ($228/year)</p>
-            <p class="text-sm text-stone-400 mt-1" x-show="!yearly">Billed monthly</p>
+            <p class="text-sm text-stone-500 mt-1" x-show="yearly">Billed annually ($228/year)</p>
+            <p class="text-sm text-stone-500 mt-1" x-show="!yearly">Billed monthly</p>
           </div>
           <ul class="space-y-3 mb-8 flex-1">
             <li class="flex items-start gap-3 text-stone-600">
@@ -83,11 +83,11 @@ faq:
               {% phosphor "check-circle", "fill", { size: 20, class: "text-lime-600 flex-shrink-0 mt-0.5" } %}
               <span>Email support</span>
             </li>
-            <li class="flex items-start gap-3 text-stone-400">
+            <li class="flex items-start gap-3 text-stone-500">
               {% phosphor "x-circle", "fill", { size: 20, class: "flex-shrink-0 mt-0.5" } %}
               <span>Custom domain</span>
             </li>
-            <li class="flex items-start gap-3 text-stone-400">
+            <li class="flex items-start gap-3 text-stone-500">
               {% phosphor "x-circle", "fill", { size: 20, class: "flex-shrink-0 mt-0.5" } %}
               <span>Advanced integrations</span>
             </li>
@@ -98,19 +98,19 @@ faq:
         {# Professional Plan - Featured #}
         <div class="relative bg-white rounded-2xl shadow-xl border-2 border-orange-600 p-8 flex flex-col scale-105 z-10">
           <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-            <span class="bg-orange-600 text-white text-sm font-semibold px-4 py-1 rounded-full whitespace-nowrap">Most Popular</span>
+            <span class="bg-orange-700 text-white text-sm font-semibold px-4 py-1 rounded-full whitespace-nowrap">Most Popular</span>
           </div>
           <div class="mb-6">
             <h3 class="text-lg font-semibold text-stone-900 mb-2">Professional</h3>
-            <p class="text-stone-500 text-sm">For growing teams and businesses</p>
+            <p class="text-stone-600 text-sm">For growing teams and businesses</p>
           </div>
           <div class="mb-6">
             <div class="flex items-baseline gap-1">
               <span class="text-4xl font-bold text-stone-900" x-text="yearly ? '$49' : '$59'">$59</span>
-              <span class="text-stone-500">/month</span>
+              <span class="text-stone-600">/month</span>
             </div>
-            <p class="text-sm text-stone-400 mt-1" x-show="yearly">Billed annually ($588/year)</p>
-            <p class="text-sm text-stone-400 mt-1" x-show="!yearly">Billed monthly</p>
+            <p class="text-sm text-stone-500 mt-1" x-show="yearly">Billed annually ($588/year)</p>
+            <p class="text-sm text-stone-500 mt-1" x-show="!yearly">Billed monthly</p>
           </div>
           <ul class="space-y-3 mb-8 flex-1">
             <li class="flex items-start gap-3 text-stone-600">
@@ -145,15 +145,15 @@ faq:
         <div class="relative bg-white rounded-2xl shadow-lg border border-stone-200 p-8 flex flex-col">
           <div class="mb-6">
             <h3 class="text-lg font-semibold text-stone-900 mb-2">Business</h3>
-            <p class="text-stone-500 text-sm">For large teams with advanced needs</p>
+            <p class="text-stone-600 text-sm">For large teams with advanced needs</p>
           </div>
           <div class="mb-6">
             <div class="flex items-baseline gap-1">
               <span class="text-4xl font-bold text-stone-900" x-text="yearly ? '$99' : '$119'">$119</span>
-              <span class="text-stone-500">/month</span>
+              <span class="text-stone-600">/month</span>
             </div>
-            <p class="text-sm text-stone-400 mt-1" x-show="yearly">Billed annually ($1,188/year)</p>
-            <p class="text-sm text-stone-400 mt-1" x-show="!yearly">Billed monthly</p>
+            <p class="text-sm text-stone-500 mt-1" x-show="yearly">Billed annually ($1,188/year)</p>
+            <p class="text-sm text-stone-500 mt-1" x-show="!yearly">Billed monthly</p>
           </div>
           <ul class="space-y-3 mb-8 flex-1">
             <li class="flex items-start gap-3 text-stone-600">
@@ -185,7 +185,7 @@ faq:
         </div>
       </div>
 
-      <p class="text-sm text-stone-400 text-center mt-10 max-w-2xl mx-auto">
+      <p class="text-sm text-stone-500 text-center mt-10 max-w-2xl mx-auto">
         * All prices shown are for illustration purposes only.<br>
         This is a demo template available <a href="https://github.com/AbolDev/freshjuice-11ty-starter" class="underline hover:text-stone-600">free on GitHub</a>.
       </p>
@@ -248,7 +248,7 @@ faq:
             <tr class="border-b-2 border-stone-200">
               <th class="py-4 pr-4 font-semibold text-stone-900">Features</th>
               <th class="py-4 px-4 text-center font-semibold text-stone-900">Starter</th>
-              <th class="py-4 px-4 text-center font-semibold text-orange-600 bg-orange-50 rounded-t-lg">Professional</th>
+              <th class="py-4 px-4 text-center font-semibold text-orange-700 bg-orange-50 rounded-t-lg">Professional</th>
               <th class="py-4 px-4 text-center font-semibold text-stone-900">Business</th>
             </tr>
           </thead>
@@ -317,7 +317,7 @@ faq:
         </table>
       </div>
 
-      <p class="text-sm text-stone-400 text-center mt-8 max-w-2xl mx-auto">
+      <p class="text-sm text-stone-500 text-center mt-8 max-w-2xl mx-auto">
         * All prices shown are for illustration purposes only. We do not sell any products or services.<br>
         This template is available <a href="https://github.com/AbolDev/freshjuice-11ty-starter" class="underline hover:text-stone-600">free of charge on GitHub</a>.
       </p>

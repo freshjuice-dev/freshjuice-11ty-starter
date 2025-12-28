@@ -54,7 +54,7 @@ permalink: /cases/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
           {# Bottom Section - Client & Technologies #}
           <div class="mt-4">
             {# Client & Timeline #}
-            <div class="flex items-center gap-4 pt-4 border-t border-stone-100 text-sm text-stone-500">
+            <div class="flex items-center gap-4 pt-4 border-t border-stone-100 text-sm text-stone-600">
               {% if case.data.client %}
               <div class="flex items-center gap-1.5">
                 {% phosphor "building-office", "duotone", { size: 16 } %}
@@ -76,7 +76,7 @@ permalink: /cases/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
               <span class="px-2 py-0.5 bg-stone-100 rounded text-xs font-medium text-stone-600">{{ tech }}</span>
               {% endfor %}
               {% if case.data.technologies.length > 3 %}
-              <span class="px-2 py-0.5 bg-stone-100 rounded text-xs font-medium text-stone-500">+{{ case.data.technologies.length - 3 }}</span>
+              <span class="px-2 py-0.5 bg-stone-100 rounded text-xs font-medium text-stone-600">+{{ case.data.technologies.length - 3 }}</span>
               {% endif %}
             </div>
             {% endif %}
@@ -86,8 +86,8 @@ permalink: /cases/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
             <div class="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-stone-100">
               {% for result in case.data.results | limit(2) %}
               <div class="text-center">
-                <div class="text-lg font-bold text-primary-600">{{ result.value }}</div>
-                <div class="text-xs text-stone-500">{{ result.label }}</div>
+                <div class="text-lg font-bold text-primary-700">{{ result.value }}</div>
+                <div class="text-xs text-stone-600">{{ result.label }}</div>
               </div>
               {% endfor %}
             </div>
