@@ -21,6 +21,7 @@
     "format": "prettier --write .",
     "test": "npm run test:a11y",
     "test:a11y": "node tests/a11y.test.mjs",
+    "test:a11y:live": "node tests/a11y.test.mjs --sitemap=https://snappy-lemon.cloudvent.net/sitemap.xml --base-url=https://snappy-lemon.cloudvent.net",
     "favicon": "node scripts/generate-favicons.mjs"
   },
   "keywords": [
