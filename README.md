@@ -2,8 +2,6 @@
 
 <img src="src/assets/images/og-placeholder.png" alt="FreshJuice 11ty Starter" width="450">
 
-> **Work in Progress** - This starter is under active development. Feel free to use it as-is, but expect breaking changes until v1.0 release.
-
 **[Live Demo](https://snappy-lemon-starter.freshjuice.dev)**
 
 A modern, fast, and accessible starter theme for building static websites with [Eleventy](https://www.11ty.dev/), [TailwindCSS](https://tailwindcss.com/), and [CloudCannon CMS](https://cloudcannon.com/).
