@@ -21,7 +21,7 @@
     "format": "prettier --write .",
     "test": "npm run test:a11y",
     "test:a11y": "node tests/a11y.test.mjs",
-    "test:a11y:live": "node tests/a11y.test.mjs --sitemap=https://snappy-lemon.cloudvent.net/sitemap.xml --base-url=https://snappy-lemon.cloudvent.net",
+    "test:a11y:live": "node tests/a11y.test.mjs --sitemap=https://snappy-lemon-starter.freshjuice.dev/sitemap.xml --base-url=https://snappy-lemon-starter.freshjuice.dev",
     "favicon": "node scripts/generate-favicons.mjs"
   },
   "keywords": [
@@ -65,8 +65,10 @@
     "lite-youtube-embed": "^0.3.4",
     "npm-run-all": "^4.1.5",
     "pagefind": "^1.4.0",
-    "shiki": "^3.20.0",
-    "tailwindcss": "^4.1.18"
+    "rimraf": "^6.1.2",
+    "shiki": "^3.21.0",
+    "tailwindcss": "^4.1.18",
+    "wrangler": "^4.58.0"
   },
   "dependencies": {
     "@bookshop/browser": "3.17.1",

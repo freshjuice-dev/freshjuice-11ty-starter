@@ -5,7 +5,7 @@
       <div class="">
         {% if footer.logo or footer.name %}
         <a href="/" class="inline-flex flex-col gap-2 text-xl font-bold text-white hover:text-primary-400 transition-colors">
-          {% if footer.logo %}<img src="{{ footer.logo }}" alt="" class="h-8 w-auto">{% endif %}
+          {% if footer.logo %}<img src="{{ footer.logo }}" alt="{{ footer.name or 'Snappy Lemon logo' }}" eleventy:widths="120" class="h-8 w-auto">{% endif %}
           {% if footer.name %}<span>{{ footer.name }}</span>{% endif %}
         </a>
         {% endif %}

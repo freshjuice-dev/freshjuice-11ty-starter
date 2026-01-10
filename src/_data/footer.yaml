@@ -55,7 +55,7 @@ quick_links:
     class: ""
 
 # Brand Column
-logo: "/assets/images/logo-icon.svg"
+logo: "/assets/images/snappy-lemon.png"
 name: "Snappy Lemon"
 tagline: |
   A modern <a href="https://www.11ty.dev/" target="_blank" rel="noopener noreferrer">11ty</a> starter theme with <a href="https://cloudcannon.com/" target="_blank" rel="noopener noreferrer">CloudCannon</a> CMS integration, <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">TailwindCSS</a>, and <a href="https://alpinejs.dev/" target="_blank" rel="noopener noreferrer">Alpine.js</a>.
