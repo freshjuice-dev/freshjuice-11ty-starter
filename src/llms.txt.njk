@@ -10,7 +10,7 @@ eleventyExcludeFromCollections: true
 
 {%- for page in collections.pages %}
 {%- if not page.data.llms_exclude and not page.data.eleventyExcludeFromCollections %}
-- [{{ page.data.title }}]({{ metadata.site_url }}{{ page.url }}): {{ page.data.description }}
+- [{{ page.data.title }}]({{ build.url }}{{ page.url }}): {{ page.data.description }}
 {%- endif %}
 {%- endfor %}
 
@@ -18,12 +18,12 @@ eleventyExcludeFromCollections: true
 
 {%- for post in collections.blog %}
 {%- if not post.data.llms_exclude %}
-- [{{ post.data.title }}]({{ metadata.site_url }}{{ post.url }}): {{ post.data.description }}
+- [{{ post.data.title }}]({{ build.url }}{{ post.url }}): {{ post.data.description }}
 {%- endif %}
 {%- endfor %}
 
 ## Authors
 
 {%- for author in collections.authors %}
-- [{{ author.data.name }}]({{ metadata.site_url }}{{ author.url }}): {{ author.data.bio | truncate(100) }}
+- [{{ author.data.name }}]({{ build.url }}{{ author.url }}): {{ author.data.bio | truncate(100) }}
 {%- endfor %}

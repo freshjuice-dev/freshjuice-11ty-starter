@@ -5,7 +5,7 @@ _icon: public
 # Site Metadata
 site_name: "FreshJuice Starter"
 site_description: "A modern 11ty starter theme with CloudCannon CMS integration, TailwindCSS, and Alpine.js"
-site_url: "https://example.com"
+site_url: "https://snappy-lemon-starter.freshjuice.dev"
 default_image: "/assets/images/og-placeholder.png"
 locale: "en"
 language: "en-US"

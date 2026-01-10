@@ -38,9 +38,14 @@ function formatDate(date) {
 export default function () {
   const { hash, timestamp } = getGitInfo();
   const date = new Date(timestamp * 1000);
+  const isProduction = process.env.ELEVENTY_ENV === "production";
 
   return {
     environment: process.env.ELEVENTY_ENV || "development",
+    isProduction,
+    url: isProduction
+      ? "https://snappy-lemon-starter.freshjuice.dev"
+      : "http://localhost:8080",
     hash: {
       short: hash.slice(0, 7),
       full: hash,

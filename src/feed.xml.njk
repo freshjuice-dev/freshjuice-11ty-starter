@@ -7,8 +7,8 @@ eleventyExcludeFromCollections: true
   <channel>
     <title>{{ metadata.site_name }}</title>
     <description>{{ metadata.site_description }}</description>
-    <link>{{ metadata.site_url }}</link>
-    <atom:link href="{{ metadata.site_url }}/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>{{ build.url }}</link>
+    <atom:link href="{{ build.url }}/feed.xml" rel="self" type="application/rss+xml"/>
     <language>{{ language or 'en-US' }}</language>
     {%- set latestPost = collections.blog | first %}
     <lastBuildDate>{{ latestPost.date | dateToISOString if latestPost else '' }}</lastBuildDate>
@@ -16,8 +16,8 @@ eleventyExcludeFromCollections: true
     <item>
       <title>{{ post.data.title }}</title>
       <description>{{ post.data.description }}</description>
-      <link>{{ metadata.site_url }}{{ post.url }}</link>
-      <guid isPermaLink="true">{{ metadata.site_url }}{{ post.url }}</guid>
+      <link>{{ build.url }}{{ post.url }}</link>
+      <guid isPermaLink="true">{{ build.url }}{{ post.url }}</guid>
       <pubDate>{{ post.date | dateToISOString }}</pubDate>
       {%- if post.data.author %}
       <author>{{ post.data.author }}</author>
