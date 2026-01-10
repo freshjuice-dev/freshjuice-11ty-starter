@@ -5,7 +5,7 @@
 <meta name="description" content="{{ description or metadata.site_description }}">
 
 {# Canonical URL #}
-<link rel="canonical" href="{{ metadata.site_url }}{{ page.url }}">
+<link rel="canonical" href="{{ build.url }}{{ page.url }}">
 
 {# Robots #}
 {% if noindex %}
@@ -24,19 +24,19 @@
 
 {# Open Graph / Facebook #}
 <meta property="og:type" content="{% if layout === 'layouts/post.njk' %}article{% else %}website{% endif %}">
-<meta property="og:url" content="{{ metadata.site_url }}{{ page.url }}">
+<meta property="og:url" content="{{ build.url }}{{ page.url }}">
 <meta property="og:title" content="{{ title or metadata.site_name }}">
 <meta property="og:description" content="{{ description or metadata.site_description }}">
-<meta property="og:image" content="{{ metadata.site_url }}{{ image or metadata.default_image }}">
+<meta property="og:image" content="{{ build.url }}{{ image or metadata.default_image }}">
 <meta property="og:site_name" content="{{ metadata.site_name }}">
 <meta property="og:locale" content="{{ metadata.locale }}">
 
 {# Twitter #}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="{{ metadata.site_url }}{{ page.url }}">
+<meta name="twitter:url" content="{{ build.url }}{{ page.url }}">
 <meta name="twitter:title" content="{{ title or metadata.site_name }}">
 <meta name="twitter:description" content="{{ description or metadata.site_description }}">
-<meta name="twitter:image" content="{{ metadata.site_url }}{{ image or metadata.default_image }}">
+<meta name="twitter:image" content="{{ build.url }}{{ image or metadata.default_image }}">
 
 {# Article specific meta #}
 {% if layout === 'layouts/post.njk' %}
@@ -54,11 +54,14 @@
 {% endif %}
 
 {# Favicon #}
-<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
-<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 
 {# RSS Feed #}
-<link rel="alternate" type="application/rss+xml" title="{{ metadata.site_name }} RSS Feed" href="{{ metadata.site_url }}/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="{{ metadata.site_name }} RSS Feed" href="{{ build.url }}/feed.xml">
 
 {# Theme Color #}
 <meta name="theme-color" content="#22c55e">

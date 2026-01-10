@@ -4,7 +4,7 @@
 
 > **Work in Progress** - This starter is under active development. Feel free to use it as-is, but expect breaking changes until v1.0 release.
 
-**[Live Demo](https://snappy-lemon.cloudvent.net)**
+**[Live Demo](https://snappy-lemon-starter.freshjuice.dev)**
 
 A modern, fast, and accessible starter theme for building static websites with [Eleventy](https://www.11ty.dev/), [TailwindCSS](https://tailwindcss.com/), and [CloudCannon CMS](https://cloudcannon.com/).
 
@@ -101,8 +101,7 @@ freshjuice-11ty-starter/
 │   │   ├── partials/          # Reusable partials
 │   │   │   ├── header.njk
 │   │   │   ├── footer.njk
-│   │   │   ├── metatags.njk
-│   │   │   └── favicon-meta.njk
+│   │   │   └── metatags.njk
 │   │   ├── _components/       # Nunjucks component macros
 │   │   │   └── index.njk
 │   │   └── _blocks/           # CloudCannon page blocks
@@ -296,7 +295,7 @@ Edit `src/_data/footer.yaml` to configure footer columns, links, and copyright t
 2. Install the optional dependency: `npm install favicons`
 3. Run: `npm run favicon`
 
-This generates all favicon sizes and outputs meta tags to `src/_includes/partials/favicon-meta.njk`.
+This generates all favicon sizes to `src/static/`.
 
 ## Accessibility Testing
 
