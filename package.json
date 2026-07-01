@@ -73,6 +73,6 @@
   },
   "dependencies": {
     "@bookshop/browser": "3.18.2",
-    "@bookshop/eleventy-bookshop": "3.18.2"
+    "@bookshop/eleventy-bookshop": "3.18.4"
   }
 }
