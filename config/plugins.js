@@ -4,7 +4,7 @@ import pluginPhosphorIcons from 'eleventy-plugin-phosphoricons';
 import pluginSpeculationRules from 'eleventy-plugin-speculation-rules';
 import fs from 'fs';
 import path from 'path';
-import yaml from 'js-yaml';
+import { load as loadYaml } from 'js-yaml';
 
 /**
  * Eleventy plugins configuration
@@ -12,7 +12,7 @@ import yaml from 'js-yaml';
  */
 export default function(eleventyConfig) {
   // Add YAML support for data files
-  eleventyConfig.addDataExtension('yaml,yml', (contents) => yaml.load(contents));
+  eleventyConfig.addDataExtension('yaml,yml', (contents) => loadYaml(contents));
 
   // Phosphor Icons
   eleventyConfig.addPlugin(pluginPhosphorIcons, {
