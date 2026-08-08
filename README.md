@@ -1,5 +1,6 @@
 # FreshJuice 11ty Starter a.k.a. Snappy Lemon
 
+> ⚠️ PRIVATE REPOSITORY — Proprietary and confidential. See [LICENSE](LICENSE).
 <img src="src/assets/images/og-placeholder.png" alt="FreshJuice 11ty Starter" width="450">
 
 **[Live Demo](https://snappy-lemon-starter.freshjuice.dev)**
