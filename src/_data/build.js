@@ -1,20 +1,20 @@
-import { execSync } from "child_process";
+import { execSync } from 'child_process';
 
 /**
  * Get git commit info safely
  */
 function getGitInfo() {
   try {
-    const hash = execSync("git rev-parse HEAD").toString().trim();
+    const hash = execSync('git rev-parse HEAD').toString().trim();
     const timestamp = parseInt(
-      execSync("git log -1 --format=%ct").toString().trim(),
+      execSync('git log -1 --format=%ct').toString().trim(),
       10
     );
     return { hash, timestamp };
   } catch {
     // Not a git repo or git not available
     return {
-      hash: "development",
+      hash: 'development',
       timestamp: Math.floor(Date.now() / 1000),
     };
   }
@@ -24,28 +24,28 @@ function getGitInfo() {
  * Format date for display (UTC)
  */
 function formatDate(date) {
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: "UTC",
-    timeZoneName: "short",
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'UTC',
+    timeZoneName: 'short',
   });
 }
 
 export default function () {
   const { hash, timestamp } = getGitInfo();
   const date = new Date(timestamp * 1000);
-  const isProduction = process.env.ELEVENTY_ENV === "production";
+  const isProduction = process.env.ELEVENTY_ENV === 'production';
 
   return {
-    environment: process.env.ELEVENTY_ENV || "development",
+    environment: process.env.ELEVENTY_ENV || 'development',
     isProduction,
     url: isProduction
-      ? "https://snappy-lemon-starter.freshjuice.dev"
-      : "http://localhost:8080",
+      ? 'https://snappy-lemon-starter.freshjuice.dev'
+      : 'http://localhost:8080',
     hash: {
       short: hash.slice(0, 7),
       full: hash,
@@ -57,8 +57,8 @@ export default function () {
       formatted: formatDate(date),
     },
     issues: {
-      owner: "freshjuice-dev",
-      repo: "freshjuice-11ty-starter",
+      owner: 'freshjuice-dev',
+      repo: 'freshjuice-11ty-starter',
     },
   };
 }
